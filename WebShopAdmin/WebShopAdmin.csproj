@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1D670FF-4EAB-493D-98E4-D8A5BADECA10}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebShopAdmin</RootNamespace>
+    <AssemblyName>WebShopAdmin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit, Version=3.5.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin, Version=4.97.4951.28478, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="CKEditor.NET, Version=3.6.4.0, Culture=neutral, PublicKeyToken=e379cdf2f8354999, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\CKEditor.NET.dll</HintPath>
+    </Reference>
+    <Reference Include="eshopBE">
+      <HintPath>..\..\WebShopFramework\eshopBE\bin\Debug\eshopBE.dll</HintPath>
+    </Reference>
+    <Reference Include="eshopBL">
+      <HintPath>..\..\WebShopFramework\eshopBL\bin\Debug\eshopBL.dll</HintPath>
+    </Reference>
+    <Reference Include="eshopUtilities">
+      <HintPath>..\..\WebShopFramework\eshopUtilities\bin\Debug\eshopUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NReco.PdfGenerator, Version=1.1.12.0, Culture=neutral, PublicKeyToken=231663d50a41b451, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\NReco.PdfGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="webshopAdmin\attribute.aspx" />
+    <Content Include="webshopAdmin\attributeKimtecAttribute.aspx" />
+    <Content Include="webshopAdmin\attributes.aspx" />
+    <Content Include="webshopAdmin\banner.aspx" />
+    <Content Include="webshopAdmin\categories.aspx" />
+    <Content Include="webshopAdmin\category.aspx" />
+    <Content Include="webshopAdmin\categoryBanner.aspx" />
+    <Content Include="webshopAdmin\categoryBanners.aspx" />
+    <Content Include="webshopAdmin\coupon.aspx" />
+    <Content Include="webshopAdmin\coupons.aspx" />
+    <Content Include="webshopAdmin\createUser.aspx" />
+    <Content Include="webshopAdmin\css\bootstrap-theme.css" />
+    <Content Include="webshopAdmin\css\bootstrap-theme.min.css" />
+    <Content Include="webshopAdmin\css\bootstrap.css" />
+    <Content Include="webshopAdmin\css\bootstrap.min.css" />
+    <Content Include="webshopAdmin\css\font-awesome.css" />
+    <Content Include="webshopAdmin\css\font-awesome.min.css" />
+    <Content Include="webshopAdmin\css\jquery.datetimepicker.css" />
+    <Content Include="webshopAdmin\css\metisMenu.css" />
+    <Content Include="webshopAdmin\css\metisMenu.min.css" />
+    <Content Include="webshopAdmin\css\morris.css" />
+    <Content Include="webshopAdmin\css\sb-admin-2.css" />
+    <Content Include="webshopAdmin\css\style.css" />
+    <Content Include="webshopAdmin\css\styleV2.css" />
+    <Content Include="webshopAdmin\css\timeline.css" />
+    <Content Include="webshopAdmin\customControls\AttributeControl.ascx" />
+    <Content Include="webshopAdmin\customControls\CustomStatus.ascx" />
+    <Content Include="webshopAdmin\customPage.aspx" />
+    <Content Include="webshopAdmin\customPages.aspx" />
+    <Content Include="webshopAdmin\default.aspx" />
+    <Content Include="webshopAdmin\fonts\fontawesome-webfont.svg" />
+    <Content Include="webshopAdmin\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="webshopAdmin\getProducts.aspx" />
+    <Content Include="webshopAdmin\getProductsKimtec.aspx" />
+    <Content Include="webshopAdmin\images\delete_icon.png" />
+    <Content Include="webshopAdmin\js\bootstrap.js" />
+    <Content Include="webshopAdmin\js\bootstrap.min.js" />
+    <Content Include="webshopAdmin\js\Chart.min.js" />
+    <Content Include="webshopAdmin\js\charts.js" />
+    <Content Include="webshopAdmin\js\common.js" />
+    <Content Include="webshopAdmin\js\flot-data.js" />
+    <Content Include="webshopAdmin\js\jquery-ui.min.js" />
+    <Content Include="webshopAdmin\js\jquery.datetimepicker.js" />
+    <Content Include="webshopAdmin\js\legend.js" />
+    <Content Include="webshopAdmin\js\metisMenu.js" />
+    <Content Include="webshopAdmin\js\metisMenu.min.js" />
+    <Content Include="webshopAdmin\js\morris-data.js" />
+    <Content Include="webshopAdmin\js\morris.min.js" />
+    <Content Include="webshopAdmin\js\npm.js" />
+    <Content Include="webshopAdmin\js\products.js" />
+    <Content Include="webshopAdmin\js\raphael-min.js" />
+    <Content Include="webshopAdmin\js\sb-admin-2.js" />
+    <Content Include="webshopAdmin\kimtecCategories.aspx" />
+    <Content Include="webshopAdmin\login.aspx" />
+    <Content Include="webshopAdmin\order.aspx" />
+    <Content Include="webshopAdmin\orders-graph.aspx" />
+    <Content Include="webshopAdmin\orders.aspx" />
+    <Content Include="webshopAdmin\product.aspx" />
+    <Content Include="webshopAdmin\products.aspx" />
+    <Content Include="webshopAdmin\promotion.aspx" />
+    <Content Include="webshopAdmin\promotions.aspx" />
+    <Content Include="webshopAdmin\reports\1476470_541694929238595_1282263928_n.jpg" />
+    <Content Include="webshopAdmin\slider.aspx" />
+    <Content Include="webshopAdmin\sliders.aspx" />
+    <Content Include="webshopAdmin\user.aspx" />
+    <Content Include="webshopAdmin\users.aspx" />
+    <Content Include="webshopAdmin\WebMethods.aspx" />
+    <Content Include="x509.aspx" />
+    <Content Include="packages.config" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="webshopAdmin\administrator.Master" />
+    <Content Include="webshopAdmin\adminPanel.Master" />
+    <Content Include="webshopAdmin\css\bootstrap-theme.css.map" />
+    <Content Include="webshopAdmin\css\bootstrap.css.map" />
+    <Content Include="webshopAdmin\dsPrint.xsc">
+      <DependentUpon>dsPrint.xsd</DependentUpon>
+    </Content>
+    <None Include="webshopAdmin\dsPrint.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPrint1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="webshopAdmin\dsPrint.xss">
+      <DependentUpon>dsPrint.xsd</DependentUpon>
+    </Content>
+    <Content Include="webshopAdmin\fonts\fontawesome-webfont.eot" />
+    <Content Include="webshopAdmin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="webshopAdmin\fonts\fontawesome-webfont.woff" />
+    <Content Include="webshopAdmin\fonts\FontAwesome.otf" />
+    <Content Include="webshopAdmin\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="webshopAdmin\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="webshopAdmin\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="webshopAdmin\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="webshopAdmin\pdf\1-2016.pdf" />
+    <Content Include="webshopAdmin\pdf\3-2016.pdf" />
+    <Content Include="webshopAdmin\pdf\4-2016.pdf" />
+    <Content Include="webshopAdmin\uploadImage.ashx" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="webshopAdmin\scripts\ai.0.22.19-build00125.js" />
+    <Content Include="webshopAdmin\scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="webshopAdmin\administrator.Master.cs">
+      <DependentUpon>administrator.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\administrator.Master.designer.cs">
+      <DependentUpon>administrator.Master</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\adminPanel.Master.cs">
+      <DependentUpon>adminPanel.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\adminPanel.Master.designer.cs">
+      <DependentUpon>adminPanel.Master</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\attribute.aspx.cs">
+      <DependentUpon>attribute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\attribute.aspx.designer.cs">
+      <DependentUpon>attribute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\attributeKimtecAttribute.aspx.cs">
+      <DependentUpon>attributeKimtecAttribute.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\attributeKimtecAttribute.aspx.designer.cs">
+      <DependentUpon>attributeKimtecAttribute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\attributes.aspx.cs">
+      <DependentUpon>attributes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\attributes.aspx.designer.cs">
+      <DependentUpon>attributes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\banner.aspx.cs">
+      <DependentUpon>banner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\banner.aspx.designer.cs">
+      <DependentUpon>banner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\categories.aspx.cs">
+      <DependentUpon>categories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\categories.aspx.designer.cs">
+      <DependentUpon>categories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\category.aspx.cs">
+      <DependentUpon>category.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\category.aspx.designer.cs">
+      <DependentUpon>category.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\categoryBanner.aspx.cs">
+      <DependentUpon>categoryBanner.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\categoryBanner.aspx.designer.cs">
+      <DependentUpon>categoryBanner.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\categoryBanners.aspx.cs">
+      <DependentUpon>categoryBanners.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\categoryBanners.aspx.designer.cs">
+      <DependentUpon>categoryBanners.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\coupon.aspx.cs">
+      <DependentUpon>coupon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\coupon.aspx.designer.cs">
+      <DependentUpon>coupon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\coupons.aspx.cs">
+      <DependentUpon>coupons.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\coupons.aspx.designer.cs">
+      <DependentUpon>coupons.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\createUser.aspx.cs">
+      <DependentUpon>createUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\createUser.aspx.designer.cs">
+      <DependentUpon>createUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\customControls\AttributeControl.ascx.cs">
+      <DependentUpon>AttributeControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\customControls\AttributeControl.ascx.designer.cs">
+      <DependentUpon>AttributeControl.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\customControls\CustomStatus.ascx.cs">
+      <DependentUpon>CustomStatus.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\customControls\CustomStatus.ascx.designer.cs">
+      <DependentUpon>CustomStatus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\customPage.aspx.cs">
+      <DependentUpon>customPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\customPage.aspx.designer.cs">
+      <DependentUpon>customPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\customPages.aspx.cs">
+      <DependentUpon>customPages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\customPages.aspx.designer.cs">
+      <DependentUpon>customPages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\dsPrint.Designer.cs" />
+    <Compile Include="webshopAdmin\dsPrint1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPrint.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\getProducts.aspx.cs">
+      <DependentUpon>getProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\getProducts.aspx.designer.cs">
+      <DependentUpon>getProducts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\getProductsKimtec.aspx.cs">
+      <DependentUpon>getProductsKimtec.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\getProductsKimtec.aspx.designer.cs">
+      <DependentUpon>getProductsKimtec.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\kimtecCategories.aspx.cs">
+      <DependentUpon>kimtecCategories.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\kimtecCategories.aspx.designer.cs">
+      <DependentUpon>kimtecCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\order.aspx.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\order.aspx.designer.cs">
+      <DependentUpon>order.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\orders-graph.aspx.cs">
+      <DependentUpon>orders-graph.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\orders-graph.aspx.designer.cs">
+      <DependentUpon>orders-graph.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\orders.aspx.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\orders.aspx.designer.cs">
+      <DependentUpon>orders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\product.aspx.cs">
+      <DependentUpon>product.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\product.aspx.designer.cs">
+      <DependentUpon>product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\products.aspx.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\products.aspx.designer.cs">
+      <DependentUpon>products.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\promotion.aspx.cs">
+      <DependentUpon>promotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\promotion.aspx.designer.cs">
+      <DependentUpon>promotion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\promotions.aspx.cs">
+      <DependentUpon>promotions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\promotions.aspx.designer.cs">
+      <DependentUpon>promotions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\slider.aspx.cs">
+      <DependentUpon>slider.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\slider.aspx.designer.cs">
+      <DependentUpon>slider.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\sliders.aspx.cs">
+      <DependentUpon>sliders.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\sliders.aspx.designer.cs">
+      <DependentUpon>sliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\uploadImage.ashx.cs">
+      <DependentUpon>uploadImage.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\user.aspx.cs">
+      <DependentUpon>user.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\user.aspx.designer.cs">
+      <DependentUpon>user.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\users.aspx.cs">
+      <DependentUpon>users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\users.aspx.designer.cs">
+      <DependentUpon>users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\WebMethods.aspx.cs">
+      <DependentUpon>WebMethods.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\WebMethods.aspx.designer.cs">
+      <DependentUpon>WebMethods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="x509.aspx.cs">
+      <DependentUpon>x509.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="x509.aspx.designer.cs">
+      <DependentUpon>x509.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="administrator\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57070</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57070/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
