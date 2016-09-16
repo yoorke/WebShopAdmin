@@ -95,6 +95,10 @@ namespace webshopAdmin
                     { 
                         ViewState.Add("pageTitle", "Novi proizvod");
                         txtDescription.Text = @"<p><span style='font-size:10px;color:#696969'>" + ConfigurationManager.AppSettings["productDescription"] + "</span></p>";
+                        imgProduct.Visible = false;
+                        imgLarge.Visible = false;
+                        imgHome.Visible = false;
+                        imgThumb.Visible = false;
                     }
 
                     //ViewState["dropDownCollection"] = null;
@@ -155,6 +159,7 @@ namespace webshopAdmin
             cmbSupplier.DataTextField = "name";
             cmbSupplier.DataValueField = "supplierID";
             cmbSupplier.DataBind();
+            cmbSupplier.SelectedValue = "0";
         }
 
         private void loadManufacturers()
