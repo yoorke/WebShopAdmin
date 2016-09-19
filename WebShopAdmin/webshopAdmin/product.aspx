@@ -178,16 +178,21 @@
                             <div class="col-lg-5">
                                 <asp:Repeater ID="rptImages" runat="server" OnItemCommand="rptImages_ItemCommand" OnItemDataBound="rptImages_ItemDataBound">
                                     <ItemTemplate>
-                                        <div class="productImage">
-                                  
-                                            <asp:Image ID="imgProduct" runat="server" ImageUrl='<%#Container.DataItem %>' Width="50px" Height="50px" BorderStyle="Solid" />
-                                            <asp:Label ID="lblImageUrl" runat="server" Text='<%# Container.DataItem %>' CssClass="imageUrl"></asp:Label>
-                                            <asp:LinkButton ID="btnDelete" CommandName="delete" runat="server" Text="Obriši"></asp:LinkButton>
+                                        <div class="productImage">                                  
+                                            <asp:Image ID="imgProduct" runat="server" ImageUrl='<%#Eval("imageUrl") %>' />
+                                            <asp:Label ID="lblImageUrl" runat="server" Text='<%# Eval("imageUrl") %>' CssClass="imageUrl"></asp:Label>
+                                            <asp:TextBox ID="txtSortOrder" runat="server" CssClass="sortOrder" Text='<%#Eval("sortOrder") %>'></asp:TextBox>
+                                            <asp:LinkButton ID="btnDelete" CommandName="delete" runat="server" Text="Obriši" CssClass="deleteIcon"></asp:LinkButton>
                                         </div><!--productImage-->
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div><!--col-->
                         </div><!--row-->
+                        <div class="row margin-top-2">
+                            <div class="col-lg-12">
+                                Unos nove slike
+                            </div>
+                        </div>
                         <div class="row margin-top-05">
                             <div class="col-lg-5">
                                 <asp:FileUpload ID="fluImage" runat="server" />
