@@ -232,7 +232,7 @@
                                                 <asp:DropDownList ID="cmbCategories" runat="server" CssClass="form-control"></asp:DropDownList>
                                             </div>
                                             <div class="col-md-2">
-                                                <asp:Button ID="btnAddProductToCategory" runat="server" CssClass="btn btn-primary" OnClick="btnAddProductToCategory_Click" Text="Dodaj" />
+                                                <asp:Button ID="btnAddProductToCategory" runat="server" CssClass="btn btn-primary" OnClick="btnAddProductToCategory_Click" Text="Dodaj" CausesValidation="false" />
                                             </div>
                                         </div>
                                         <div class="row margin-top-05">

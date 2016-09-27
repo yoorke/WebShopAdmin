@@ -99,6 +99,7 @@ namespace webshopAdmin
                         imgLarge.Visible = false;
                         imgHome.Visible = false;
                         imgThumb.Visible = false;
+                        cmbBrand.SelectedValue = "0";
                     }
 
                     //ViewState["dropDownCollection"] = null;
@@ -669,7 +670,7 @@ namespace webshopAdmin
 
         protected void btnAddProductToCategory_Click(object sender, EventArgs e)
         {
-
+            lstCategories.Items.Add(new ListItem(cmbCategories.SelectedItem.Text, cmbCategories.SelectedValue));
         }
     }
 }
