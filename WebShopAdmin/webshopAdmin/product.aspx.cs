@@ -133,7 +133,7 @@ namespace webshopAdmin
 
             CategoryBL categoryBL = new CategoryBL();
             //cmbCategory.DataSource = categoryBL.GetCategories();
-            cmbCategory.DataSource = categoryBL.GetNestedCategoriesDataTable();
+            cmbCategory.DataSource = categoryBL.GetNestedCategoriesDataTable(false, true);
             cmbCategory.DataTextField = "name";
             cmbCategory.DataValueField = "categoryID";
             cmbCategory.DataBind();
@@ -162,6 +162,11 @@ namespace webshopAdmin
             cmbCategories.DataTextField = "name";
             cmbCategories.DataValueField = "categoryID";
             cmbCategories.DataBind();
+
+            if (!bool.Parse(ConfigurationManager.AppSettings["productInMultipleCategories"]))
+                divProductInMultipleCategories.Visible = false;
+            else
+                btnAddProductToCategory.Enabled = cmbCategory.SelectedIndex > 0 ? true : false;
         }
 
         private void loadSupplier()
@@ -246,6 +251,7 @@ namespace webshopAdmin
                         }
                     }
                 }
+                btnAddProductToCategory.Enabled = true;
             }
 
             if (product.Images != null)
@@ -374,6 +380,12 @@ namespace webshopAdmin
                 product.Categories.Add(new Category(int.Parse(cmbCategory.SelectedValue), cmbCategory.SelectedItem.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, 0, false, false));
                 product.Attributes = new List<AttributeValue>();
 
+                if(bool.Parse(ConfigurationManager.AppSettings["productInMultipleCategories"]))
+                    foreach (ListItem item in lstCategories.Items)
+                    {
+                        product.Categories.Add(new Category(int.Parse(item.Value), item.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, -1, false, false));
+                    }
+
                 //foreach (object obj in TabContainer1.Controls)
                 //{
                 //if (obj is AjaxControlToolkit.TabPanel)
@@ -424,7 +436,8 @@ namespace webshopAdmin
         protected void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             createControls();
-
+            if (cmbCategory.SelectedIndex > 0)
+                btnAddProductToCategory.Enabled = true;
 
 
 
@@ -670,7 +683,19 @@ namespace webshopAdmin
 
         protected void btnAddProductToCategory_Click(object sender, EventArgs e)
         {
-            lstCategories.Items.Add(new ListItem(cmbCategories.SelectedItem.Text, cmbCategories.SelectedValue));
+            ListItem listItem = new ListItem(cmbCategories.SelectedItem.Text, cmbCategories.SelectedValue);
+            if(!lstCategories.Items.Contains(listItem))
+                lstCategories.Items.Add(listItem);
+        }
+
+        protected void btnRemoveProductFromCategory_Click(object sender, EventArgs e)
+        {
+            ListItem[] listItems = new ListItem[lstCategories.Items.Count];
+            lstCategories.Items.CopyTo(listItems, 0);
+
+            foreach (ListItem item in listItems)
+                if (item.Selected)
+                    lstCategories.Items.Remove(item);
         }
     }
 }
