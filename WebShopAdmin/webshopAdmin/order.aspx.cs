@@ -293,7 +293,16 @@ namespace webshopAdmin
                 double.TryParse(txtDiscount.Text, out discount);
                 double discountValue = cmbDiscountType.SelectedValue == "1" ? double.Parse(lblTotal.Text) * discount / 100 : discount;
 
-                new OrderBL().SetDiscount(int.Parse(lblOrderID.Value), discountValue);
+                Order order = new Order();
+                order.OrderID = int.Parse(lblOrderID.Value);
+                order.Email = lblEmail.Text;
+                order.Firstname = lblFirstname.Text;
+                order.Lastname = lblLastname.Text;
+                order.UserDiscountValue = discountValue;
+                order.Code = lblCode.Text;
+                order.Date = DateTime.Parse(lblDate.Text);
+
+                new OrderBL().SetDiscount(order);
 
                 loadOrder(int.Parse(lblOrderID.Value));
 
