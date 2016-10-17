@@ -252,6 +252,14 @@ namespace webshopAdmin
                     }
                 }
                 btnAddProductToCategory.Enabled = true;
+
+                if(product.Categories.Count > 1)
+                {
+                    for(int j = 1; j < product.Categories.Count; j++)
+                    {
+                        lstCategories.Items.Add(new ListItem(product.Categories[j].Name, product.Categories[j].CategoryID.ToString()));
+                    }
+                }
             }
 
             if (product.Images != null)
