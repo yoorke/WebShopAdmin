@@ -350,7 +350,7 @@ namespace webshopAdmin
                 subcategories += lstCategory.Items[i].Text + "|";
             }
             subcategories = subcategories.Remove(subcategories.Length - 1, 1);
-            int productsCount = new EweBL().ParseProductsForSaving(cmbEweCategory.SelectedItem.Text, subcategories.Split('|'));
+            int productsCount = new EweBL().ParseProductsForSaving(cmbEweCategory.SelectedItem.Text, subcategories.Split('|'), int.Parse(cmbCategory.SelectedValue), int.Parse(cmbEweCategory.SelectedValue));
             SetStatus("Učitano " + productsCount.ToString() + " proizvoda", System.Drawing.Color.Green, true, "success");
 
             //save ewe category for category
