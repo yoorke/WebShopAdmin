@@ -10,7 +10,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <asp:DropDownList ID="cmbCategory" runat="server" OnSelectedIndexChanged="cmbCategory_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
+                <asp:DropDownList ID="cmbCategory" runat="server" OnSelectedIndexChanged="cmbCategory_SelectedIndexChanged" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
             </div>
             <div class="col-lg-6">
                 <asp:DropDownList ID="cmbKimtecCategory" runat="server" OnSelectedIndexChanged="cmbKimtecCategory_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
