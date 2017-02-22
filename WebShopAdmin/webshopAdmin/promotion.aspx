@@ -37,7 +37,7 @@
                         <label for="txtValue">Popust: </label>
                         <asp:TextBox ID="txtValue" runat="server" CssClass="form-control"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="requireFieldValidator2" runat="server" ControlToValidate="txtValue" ErrorMessage="Unesite naziv"></asp:RequiredFieldValidator>
-                        <asp:RangeValidator ID="rangeValidator1" runat="server" ControlToValidate="txtValue" MinimumValue="1" MaximumValue="100" Type="Integer" ErrorMessage="Popust mora da ima celobrojnu vrednost"></asp:RangeValidator>            
+                        <asp:RangeValidator ID="rangeValidator1" runat="server" ControlToValidate="txtValue" MinimumValue="0" MaximumValue="100" Type="Integer" ErrorMessage="Popust mora da ima celobrojnu vrednost"></asp:RangeValidator>            
                     </div><!--form-group-->
                     <div class="form-group">
                         <label for="txtUrl">Url:</label>

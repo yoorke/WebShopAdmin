@@ -27,6 +27,7 @@ namespace webshopAdmin
                     loadIntoForm();
                     //loadProducts();
                 }
+                divAdditionalCategory.Visible = bool.Parse(ConfigurationManager.AppSettings["productInMultipleCategories"]);
             }
             else
                 Response.Redirect("/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/login.aspx?returnUrl=" + Page.Request.RawUrl);
@@ -119,6 +120,11 @@ namespace webshopAdmin
             cmbPromotion.DataTextField = "name";
             cmbPromotion.DataValueField = "promotionID";
             cmbPromotion.DataBind();
+
+            cmbAdditionallyCategory.DataSource = categoryBL.GetNestedCategoriesDataTable(true, true);
+            cmbAdditionallyCategory.DataTextField = "name";
+            cmbAdditionallyCategory.DataValueField = "categoryID";
+            cmbAdditionallyCategory.DataBind();
         }
 
         protected void btnShowProducts_Click(object sender, EventArgs e)
@@ -153,7 +159,7 @@ namespace webshopAdmin
             ProductBL productBL = new ProductBL();
             if (productBL.SetApproved(int.Parse(((Label)row.FindControl("lblProductID")).Text), bool.Parse(((CheckBox)row.FindControl("chkApproved")).Checked.ToString())) > 0)
             {
-                setStatus("Proizvod uspešno izmenjen", System.Drawing.Color.Green, true);
+                setStatus("Proizvod uspešno izmenjen", System.Drawing.Color.Green, true, "success");
             }
         }
 
@@ -166,11 +172,12 @@ namespace webshopAdmin
             productBL.SetActive(int.Parse(((Label)row.FindControl("lblProductID")).Text), bool.Parse(((CheckBox)row.FindControl("chkActive")).Checked.ToString()));
         }
 
-        private void setStatus(string text, System.Drawing.Color foreColor, bool visible)
+        private void setStatus(string text, System.Drawing.Color foreColor, bool visible, string status)
         {
             csStatus.Text = text;
             csStatus.Visible = visible;
             csStatus.ForeColor = foreColor;
+            csStatus.Class = "status " + status;
             csStatus.Show();
         }
 
@@ -266,6 +273,20 @@ namespace webshopAdmin
                         new ProductBL().DeleteFromPromotion(int.Parse(((Label)dgvProducts.Rows[i].FindControl("lblProductID")).Text), int.Parse(cmbPromotions.SelectedValue));
                 }
                 loadProducts();
+            }
+        }
+
+        protected void btnSaveProductCategory_Click(object sender, EventArgs e)
+        {
+            if(cmbAdditionallyCategory.SelectedIndex > -1)
+            {
+                for(int i = 0; i < dgvProducts.Rows.Count; i++)
+                {
+                    if (((CheckBox)dgvProducts.Rows[i].FindControl("chkSelect")).Checked)
+                        new ProductBL().SaveProductCategory(int.Parse(((Label)dgvProducts.Rows[i].FindControl("lblProductID")).Text), int.Parse(cmbAdditionallyCategory.SelectedValue));
+                }
+
+                setStatus("Proizvodi dodati u kategoriju", System.Drawing.Color.Black, true, "success");
             }
         }
     }
