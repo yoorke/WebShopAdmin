@@ -143,6 +143,7 @@
     <Content Include="webshopAdmin\js\raphael-min.js" />
     <Content Include="webshopAdmin\js\sb-admin-2.js" />
     <Content Include="webshopAdmin\kimtecCategories.aspx" />
+    <Content Include="webshopAdmin\kupindoSettings.aspx" />
     <Content Include="webshopAdmin\login.aspx" />
     <Content Include="webshopAdmin\order.aspx" />
     <Content Include="webshopAdmin\orders-graph.aspx" />
@@ -368,6 +369,13 @@
     </Compile>
     <Compile Include="webshopAdmin\kimtecCategories.aspx.designer.cs">
       <DependentUpon>kimtecCategories.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\kupindoSettings.aspx.cs">
+      <DependentUpon>kupindoSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\kupindoSettings.aspx.designer.cs">
+      <DependentUpon>kupindoSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>
