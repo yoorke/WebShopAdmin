@@ -60,10 +60,21 @@
                 </div><!--form-->
             </div><!--col-->
             <div class="col-lg-4 background-gray padding-05">
-                <label for="cmbPromotions">Promocija:</label>
-                <asp:DropDownList ID="cmbPromotions" runat="server" CssClass="form-control"></asp:DropDownList>
-                <asp:Button ID="btnAddToPromotion" runat="server" OnClick="btnAddToPromotion_Click" Text="Dodaj na promociju" CssClass="btn btn-primary margin-top-05" />
-                <asp:Button ID="btnDeleteFromPromotion" runat="server" OnClick="btnDeleteFromPromotion_Click" Text="Obriši sa promocije" CssClass="btn btn-primary margin-top-05" />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <label for="cmbPromotions">Promocija:</label>
+                        <asp:DropDownList ID="cmbPromotions" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:Button ID="btnAddToPromotion" runat="server" OnClick="btnAddToPromotion_Click" Text="Dodaj na promociju" CssClass="btn btn-primary margin-top-05" />
+                        <asp:Button ID="btnDeleteFromPromotion" runat="server" OnClick="btnDeleteFromPromotion_Click" Text="Obriši sa promocije" CssClass="btn btn-primary margin-top-05" />
+                    </div>
+                </div>
+                <div class="row margin-top-1-5" id="divAdditionalCategory" runat="server">
+                    <div class="col-lg-12">
+                        <label for="cmbAdditionallyCategory">Dodatna kategorija:</label>
+                        <asp:DropDownList ID="cmbAdditionallyCategory" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <asp:Button ID="btnSaveProductCategory" runat="server" OnClick="btnSaveProductCategory_Click" Text="Dodaj kategoriju" CssClass="btn btn-primary margin-top-05" />
+                    </div>
+                </div>
             </div>
         </div><!--row-->
         <div class="row">
