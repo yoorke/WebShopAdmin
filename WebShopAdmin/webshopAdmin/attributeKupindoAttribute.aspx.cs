@@ -42,7 +42,7 @@ namespace WebShopAdmin.webshopAdmin
 
                 loadAttributes(int.Parse(cmbCategory.SelectedValue));
 
-                dgvAttributes.DataSource = new kupindoBL().GetKupindoAttributes(int.Parse(kupindoCategory.Rows[0]["ID"].ToString()));
+                dgvAttributes.DataSource = new kupindoBL().GetKupindoAttributes(int.Parse(kupindoCategory.Rows[0]["ID"].ToString()), int.Parse(cmbCategory.SelectedValue));
                 dgvAttributes.DataBind();
             }
         }

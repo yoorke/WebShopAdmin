@@ -229,6 +229,24 @@ namespace webshopAdmin {
         protected global::System.Web.UI.WebControls.CheckBox chkExportProducts;
         
         /// <summary>
+        /// txtExternalID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtExternalID;
+        
+        /// <summary>
+        /// txtExternalParentID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtExternalParentID;
+        
+        /// <summary>
         /// txtDescription control.
         /// </summary>
         /// <remarks>

@@ -99,7 +99,7 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">
     <script>
         $(function () {
-            CKEDITOR.replace('<%=txtContent.ClientID%>', { filebrowserUploadUrl: '/uploadImage.ashx' });
+            CKEDITOR.replace('<%=txtContent.ClientID%>', { filebrowserUploadUrl: '/webShopAdmin/uploadImage.ashx' });
             CKEDITOR.config.height = 500;
         })
     </script>

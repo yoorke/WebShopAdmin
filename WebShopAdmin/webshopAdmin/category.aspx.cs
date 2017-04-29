@@ -83,6 +83,8 @@ namespace webshopAdmin
                 category.CategoryBannerID = cmbCategoryBanner.SelectedIndex > -1 ? int.Parse(cmbCategoryBanner.SelectedValue) : -1;
                 category.UpdateProductsFromExternalApplication = chkUpdateProductsFromExternalApplication.Checked;
                 category.ExportProducts = chkExportProducts.Checked;
+                category.ExternalID = int.Parse(txtExternalID.Text);
+                category.ExternalParentID = int.Parse(txtExternalParentID.Text);
 
                 CategoryBL categoryBl = new CategoryBL();
                 categoryBl.SaveCategory(category);
@@ -178,6 +180,8 @@ namespace webshopAdmin
             imgIcon.ImageUrl = category.ImageUrl != string.Empty ? Server.MapPath("~/images/" + category.ImageUrl) : "~/images/no-image.jpg";
             lblCategoryName.Text = category.Name;
             ViewState.Add("categoryName", category.Name);
+            txtExternalID.Text = category.ExternalID.ToString();
+            txtExternalParentID.Text = category.ExternalParentID.ToString();
 
             if (lblCategoryID.Value != string.Empty)
             {

@@ -36,7 +36,7 @@ namespace webshopAdmin
         private void loadProducts()
         {
             int categoryID = -1;
-            if (cmbCategory.SelectedIndex > -1)
+            if (cmbCategory.SelectedIndex > 0)
                 categoryID = int.Parse(cmbCategory.SelectedValue);
 
             int supplierID = -1;
@@ -53,7 +53,7 @@ namespace webshopAdmin
 
             ProductBL productsBL = new ProductBL();
 
-            List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID);
+            List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : null);
 
             if (txtSearch.Text.Length > 0)
             {
@@ -125,6 +125,9 @@ namespace webshopAdmin
             cmbAdditionallyCategory.DataTextField = "name";
             cmbAdditionallyCategory.DataValueField = "categoryID";
             cmbAdditionallyCategory.DataBind();
+
+            cmbSort.Items.Add(new ListItem("Nazivu", "brand.name, product.name"));
+            cmbSort.Items.Add(new ListItem("Datumu unosa", "product.insertDate"));
         }
 
         protected void btnShowProducts_Click(object sender, EventArgs e)
@@ -186,6 +189,11 @@ namespace webshopAdmin
             if (e.Row.RowType == DataControlRowType.Header)
             {
                 ((CheckBox)e.Row.FindControl("chkSelectAll")).Attributes.Add("onclick", "javascript:SelectAll('" + ((CheckBox)e.Row.FindControl("chkSelectAll")).ClientID + "')");
+            }
+            else if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string imageUrl = ((Image)e.Row.FindControl("imgProduct")).ImageUrl;
+                ((Image)e.Row.FindControl("imgProduct")).ImageUrl = new ProductBL().CreateImageDirectory(int.Parse(imageUrl.Substring(0, imageUrl.IndexOf(".")))) + imageUrl.Substring(0, imageUrl.IndexOf(".")) + "-" + ConfigurationManager.AppSettings["thumbName"] + imageUrl.Substring(imageUrl.IndexOf("."));
             }
         }
 
@@ -260,6 +268,7 @@ namespace webshopAdmin
                     if (((CheckBox)dgvProducts.Rows[i].FindControl("chkSelect")).Checked)
                         new ProductBL().SetPromotionPrice(int.Parse(((Label)dgvProducts.Rows[i].FindControl("lblProductID")).Text), double.Parse(((Label)dgvProducts.Rows[i].FindControl("lblWebPrice")).Text), value, int.Parse(cmbPromotions.SelectedValue));
                 }
+                loadProducts();
             }
         }
 

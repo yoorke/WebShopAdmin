@@ -489,7 +489,7 @@
                 $('[id*=txtWebPrice]').val($('[id*=txtPrice]').val());
         })
 
-        CKEDITOR.replace('<%=txtDescription.ClientID%>', { filebrowserUploadUrl: 'uploadImage.ashx' });
+        CKEDITOR.replace('<%=txtDescription.ClientID%>', { filebrowserUploadUrl: '/webShopAdmin/uploadImage.ashx' });
         CKEDITOR.config.height = 300;
     })
 </script>

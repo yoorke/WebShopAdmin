@@ -57,6 +57,10 @@
                         <label for="txtSearch">Pretraga:</label>
                         <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
+                    <div class="form-group">
+                        <label for="cmbSort">Sortiraj po:</label>
+                        <asp:DropDownList ID="cmbSort" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
                 </div><!--form-->
             </div><!--col-->
             <div class="col-lg-4 background-gray padding-05">
@@ -124,7 +128,7 @@
                     OnRowDeleting="dgvProducts_RowDeleting" DataKeyNames="productID" PagerSettings-Mode="Numeric" PageSize="10" AllowPaging="true" AllowSorting="true" OnPageIndexChanging="dgvProducts_PageIndexChanging" OnRowDataBound="dgvProducts_RowDataBound">
                     <Columns>
             
-                        <asp:TemplateField ControlStyle-Width="30px">
+                        <asp:TemplateField ControlStyle-Width="30px" ItemStyle-Width="30px">
                             <HeaderTemplate>
                                 <asp:CheckBox ID="chkSelectAll" runat="server" />
                             </HeaderTemplate>
@@ -138,8 +142,14 @@
                                 <asp:Label ID="lblProductID" runat="server" Text='<%#Eval("productID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
+
+                        <asp:TemplateField ControlStyle-Width="50px" ItemStyle-Width="50px">
+                            <ItemTemplate>
+                                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%#Eval("images[0].ImageUrl") %>'></asp:Image>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         
-                        <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="70px">
+                        <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="100px" ItemStyle-Width="100px">
                             <ItemTemplate>
                                 <asp:Label ID="lblCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
                             </ItemTemplate>
@@ -151,7 +161,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                 
-                        <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
+                        <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="40%">
                             <ItemTemplate>
                                 <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/product.aspx?id="+Eval("productID") %>'>
                                     <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
@@ -165,44 +175,50 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                 
-                        <asp:TemplateField HeaderText="Cena" ControlStyle-Width="70px" ItemStyle-HorizontalAlign="Right">
+                        <asp:TemplateField HeaderText="Cena" ControlStyle-Width="50px" ItemStyle-HorizontalAlign="Right">
                             <ItemTemplate>
                                 <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("price")) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                 
-                        <asp:TemplateField HeaderText="Web" ControlStyle-Width="70px" ItemStyle-HorizontalAlign="Right">
+                        <asp:TemplateField HeaderText="Web" ControlStyle-Width="50px" ItemStyle-HorizontalAlign="Right">
                             <ItemTemplate>
                                 <asp:Label ID="lblWebPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("webPrice")) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Promocija" ControlStyle-Width="70px" ItemStyle-HorizontalAlign="Right">
+                        <asp:TemplateField HeaderText="Promocija" ControlStyle-Width="50px" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="50px">
                             <ItemTemplate>
                                 <asp:Label ID="lblPromotionPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("promotion.price")) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>                
-                        <asp:TemplateField HeaderText="Odobreno" ControlStyle-Width="50px">
+                        <asp:TemplateField HeaderText="Odobreno" ControlStyle-Width="20px" ItemStyle-Width="20px">
                             <ItemTemplate>
                                 <asp:CheckBox ID="chkApproved" runat="server" Checked='<%#Eval("isApproved") %>' AutoPostBack="true" OnCheckedChanged="chkApproved_CheckChanged" />
                             </ItemTemplate>
                         </asp:TemplateField>
                 
-                        <asp:TemplateField HeaderText="Aktivan" ControlStyle-Width="50px">
+                        <asp:TemplateField HeaderText="Aktivan" ControlStyle-Width="20px" ItemStyle-Width="20px">
                             <ItemTemplate>
                                 <asp:CheckBox ID="chkActive" runat="server" Checked='<%#Eval("isActive") %>' AutoPostBack="true" OnCheckedChanged="chkActive_CheckChanged" />
                             </ItemTemplate>
                         </asp:TemplateField>
                 
-                        <asp:TemplateField HeaderText="Zaključan" ControlStyle-Width="50px">
+                        <asp:TemplateField HeaderText="Zaključan" ControlStyle-Width="20px" ItemStyle-Width="20px">
                             <ItemTemplate>
                                 <asp:CheckBox ID="chkLocked" runat="server" Checked='<%#Eval("isLocked") %>' OnCheckedChanged="chkLocked_CheckedChanged" AutoPostBack="true" />
                             </ItemTemplate>
                         </asp:TemplateField>
                 
-                        <asp:TemplateField HeaderText="Na stanju" ControlStyle-Width="50px">
+                        <asp:TemplateField HeaderText="Na stanju" ControlStyle-Width="20px" ItemStyle-Width="20px">
                             <ItemTemplate>
                                 <asp:CheckBox ID="chkInStock" runat="server" Checked='<%#Eval("isInStock") %>' OnCheckedChanged="chkInStock_CheckedChanged" AutoPostBack="true" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Datum unosa" ControlStyle-Width="70px" ItemStyle-Width="70px">
+                            <ItemTemplate>
+                                <asp:Label ID="lblInsertDate" runat="server" Text='<%#Eval("insertDate") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                 

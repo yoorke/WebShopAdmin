@@ -57,10 +57,16 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKEditor.NET.dll</HintPath>
     </Reference>
-    <Reference Include="eshopBE">
-      <HintPath>..\..\..\WebShopFramework\eshopBE\bin\Debug\eshopBE.dll</HintPath>
+    <Reference Include="eshopBE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WebShopFramework\eshopBE\bin\Debug\eshopBE.dll</HintPath>
     </Reference>
-    <Reference Include="eshopUtilities">
+    <Reference Include="eshopBL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\WebShopFramework\eshopBL\bin\Debug\eshopBL.dll</HintPath>
+    </Reference>
+    <Reference Include="eshopUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\WebShopFramework\eshopUtilities\bin\Debug\eshopUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

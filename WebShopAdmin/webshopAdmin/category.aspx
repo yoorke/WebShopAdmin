@@ -112,6 +112,12 @@
                                         
                                         <asp:CheckBox ID="chkExportProducts" runat="server" CssClass="checkbox" Text="Dozvoli izvoz proizvoda" />
                                     </div>
+                                    <div class="form-group">
+                                        <asp:TextBox ID="txtExternalID" runat="server" CssClass="form-control" style="display:none"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group">
+                                        <asp:TextBox ID="txtExternalParentID" runat="server" CssClass="form-control" style="display:none"></asp:TextBox>
+                                    </div>
                                 </div>
                             </div>
                         </div><!--row-->
