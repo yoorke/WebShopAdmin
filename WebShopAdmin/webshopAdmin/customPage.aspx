@@ -103,4 +103,11 @@
             CKEDITOR.config.height = 500;
         })
     </script>
+    <script>
+        $(document).ready(function () {
+            $('[id*=txtTitle]').change(function () {
+                $('[id*=txtUrl]').val(createFriendlyUrl($('[id*=txtTitle]').val()));
+            })
+        })
+    </script>
 </asp:Content>
