@@ -41,6 +41,9 @@ namespace WebShopAdmin.webshopAdmin
             chkDailyExpress.Checked = bool.Parse(settings.Rows[9]["value"].ToString());
             chkBex.Checked = bool.Parse(settings.Rows[10]["value"].ToString());
             chkOrganizovaniTransport.Checked = bool.Parse(settings.Rows[11]["value"].ToString());
+            chkPlacanjePreSlanjaTekuciRacun.Checked = bool.Parse(settings.Rows[14]["value"].ToString());
+            chkPlacanjePreSlanjaPostNet.Checked = bool.Parse(settings.Rows[15]["value"].ToString());
+            chkPlacanjePreSlanjaOstalo.Checked = bool.Parse(settings.Rows[16]["value"].ToString());
 
             txtDefaultLager.Text = settings.Rows[12]["value"].ToString();
             txtKupindoAccess.Text = settings.Rows[13]["value"].ToString();
@@ -129,6 +132,23 @@ namespace WebShopAdmin.webshopAdmin
             newRow["kupindoSettingsID"] = 13;
             newRow["naziv"] = "Default lager";
             newRow["value"] = txtDefaultLager.Text;
+            settings.Rows.Add(newRow);
+
+            newRow = settings.NewRow();
+            newRow["kupindoSettingsID"] = 17;
+            newRow["naziv"] = "Plaćanje pre slanja (Tekući račun)";
+            newRow["value"] = chkPlacanjePreSlanjaTekuciRacun.Checked;
+            settings.Rows.Add(newRow);
+
+            newRow = settings.NewRow();
+            newRow["kupindoSettingsID"] = 18;
+            newRow["naziv"] = "Plaćanje pre slanja (PostNet)";
+            newRow["value"] = chkPlacanjePreSlanjaPostNet.Checked;
+            settings.Rows.Add(newRow);
+
+            newRow = settings.NewRow();
+            newRow["kupindoSettingsID"] = 19;
+            newRow["value"] = chkPlacanjePreSlanjaOstalo.Checked;
             settings.Rows.Add(newRow);
 
             new kupindoBL().SaveSettings(settings);

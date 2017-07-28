@@ -26,6 +26,15 @@
                         <asp:CheckBox ID="chkSlanjePosleUplate" runat="server" Text="Slanje posle uplate" />
                     </div>
                     <div class="form-group checkbox-control">
+                        <asp:CheckBox ID="chkPlacanjePreSlanjaTekuciRacun" runat="server" Text="Plaćanje pre slanja (Tekući račun)" />
+                    </div>
+                    <div class="form-group checkbox-control">
+                        <asp:CheckBox ID="chkPlacanjePreSlanjaPostNet" runat="server" Text="Plaćanje pre slanja (PostNet)" />
+                    </div>
+                    <div class="form-group checkbox-control">
+                        <asp:CheckBox ID="chkPlacanjePreSlanjaOstalo" runat="server" Text="Plaćanje pre slanja (Ostalo)" />
+                    </div>
+                    <div class="form-group checkbox-control">
                         <asp:CheckBox ID="chkSlanjePreUplate" runat="server" Text="Slanje pre uplate" />
                     </div>
                     <div class="form-group checkbox-control">

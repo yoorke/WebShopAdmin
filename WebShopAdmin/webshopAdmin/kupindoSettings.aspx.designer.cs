@@ -40,6 +40,33 @@ namespace WebShopAdmin.webshopAdmin {
         protected global::System.Web.UI.WebControls.CheckBox chkSlanjePosleUplate;
         
         /// <summary>
+        /// chkPlacanjePreSlanjaTekuciRacun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPlacanjePreSlanjaTekuciRacun;
+        
+        /// <summary>
+        /// chkPlacanjePreSlanjaPostNet control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPlacanjePreSlanjaPostNet;
+        
+        /// <summary>
+        /// chkPlacanjePreSlanjaOstalo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkPlacanjePreSlanjaOstalo;
+        
+        /// <summary>
         /// chkSlanjePreUplate control.
         /// </summary>
         /// <remarks>
