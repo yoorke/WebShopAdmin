@@ -83,8 +83,8 @@ namespace webshopAdmin
                 category.CategoryBannerID = cmbCategoryBanner.SelectedIndex > -1 ? int.Parse(cmbCategoryBanner.SelectedValue) : -1;
                 category.UpdateProductsFromExternalApplication = chkUpdateProductsFromExternalApplication.Checked;
                 category.ExportProducts = chkExportProducts.Checked;
-                category.ExternalID = int.Parse(txtExternalID.Text);
-                category.ExternalParentID = int.Parse(txtExternalParentID.Text);
+                category.ExternalID = int.Parse(txtExternalID.Text != string.Empty ? txtExternalID.Text : "0");
+                category.ExternalParentID = int.Parse(txtExternalParentID.Text != string.Empty ? txtExternalParentID.Text : "0");
 
                 CategoryBL categoryBl = new CategoryBL();
                 categoryBl.SaveCategory(category);
