@@ -118,6 +118,9 @@
                                     <div class="form-group">
                                         <asp:TextBox ID="txtExternalParentID" runat="server" CssClass="form-control" style="display:none"></asp:TextBox>
                                     </div>
+                                    <div class="form-group">
+                                        <asp:CheckBox ID="chkShowInFooter" runat="server" CssClass="checkbox" Text="Prikaži u footer-u" />
+                                    </div>
                                 </div>
                             </div>
                         </div><!--row-->

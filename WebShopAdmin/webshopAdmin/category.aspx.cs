@@ -85,6 +85,7 @@ namespace webshopAdmin
                 category.ExportProducts = chkExportProducts.Checked;
                 category.ExternalID = int.Parse(txtExternalID.Text != string.Empty ? txtExternalID.Text : "0");
                 category.ExternalParentID = int.Parse(txtExternalParentID.Text != string.Empty ? txtExternalParentID.Text : "0");
+                category.ShowInFooter = chkShowInFooter.Checked;
 
                 CategoryBL categoryBl = new CategoryBL();
                 categoryBl.SaveCategory(category);
@@ -189,6 +190,8 @@ namespace webshopAdmin
                 dgvAttributes.DataSource = attributeBL.GetAttributesForCategory(categoryID);
                 dgvAttributes.DataBind();
             }
+
+            chkShowInFooter.Checked = category.ShowInFooter;
         }
 
         protected void btnAddAttribute_Click(object sender, EventArgs e)
