@@ -56,6 +56,7 @@ namespace webshopAdmin
             ViewState.Add("pageTitle", customPage.Title);
             chkIsActive.Checked = customPage.IsActive;
             cmbCustomPageCategory.SelectedValue = customPage.CustomPageCategoryID.ToString();
+            txtFooter.Text = customPage.Footer;
         }
 
         private void save()
@@ -77,6 +78,7 @@ namespace webshopAdmin
                 customPage.ImageUrl = string.Empty;
                 customPage.IsActive = chkIsActive.Checked;
                 customPage.CustomPageCategoryID = int.Parse(cmbCustomPageCategory.SelectedValue);
+                customPage.Footer = txtFooter.Text;
 
                 CustomPageBL customPageBL = new CustomPageBL();
                 customPage.CustomPageID = customPageBL.Save(customPage);

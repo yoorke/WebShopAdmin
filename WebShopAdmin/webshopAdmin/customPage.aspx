@@ -59,7 +59,11 @@
                     <asp:TextBox ID="txtHead" runat="server" CssClass="form-control" Width="50%"></asp:TextBox>
                 </div>
                 <div class="form-group">
-                    <label for="txtHead" class="control-label col-sm-2">Naslov: </label>
+                    <label for="txtFooter" class="control-label col-sm-2">Footer: </label>
+                    <asp:TextBox ID="txtFooter" runat="server" CssClass="form-control" Width="50%"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label for="txtHeading" class="control-label col-sm-2">Naslov: </label>
                     <asp:TextBox ID="txtHeading" runat="server" CssClass="form-control" Width="50%"></asp:TextBox>
                 </div>
                 
