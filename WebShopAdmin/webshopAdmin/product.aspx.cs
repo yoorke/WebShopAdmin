@@ -392,13 +392,13 @@ namespace webshopAdmin
             if (cmbCategory.SelectedIndex > -1)
             {
                 product.Categories = new List<Category>();
-                product.Categories.Add(new Category(int.Parse(cmbCategory.SelectedValue), cmbCategory.SelectedItem.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, 0, false, false));
+                product.Categories.Add(new Category(int.Parse(cmbCategory.SelectedValue), cmbCategory.SelectedItem.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, 0, false, false, 0, 0, 0));
                 product.Attributes = new List<AttributeValue>();
 
                 if(bool.Parse(ConfigurationManager.AppSettings["productInMultipleCategories"]))
                     foreach (ListItem item in lstCategories.Items)
                     {
-                        product.Categories.Add(new Category(int.Parse(item.Value), item.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, -1, false, false));
+                        product.Categories.Add(new Category(int.Parse(item.Value), item.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, -1, false, false, 0, 0, 0));
                     }
 
                 //foreach (object obj in TabContainer1.Controls)

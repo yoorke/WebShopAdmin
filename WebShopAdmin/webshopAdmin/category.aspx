@@ -62,6 +62,13 @@
                                             </div>
                                         </div>
                                         <div class="row">
+                                            <div class="col-lg-12">
+                                                <label>Tip slike: </label>
+                                                <asp:RadioButton ID="rdbImageTypeStandard" runat="server" Checked="true" GroupName="tipSlike" Text="Standard" />
+                                                <asp:RadioButton ID="rdbImageTypeSprite" runat="server" GroupName="tipSlike" Text="Sprite" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
                                             <div class="col-md-6">
                                                 <asp:FileUpload ID="fluUpload" runat="server" />
                                             </div>
@@ -75,6 +82,17 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <asp:TextBox ID="txtImageUrl" runat="server" CssClass="form-control" placeholder="ImageUrl"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label>Pozicija:</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <asp:TextBox ID="txtPositionX" runat="server" CssClass="form-control"></asp:TextBox>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <asp:TextBox ID="txtPositionY" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                         </div>
                                     </div><!--form-group-->

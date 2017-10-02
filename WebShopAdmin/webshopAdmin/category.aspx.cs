@@ -86,6 +86,9 @@ namespace webshopAdmin
                 category.ExternalID = int.Parse(txtExternalID.Text != string.Empty ? txtExternalID.Text : "0");
                 category.ExternalParentID = int.Parse(txtExternalParentID.Text != string.Empty ? txtExternalParentID.Text : "0");
                 category.ShowInFooter = chkShowInFooter.Checked;
+                category.ImageUrlSource = rdbImageTypeStandard.Checked ? 0 : 1;
+                category.ImageUrlPositionX = int.Parse(txtPositionX.Text);
+                category.ImageUrlPositionY = int.Parse(txtPositionY.Text);
 
                 CategoryBL categoryBl = new CategoryBL();
                 categoryBl.SaveCategory(category);
@@ -192,6 +195,10 @@ namespace webshopAdmin
             }
 
             chkShowInFooter.Checked = category.ShowInFooter;
+            rdbImageTypeStandard.Checked = category.ImageUrlSource == 0;
+            rdbImageTypeSprite.Checked = category.ImageUrlSource == 1;
+            txtPositionX.Text = category.ImageUrlPositionX.ToString();
+            txtPositionY.Text = category.ImageUrlPositionY.ToString();
         }
 
         protected void btnAddAttribute_Click(object sender, EventArgs e)
