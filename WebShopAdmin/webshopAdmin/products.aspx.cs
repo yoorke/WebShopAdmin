@@ -193,7 +193,8 @@ namespace webshopAdmin
             else if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string imageUrl = ((Image)e.Row.FindControl("imgProduct")).ImageUrl;
-                ((Image)e.Row.FindControl("imgProduct")).ImageUrl = new ProductBL().CreateImageDirectory(int.Parse(imageUrl.Substring(0, imageUrl.IndexOf(".")))) + imageUrl.Substring(0, imageUrl.IndexOf(".")) + "-" + ConfigurationManager.AppSettings["thumbName"] + imageUrl.Substring(imageUrl.IndexOf("."));
+                if(imageUrl != string.Empty)
+                    ((Image)e.Row.FindControl("imgProduct")).ImageUrl = new ProductBL().CreateImageDirectory(int.Parse(imageUrl.Substring(0, imageUrl.IndexOf(".")))) + imageUrl.Substring(0, imageUrl.IndexOf(".")) + "-" + ConfigurationManager.AppSettings["thumbName"] + imageUrl.Substring(imageUrl.IndexOf("."));
             }
         }
 
