@@ -181,7 +181,7 @@ namespace webshopAdmin
             chkUpdateProductsFromExternalApplication.Checked = category.UpdateProductsFromExternalApplication;
             chkExportProducts.Checked = category.ExportProducts;
 
-            imgIcon.ImageUrl = category.ImageUrl != string.Empty ? Server.MapPath("~/images/" + category.ImageUrl) : "~/images/no-image.jpg";
+            imgIcon.ImageUrl = category.ImageUrl != string.Empty ? ResolveUrl("~/images/" + category.ImageUrl) : ResolveUrl("~/images/no-image.jpg");
             lblCategoryName.Text = category.Name;
             ViewState.Add("categoryName", category.Name);
             txtExternalID.Text = category.ExternalID.ToString();
@@ -344,9 +344,10 @@ namespace webshopAdmin
             if (fluUpload.HasFile && txtName.Text != string.Empty)
             {
                 string extension = fluUpload.FileName.Substring(fluUpload.FileName.LastIndexOf('.'));
-                fluUpload.SaveAs(Server.MapPath("~/images/" + txtUrl.Text + extension));
-                txtImageUrl.Text = txtUrl.Text + extension;
-                imgIcon.ImageUrl = "~/images/" + txtUrl.Text + extension;
+                string filename = bool.Parse(ConfigurationManager.AppSettings["useCategorySprites"]) ? fluUpload.FileName : txtUrl.Text + extension;
+                fluUpload.SaveAs(Server.MapPath("~/images/" + (bool.Parse(ConfigurationManager.AppSettings["useCategorySprites"]) ? txtUrl.Text + extension : fluUpload.FileName)));
+                txtImageUrl.Text = filename;
+                imgIcon.ImageUrl = filename;
             }
             else
                 setStatus("Unesite naziv kategorije", System.Drawing.Color.Red, "warning");
