@@ -177,7 +177,7 @@
                         <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="500px">
                             <ItemTemplate>
                                 <asp:HyperLink ID="lnkProduct" runat="server" Target="_blank">
-                                    <asp:Label ID="lblProductName" runat="server" Text='<%#Eval("brandName") + " " + Eval("name") %>'></asp:Label>
+                                    <asp:Label ID="lblProductName" runat="server" Text='<%#Eval("brandName") + " " + Eval("name") + Eval("description")%>'></asp:Label>
                                 </asp:HyperLink>
                             </ItemTemplate>
                         </asp:TemplateField>
