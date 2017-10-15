@@ -145,7 +145,7 @@
 
                         <asp:TemplateField ControlStyle-Width="50px" ItemStyle-Width="50px">
                             <ItemTemplate>
-                                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%#Eval("images[0].ImageUrl") %>'></asp:Image>
+                                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%#Eval("ImageUrl") %>'></asp:Image>
                             </ItemTemplate>
                         </asp:TemplateField>
                         
@@ -157,7 +157,7 @@
                 
                         <asp:TemplateField HeaderText="Proizvođač" ControlStyle-Width="70px">
                             <ItemTemplate>
-                                <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("brand.name") %>'></asp:Label>
+                                <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("brandName") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
                 
@@ -189,7 +189,7 @@
 
                         <asp:TemplateField HeaderText="Promocija" ControlStyle-Width="50px" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="50px">
                             <ItemTemplate>
-                                <asp:Label ID="lblPromotionPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("promotion.price")) %>'></asp:Label>
+                                <asp:Label ID="lblPromotionPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("promotionPrice")) %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>                
                         <asp:TemplateField HeaderText="Odobreno" ControlStyle-Width="20px" ItemStyle-Width="20px">

@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using eshopBE;
 using eshopBL;
 using System.Collections.Generic;
+using System.Data;
 
 namespace webshopAdmin
 {
@@ -53,22 +54,23 @@ namespace webshopAdmin
 
             ProductBL productsBL = new ProductBL();
 
-            List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : null);
+            //List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : null);
+            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, string.Empty);
 
-            if (txtSearch.Text.Length > 0)
-            {
-                var productsList = (from product in products
-                                    where product.Name.ToLower().Contains(txtSearch.Text.ToLower())
-                                    select product);
+            //if (txtSearch.Text.Length > 0)
+            //{
+                //var productsList = (from product in products
+                                    //where product.Name.ToLower().Contains(txtSearch.Text.ToLower())
+                                    //select product);
 
-                dgvProducts.DataSource = productsList.ToList();
-                lblProductsCount.Text = productsList.Count().ToString();
-            }
-            else
-            {
+                //dgvProducts.DataSource = productsList.ToList();
+                //lblProductsCount.Text = productsList.Count().ToString();
+            //}
+            //else
+            //{
                 dgvProducts.DataSource = products;
-                lblProductsCount.Text = products != null ? products.Count.ToString() : "0";
-            }
+                lblProductsCount.Text = products != null ? products.Rows.Count.ToString() : "0";
+            //}
             dgvProducts.DataBind();
 
             
