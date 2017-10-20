@@ -36,11 +36,11 @@ namespace webshopAdmin
 
         private void loadProducts()
         {
-            int categoryID = -1;
+            int categoryID = null;
             if (cmbCategory.SelectedIndex > 0)
                 categoryID = int.Parse(cmbCategory.SelectedValue);
 
-            int supplierID = -1;
+            int supplierID = null;
             if (cmbSupplier.SelectedIndex > 0)
                 supplierID = int.Parse(cmbSupplier.SelectedValue);
 
