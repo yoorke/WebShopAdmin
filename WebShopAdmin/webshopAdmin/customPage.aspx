@@ -97,6 +97,16 @@
              </div>
             </div>
         </div>
+        <div class="row form-horizontal">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Artikal: </label>
+                    <div class="col-md-10">
+                        <asp:DropDownList ID="cmbProduct" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
 </asp:Content>

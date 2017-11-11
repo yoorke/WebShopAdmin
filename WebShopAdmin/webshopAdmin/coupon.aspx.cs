@@ -108,7 +108,7 @@ namespace webshopAdmin
             cmbBrand.DataValueField = "brandID";
             cmbBrand.DataBind();
 
-            cmbProduct.DataSource = new ProductBL().GetAllProducts();
+            cmbProduct.DataSource = new ProductBL().GetProductsDataTable();
             cmbProduct.DataTextField = "FullName";
             cmbProduct.DataValueField = "productID";
             cmbProduct.DataBind();

@@ -126,6 +126,11 @@ namespace webshopAdmin
             cmbCustomPageCategory.DataTextField = "name";
             cmbCustomPageCategory.DataValueField = "customPageCategoryID";
             cmbCustomPageCategory.DataBind();
+
+            cmbProduct.DataSource = new ProductBL().GetProductsDataTable();
+            cmbProduct.DataTextField = "FullName";
+            cmbProduct.DataValueField = "ProductID";
+            cmbProduct.DataBind();
         }
     }
 }
