@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using eshopBL;
 using eshopBE;
 using eshopUtilities;
+using System.Collections.Generic;
 
 namespace webshopAdmin
 {
@@ -57,6 +58,8 @@ namespace webshopAdmin
             chkIsActive.Checked = customPage.IsActive;
             cmbCustomPageCategory.SelectedValue = customPage.CustomPageCategoryID.ToString();
             txtFooter.Text = customPage.Footer;
+            ViewState["products"] = customPage.Products;
+            showProducts();
         }
 
         private void save()
@@ -79,13 +82,15 @@ namespace webshopAdmin
                 customPage.IsActive = chkIsActive.Checked;
                 customPage.CustomPageCategoryID = int.Parse(cmbCustomPageCategory.SelectedValue);
                 customPage.Footer = txtFooter.Text;
+                if (ViewState["products"] != null)
+                    customPage.Products = ((List<CustomPageProduct>)ViewState["products"]);
 
                 CustomPageBL customPageBL = new CustomPageBL();
                 customPage.CustomPageID = customPageBL.Save(customPage);
 
                 //if (customPageID == 0)
-                    //Common.AddUrlRewrite(customPage.Url, "customPage.aspx");
-                    
+                //Common.AddUrlRewrite(customPage.Url, "customPage.aspx");
+
 
                 lblTitleHeading.Text = customPage.Heading;
                 ViewState.Add("customPageID", customPage.CustomPageID);
@@ -132,5 +137,38 @@ namespace webshopAdmin
             cmbProduct.DataValueField = "ProductID";
             cmbProduct.DataBind();
         }
+
+        protected void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            List<CustomPageProduct> products = ViewState["products"] != null ? ((List<CustomPageProduct>)ViewState["products"]) : new List<CustomPageProduct>();
+            products.Add(new CustomPageProduct(int.Parse(cmbProduct.SelectedValue), cmbProduct.SelectedItem.Text));
+            ViewState["products"] = products;
+
+            showProducts();
+        }
+
+        private void showProducts()
+        {
+            if (ViewState["products"] != null)
+            {
+                lstProduct.Items.Clear();
+                lstProduct.DataSource = ((List<CustomPageProduct>)ViewState["products"]);
+                lstProduct.DataTextField = "productName";
+                lstProduct.DataValueField = "productID";
+                lstProduct.DataBind();
+            }
+        }
+
+        protected void btnRemoveProduct_Click(object sender, EventArgs e)
+        {
+            for(int i = 0; i < lstProduct.Items.Count; i++)
+            {
+                if (lstProduct.Items[i].Selected)
+                    ((List<CustomPageProduct>)ViewState["products"]).RemoveAt(i);
+
+                showProducts();
+            }
+        }
+           
     }
 }

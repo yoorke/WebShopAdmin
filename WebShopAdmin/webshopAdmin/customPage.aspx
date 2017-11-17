@@ -101,10 +101,28 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="control-label col-md-2">Artikal: </label>
-                    <div class="col-md-10">
+                    <div class="col-md-2">
+                        <asp:TextBox ID="txtProductID" runat="server" CssClass="form-control" ></asp:TextBox>
+                    </div>
+                    <div class="col-md-8">
                         <asp:DropDownList ID="cmbProduct" runat="server" CssClass="form-control"></asp:DropDownList>
                     </div>
                 </div>
+            </div>
+            <div class="col-md-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:Button ID="btnAddProduct" runat="server" Text=">>" OnClick="btnAddProduct_Click" CssClass="btn btn-default" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:Button ID="btnRemoveProduct" runat="server" Text="<<" OnClick="btnRemoveProduct_Click" CssClass="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <asp:ListBox ID="lstProduct" runat="server" CssClass="form-control" SelectionMode="Multiple" Height="150px"></asp:ListBox>
             </div>
         </div>
         
@@ -121,6 +139,10 @@
         $(document).ready(function () {
             $('[id*=txtTitle]').change(function () {
                 $('[id*=txtUrl]').val(createFriendlyUrl($('[id*=txtTitle]').val()));
+            })
+
+            $('[id*=txtProductID]').on('change', function () {
+                $('[id*=cmbProduct]').val($('[id*=txtProductID').val());
             })
         })
     </script>

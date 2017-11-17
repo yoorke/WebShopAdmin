@@ -166,6 +166,15 @@ namespace webshopAdmin {
         protected global::System.Web.UI.WebControls.TextBox txtContent;
         
         /// <summary>
+        /// txtProductID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductID;
+        
+        /// <summary>
         /// cmbProduct control.
         /// </summary>
         /// <remarks>
@@ -173,5 +182,32 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbProduct;
+        
+        /// <summary>
+        /// btnAddProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddProduct;
+        
+        /// <summary>
+        /// btnRemoveProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRemoveProduct;
+        
+        /// <summary>
+        /// lstProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lstProduct;
     }
 }
