@@ -51,42 +51,44 @@
                     <div class="tab-pane" id="vrednosti">
                         <div class="row">
                             <div class="col-lg-12">
-                                <asp:GridView ID="dgvAttributeValues" runat="server" AutoGenerateColumns="false"
-                                CssClass="table table-condesed table-hover table-bordered table-striped" OnRowDeleting="dgvAttributeValues_RowDeleting" DataKeyNames="attributeValueID">
-                                <Columns>
-                                    <asp:TemplateField HeaderText="AttributeID" ControlStyle-Width="50px">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblAttributeValueID" runat="server" Text='<%#Eval("attributeValueID") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-            
-                                    <asp:TemplateField HeaderText="Vrednost" ControlStyle-Width="100px">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblValue" runat="server" Text='<%#Eval("value") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-                                    <asp:TemplateField HeaderText="Sort" ControlStyle-Width="50px">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtSortIndex" runat="server" Text='<%#Eval("sort") %>'></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-                                    <asp:TemplateField HeaderText="Kimtec value" ControlStyle-Width="100px">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txtKimtecValue" runat="server" Text='<%#Eval("kimtecValue") %>'></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    
-                                    <asp:TemplateField HeaderText="Proizvoda">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblCount" runat="server" Text='<%#Eval("count") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                
-                                    <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ControlStyle-Width="20px" ItemStyle-Width="20px" ButtonType="Image" />
-                                </Columns>
-                                </asp:GridView>
+                                <div class="table-responsive">
+                                    <asp:GridView ID="dgvAttributeValues" runat="server" AutoGenerateColumns="false"
+                                        CssClass="table table-condesed table-hover table-bordered table-striped" OnRowDeleting="dgvAttributeValues_RowDeleting" DataKeyNames="attributeValueID">
+                                        <Columns>
+                                            <asp:TemplateField HeaderText="AttributeID" ControlStyle-Width="50px">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblAttributeValueID" runat="server" Text='<%#Eval("attributeValueID") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Vrednost" ControlStyle-Width="100px">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblValue" runat="server" Text='<%#Eval("value") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Sort" ControlStyle-Width="50px">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtSortIndex" runat="server" Text='<%#Eval("sort") %>'></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Kimtec value" ControlStyle-Width="100px">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtKimtecValue" runat="server" Text='<%#Eval("kimtecValue") %>'></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:TemplateField HeaderText="Proizvoda">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCount" runat="server" Text='<%#Eval("count") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
+                                            <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ControlStyle-Width="20px" ItemStyle-Width="20px" ButtonType="Image" />
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
                             </div>
                         </div>
                         <div class="row">

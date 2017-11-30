@@ -269,3 +269,8 @@
     font-weight:normal;
     margin-left:0.5em;
 }
+
+.table th{
+    font-weight:normal;
+    font-size:0.9em;
+}

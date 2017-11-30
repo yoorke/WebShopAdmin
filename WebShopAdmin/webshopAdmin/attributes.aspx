@@ -29,26 +29,28 @@
         </div>
         <div class="row margin-top-2">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvAttributes" runat="server" AutoGenerateColumns="false" CssClass="table table-condesed table-bordered table-hover table-striped"
-                    OnRowDeleting="dgvAttributes_RowDeleting" DataKeyNames="attributeID">
-                    <Columns>
-                        <asp:TemplateField HeaderText="AttributeID" ItemStyle-Width="50px" Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblAttributeID" runat="server" Text='<%#Eval("attributeID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        
-                        <asp:TemplateField HeaderText="Naziv">
-                            <ItemTemplate>
-                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/attribute.aspx?id=" + Eval("attributeID") %>'>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
-                                </asp:HyperLink>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-            
-                        <asp:CommandField ShowDeleteButton="true" DeleteText="" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
-                    </Columns>
-                </asp:GridView>            
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvAttributes" runat="server" AutoGenerateColumns="false" CssClass="table table-condesed table-bordered table-hover table-striped"
+                        OnRowDeleting="dgvAttributes_RowDeleting" DataKeyNames="attributeID">
+                        <Columns>
+                            <asp:TemplateField HeaderText="AttributeID" ItemStyle-Width="50px" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAttributeID" runat="server" Text='<%#Eval("attributeID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Naziv">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/attribute.aspx?id=" + Eval("attributeID") %>'>
+                                        <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:CommandField ShowDeleteButton="true" DeleteText="" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div><!--page-wrapper-->

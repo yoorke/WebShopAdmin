@@ -25,31 +25,33 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvAttributes" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped"
-                    OnRowDataBound="dgvAttributes_RowDataBound">
-                    <Columns>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblKupindoAttributeID" runat="server" Text='<%#Eval("kupindoAttributeID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Kupindo atribut">
-                            <ItemTemplate>
-                                <asp:Label ID="lblKupindoAttributeName" runat="server" Text='<%#Eval("kupindoAttributeName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Atribut">
-                            <ItemTemplate>
-                                <asp:DropDownList ID="cmbAttribute" runat="server" CssClass="form-control"></asp:DropDownList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Label ID="lblAttributeID" runat="server" Text='<%#Eval("attributeID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvAttributes" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped"
+                        OnRowDataBound="dgvAttributes_RowDataBound">
+                        <Columns>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblKupindoAttributeID" runat="server" Text='<%#Eval("kupindoAttributeID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Kupindo atribut">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblKupindoAttributeName" runat="server" Text='<%#Eval("kupindoAttributeName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Atribut">
+                                <ItemTemplate>
+                                    <asp:DropDownList ID="cmbAttribute" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAttributeID" runat="server" Text='<%#Eval("attributeID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

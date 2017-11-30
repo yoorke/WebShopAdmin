@@ -27,31 +27,33 @@
         
         <div class="row">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvAttribute" runat="server" AutoGenerateColumns="false" OnRowDataBound="dgvAttribute_RowDataBound"
-                CssClass="table table-bordered table-hover table-striped">
-                    <Columns>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblAttributeID" runat="server" Text='<%#Eval("attributeID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Label ID="lblAttributeName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:DropDownList ID="cmbKimtecAttribute" runat="server"></asp:DropDownList>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblKimtecAttributeID" runat="server" Text='<%#Eval("kimtecAttributeID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvAttribute" runat="server" AutoGenerateColumns="false" OnRowDataBound="dgvAttribute_RowDataBound"
+                        CssClass="table table-bordered table-hover table-striped">
+                        <Columns>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAttributeID" runat="server" Text='<%#Eval("attributeID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAttributeName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:DropDownList ID="cmbKimtecAttribute" runat="server"></asp:DropDownList>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblKimtecAttributeID" runat="server" Text='<%#Eval("kimtecAttributeID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

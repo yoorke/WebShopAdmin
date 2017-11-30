@@ -100,10 +100,11 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvProducts" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-bordered table-condensed table-striped"
-                    OnRowDataBound="dgvProducts_RowDataBound">
-                    <Columns>
-                        <asp:TemplateField ControlStyle-Width="30px">
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvProducts" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-bordered table-condensed table-striped"
+                        OnRowDataBound="dgvProducts_RowDataBound">
+                        <Columns>
+                            <asp:TemplateField ControlStyle-Width="30px">
                                 <HeaderTemplate>
                                     <asp:CheckBox ID="chkSelectAll" runat="server" />
                                 </HeaderTemplate>
@@ -111,50 +112,50 @@
                                     <asp:CheckBox ID="chkSave" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblSupplierCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Barkod" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblEan" runat="server" Text='<%#Eval("ean") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Proizvođač" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblManufacturer" runat="server" Text='<%#Eval("brand") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("price")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField ControlStyle-Width="20px">
-                            <ItemTemplate>
-                                <asp:Image ID="imgStatus" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Postoji" ControlStyle-Width="100px" Visible="false">
-                            <ItemTemplate>
-                                <asp:CheckBox ID="chkExists" runat="server" Checked='<%#int.Parse(Eval("exists").ToString()) == 1 %>' />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <%--<asp:TemplateField HeaderText="Sačuvaj" ControlStyle-Width="50px">
+
+                            <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblSupplierCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Barkod" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblEan" runat="server" Text='<%#Eval("ean") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Proizvođač" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblManufacturer" runat="server" Text='<%#Eval("brand") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("price")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField ControlStyle-Width="20px">
+                                <ItemTemplate>
+                                    <asp:Image ID="imgStatus" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Postoji" ControlStyle-Width="100px" Visible="false">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkExists" runat="server" Checked='<%#int.Parse(Eval("exists").ToString()) == 1 %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <%--<asp:TemplateField HeaderText="Sačuvaj" ControlStyle-Width="50px">
                             <HeaderTemplate>
                                 <asp:CheckBox ID="chkSelectAll" runat="server" />
                             </HeaderTemplate>
@@ -162,8 +163,9 @@
                                 <asp:CheckBox ID="chkSave" runat="server" />
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                    </Columns>
-                </asp:GridView>        
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div><!--row-->
         <div class="row">

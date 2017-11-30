@@ -26,30 +26,32 @@
         </div>
         <div class="row margin-top-2">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvCategories" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped">
-                    <Columns>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCategoryID" runat="server" Text='<%#Eval("categoryID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Kategorija">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCategoryName" runat="server" Text='<%#Eval("categoryName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblKupindoCategoryID" runat="server" Text='<%#Eval("kupindoCategoryID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Label ID="lblKupindoCategoryName" runat="server" Text='<%#Eval("kupindoCategoryName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvCategories" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped">
+                        <Columns>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCategoryID" runat="server" Text='<%#Eval("categoryID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Kategorija">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCategoryName" runat="server" Text='<%#Eval("categoryName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblKupindoCategoryID" runat="server" Text='<%#Eval("kupindoCategoryID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Label ID="lblKupindoCategoryName" runat="server" Text='<%#Eval("kupindoCategoryName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

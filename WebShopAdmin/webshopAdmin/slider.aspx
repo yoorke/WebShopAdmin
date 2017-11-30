@@ -53,33 +53,35 @@
         </div><!--row-->
         <div class="row margin-top-2">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvImages" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped"
-                    OnRowDeleting="dgvImages_RowDeleting" DataKeyNames="sliderItemID" OnRowCommand="dgvImages_RowCommand">
-                    <Columns>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblSliderItemID" runat="server" Text='<%#Eval("sliderItemID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField ItemStyle-Width="200px">
-                            <ItemTemplate>
-                                <asp:Image ID="imgSliderItem" runat="server" ImageUrl='<%#Eval("imageUrl") %>' Width="150px" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Url">
-                            <ItemTemplate>
-                                <asp:TextBox ID="txtUrl" runat="server" Text='<%#Eval("url") %>' CssClass="form-control"></asp:TextBox>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Sortiraj" ControlStyle-Width="20px" ItemStyle-Width="50px">
-                            <ItemTemplate>
-                                <asp:ImageButton ID="btnSortUp" runat="server" ImageUrl="images/arrow_up.png" CommandName="sortUp" />
-                                <asp:ImageButton ID="btnSortDown" runat="server" ImageUrl="images/arrow_down.png" CommandName="sortDown" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvImages" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped"
+                        OnRowDeleting="dgvImages_RowDeleting" DataKeyNames="sliderItemID" OnRowCommand="dgvImages_RowCommand">
+                        <Columns>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblSliderItemID" runat="server" Text='<%#Eval("sliderItemID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField ItemStyle-Width="200px">
+                                <ItemTemplate>
+                                    <asp:Image ID="imgSliderItem" runat="server" ImageUrl='<%#Eval("imageUrl") %>' Width="150px" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Url">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtUrl" runat="server" Text='<%#Eval("url") %>' CssClass="form-control"></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Sortiraj" ControlStyle-Width="20px" ItemStyle-Width="50px">
+                                <ItemTemplate>
+                                    <asp:ImageButton ID="btnSortUp" runat="server" ImageUrl="images/arrow_up.png" CommandName="sortUp" />
+                                    <asp:ImageButton ID="btnSortDown" runat="server" ImageUrl="images/arrow_down.png" CommandName="sortDown" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div><!--col-->
         </div><!--row-->
         <div class="row">

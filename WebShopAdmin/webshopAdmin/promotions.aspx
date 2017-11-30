@@ -23,32 +23,34 @@
         </div><!--row-->
         <div class="row margin-top-2">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvPromotions" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-bordered table-condensed table-striped"
-                    OnRowDeleting="dgvPromotions_RowDeleting" DataKeyNames="promotionID">
-                    <Columns>
-                        <asp:TemplateField HeaderText="ID" ControlStyle-Width="50px" Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblPromotionID" runat="server" Text='<%#Eval("promotionID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
-                            <ItemTemplate>
-                                <asp:HyperLink ID="lnkName" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/promotion.aspx?promotionID=" + Eval("promotionID") %>'>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
-                                </asp:HyperLink>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Popust" ControlStyle-Width="50px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblValue" runat="server" Text='<%#Eval("value") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvPromotions" runat="server" AutoGenerateColumns="false" CssClass="table table-hover table-bordered table-condensed table-striped"
+                        OnRowDeleting="dgvPromotions_RowDeleting" DataKeyNames="promotionID">
+                        <Columns>
+                            <asp:TemplateField HeaderText="ID" ControlStyle-Width="50px" Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPromotionID" runat="server" Text='<%#Eval("promotionID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="lnkName" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/promotion.aspx?promotionID=" + Eval("promotionID") %>'>
+                                        <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Popust" ControlStyle-Width="50px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblValue" runat="server" Text='<%#Eval("value") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div><!--col-->
         </div><!--row-->
     </div><!--page-wrapper-->

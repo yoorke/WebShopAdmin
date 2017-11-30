@@ -62,57 +62,60 @@
         </div><!--row-->
         <div class="row margin-top-05">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvOrders" runat="server" AutoGenerateColumns="false" OnRowDeleting="dgvOrders_RowDeleting"
-                    DataKeyNames="orderID" CssClass="table table-condensed table-bordered table-hover table-striped"
-                    OnRowDataBound="dgvOrders_RowDataBound">
-                    <Columns>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblOrderID" runat="server" Text='<%#Eval("orderID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Datum">
-                            <ItemTemplate>
-                                <asp:Label ID="lblDate" runat="server" Text='<%#Eval("date") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Broj" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
-                            <ItemTemplate>
-                                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/order.aspx?orderID=" + Eval("orderID") %>'>
-                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
-                                </asp:HyperLink>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Iznos" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblTotal" runat="server" Text='<%#String.Format("{0:N2}", Eval("total")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate><asp:Label ID="lblColor" runat="server" Text='<%#Eval("color") %>'></asp:Label></ItemTemplate>
-                        </asp:TemplateField>
-                        
-                        <asp:TemplateField HeaderText="Status">
-                            <ItemTemplate>
-                                <asp:Label ID="lblStatus" runat="server" Text='<%#Eval("status") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                
-                
-                        <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ControlStyle-Width="20px" DeleteText="" ButtonType="Image" ItemStyle-Width="20px" />
-                    </Columns>
-                </asp:GridView>        
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvOrders" runat="server" AutoGenerateColumns="false" OnRowDeleting="dgvOrders_RowDeleting"
+                        DataKeyNames="orderID" CssClass="table table-condensed table-bordered table-hover table-striped"
+                        OnRowDataBound="dgvOrders_RowDataBound">
+                        <Columns>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblOrderID" runat="server" Text='<%#Eval("orderID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Datum">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDate" runat="server" Text='<%#Eval("date") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Broj" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="200px">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/order.aspx?orderID=" + Eval("orderID") %>'>
+                                        <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Iznos" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTotal" runat="server" Text='<%#String.Format("{0:N2}", Eval("total")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblColor" runat="server" Text='<%#Eval("color") %>'></asp:Label></ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblStatus" runat="server" Text='<%#Eval("status") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+
+
+                            <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ControlStyle-Width="20px" DeleteText="" ButtonType="Image" ItemStyle-Width="20px" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div><!--col-->
         </div><!--row-->
     </div><!--page-wrapper-->

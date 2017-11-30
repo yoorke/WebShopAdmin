@@ -114,85 +114,87 @@
         </div>
         <div class="row margin-top-50">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvProducts" runat="server" CssClass="table table-hover table-bordered table-condensed table-striped" AutoGenerateColumns="false"
-                OnRowDataBound="dgvProducts_RowDataBound">
-                    <Columns>
-                        <asp:TemplateField ControlStyle-Width="30px">
-                            <HeaderTemplate>
-                                <asp:CheckBox ID="chkSelectAll" runat="server" />
-                            </HeaderTemplate>
-                            <ItemTemplate>
-                                <asp:CheckBox ID="chkSave" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblImageUrl" runat="server" Text='<%#Eval("imageUrl") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblKimtecProductID" runat="server" Text='<%#Eval("kimtecProductID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        
-                        <asp:TemplateField HeaderText="Šifra">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Barcode">
-                            <ItemTemplate>
-                                <asp:Label ID="lblBarcode" runat="server" Text='<%#Eval("barcodeValue") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Kategorija">
-                            <ItemTemplate>
-                                <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Brand">
-                            <ItemTemplate>
-                                <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("brand") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Naziv">
-                            <ItemTemplate>
-                                <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Model">
-                            <ItemTemplate>
-                                <asp:Label ID="lblModel" runat="server" Text='<%#Eval("model") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Nabavna cena" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblPartnerPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("partnerPrice")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblExist" runat="server" Text='<%#Eval("exist") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField>
-                            <ItemTemplate>
-                                <asp:Image ID="imgStatus" runat="server" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblDescription" runat="server" Text='<%#Eval("marketingDescription") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblStock" runat="server" Text='<%#Eval("availability") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvProducts" runat="server" CssClass="table table-hover table-bordered table-condensed table-striped" AutoGenerateColumns="false"
+                        OnRowDataBound="dgvProducts_RowDataBound">
+                        <Columns>
+                            <asp:TemplateField ControlStyle-Width="30px">
+                                <HeaderTemplate>
+                                    <asp:CheckBox ID="chkSelectAll" runat="server" />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkSave" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblImageUrl" runat="server" Text='<%#Eval("imageUrl") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblKimtecProductID" runat="server" Text='<%#Eval("kimtecProductID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Šifra">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Barcode">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblBarcode" runat="server" Text='<%#Eval("barcodeValue") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Kategorija">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblType" runat="server" Text='<%#Eval("type") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Brand">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("brand") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Naziv">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblName" runat="server" Text='<%#Eval("name") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Model">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblModel" runat="server" Text='<%#Eval("model") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Nabavna cena" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPartnerPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("partnerPrice")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblExist" runat="server" Text='<%#Eval("exist") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <asp:Image ID="imgStatus" runat="server" />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDescription" runat="server" Text='<%#Eval("marketingDescription") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblStock" runat="server" Text='<%#Eval("availability") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
     </div>

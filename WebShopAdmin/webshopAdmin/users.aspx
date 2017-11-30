@@ -17,38 +17,40 @@
         </div><!--row-->
         <div class="row margin-top-2">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvUsers" runat="server" CssClass="table table-condensed table-bordered table-hover table-striped"
-                    AutoGenerateColumns="false"
-                    OnRowDeleting="dgvUsers_RowDeleting" DataKeyNames="userID">
-                    <Columns>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblUserID" runat="server"></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Username" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:HyperLink ID="lnkUsername" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/user.aspx?userID=" + Eval("userID") %>'>
-                                    <asp:Label ID="lblUsername" runat="server" Text='<%#Eval("username") %>'></asp:Label>
-                                </asp:HyperLink>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:TemplateField HeaderText="Ime" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblFirstName" runat="server" Text='<%#Eval("firstName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        
-                        <asp:TemplateField HeaderText="Prezime" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblLastName" runat="server" Text='<%#Eval("lastName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                
-                        <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
-                    </Columns>
-                </asp:GridView>
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvUsers" runat="server" CssClass="table table-condensed table-bordered table-hover table-striped"
+                        AutoGenerateColumns="false"
+                        OnRowDeleting="dgvUsers_RowDeleting" DataKeyNames="userID">
+                        <Columns>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblUserID" runat="server"></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Username" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="lnkUsername" runat="server" NavigateUrl='<%#"/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/user.aspx?userID=" + Eval("userID") %>'>
+                                        <asp:Label ID="lblUsername" runat="server" Text='<%#Eval("username") %>'></asp:Label>
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Ime" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblFirstName" runat="server" Text='<%#Eval("firstName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Prezime" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblLastName" runat="server" Text='<%#Eval("lastName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div><!--col-->
         </div><!--row-->
     </div><!--page-wrapper-->

@@ -158,6 +158,8 @@
     <Content Include="webshopAdmin\promotion.aspx" />
     <Content Include="webshopAdmin\promotions.aspx" />
     <Content Include="webshopAdmin\reports\1476470_541694929238595_1282263928_n.jpg" />
+    <Content Include="webshopAdmin\retail.aspx" />
+    <Content Include="webshopAdmin\retails.aspx" />
     <Content Include="webshopAdmin\slider.aspx" />
     <Content Include="webshopAdmin\sliders.aspx" />
     <Content Include="webshopAdmin\user.aspx" />
@@ -434,6 +436,20 @@
     </Compile>
     <Compile Include="webshopAdmin\promotions.aspx.designer.cs">
       <DependentUpon>promotions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\retail.aspx.cs">
+      <DependentUpon>retail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\retail.aspx.designer.cs">
+      <DependentUpon>retail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\retails.aspx.cs">
+      <DependentUpon>retails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\retails.aspx.designer.cs">
+      <DependentUpon>retails.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\slider.aspx.cs">
       <DependentUpon>slider.aspx</DependentUpon>

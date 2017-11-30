@@ -142,72 +142,74 @@
         </div><!--row-->
         <div class="row margin-top-05">
             <div class="col-lg-12">
-                <asp:GridView ID="dgvItems" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped" OnRowDataBound="dgvItems_RowDataBound">
-                    <Columns>
-                        <%--<asp:TemplateField Visible="false">
+                <div class="table-responsive">
+                    <asp:GridView ID="dgvItems" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped" OnRowDataBound="dgvItems_RowDataBound">
+                        <Columns>
+                            <%--<asp:TemplateField Visible="false">
                             <ItemTemplate>
                                 <asp:Label ID="lblOrderItemID" runat="server" Text='<%#Eval("orderItemID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <%--<asp:TemplateField Visible="false">
+                            <%--<asp:TemplateField Visible="false">
                             <ItemTemplate>
                                 <asp:Label ID="lblOrderID" runat="server" Text='<%#Eval("orderID") %>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>--%>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblProductID" runat="server" Text='<%#Eval("productID") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("brandName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField Visible="false">
-                            <ItemTemplate>
-                                <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("categoryName") %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="100px">
-                            <ItemTemplate>
-                                <asp:Label ID="lblProductCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
-                        </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="500px">
-                            <ItemTemplate>
-                                <asp:HyperLink ID="lnkProduct" runat="server" Target="_blank">
-                                    <asp:Label ID="lblProductName" runat="server" Text='<%#Eval("brandName") + " " + Eval("name") + Eval("description")%>'></asp:Label>
-                                </asp:HyperLink>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="MP cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("price")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Web cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblWebPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("webPrice")) %>'></asp:Label>
-                        </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblUserPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("userPrice")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Količina" ControlStyle-Width="50px" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblQuantity" runat="server" Text='<%#String.Format("{0:N2}", Eval("quantity")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Iznos" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
-                            <ItemTemplate>
-                                <asp:Label ID="lblTotal" runat="server" Text='<%#String.Format("{0:N2}", Eval("total")) %>'></asp:Label>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>        
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblProductID" runat="server" Text='<%#Eval("productID") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblBrand" runat="server" Text='<%#Eval("brandName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField Visible="false">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCategory" runat="server" Text='<%#Eval("categoryName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblProductCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Naziv" ControlStyle-Width="500px">
+                                <ItemTemplate>
+                                    <asp:HyperLink ID="lnkProduct" runat="server" Target="_blank">
+                                        <asp:Label ID="lblProductName" runat="server" Text='<%#Eval("brandName") + " " + Eval("name") + Eval("description")%>'></asp:Label>
+                                    </asp:HyperLink>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="MP cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("price")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Web cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblWebPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("webPrice")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblUserPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("userPrice")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Količina" ControlStyle-Width="50px" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblQuantity" runat="server" Text='<%#String.Format("{0:N2}", Eval("quantity")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Iznos" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblTotal" runat="server" Text='<%#String.Format("{0:N2}", Eval("total")) %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div><!--col-->
         </div><!--row-->
         <div class="row">
