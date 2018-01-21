@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/webshopAdmin/adminPanel.Master" AutoEventWireup="true" CodeBehind="retail.aspx.cs" Inherits="WebShopAdmin.webshopAdmin.retail" %>
-<%@ Register Src="~/webshopAdmin/customControls/CustomStatus.ascx" TagName="CustomStatus" TagPrefix="ws" %>
+<%@ Register Src="customControls/CustomStatus.ascx" TagName="CustomStatus" TagPrefix="ws" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -29,6 +29,7 @@
                 <div class="form-group">
                     <label for="txtName">Naziv:</label>
                     <asp:TextBox ID="txtName" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="requiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Naziv je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group">
                     <label for="txtAddress">Adresa:</label>
@@ -37,6 +38,7 @@
                 <div class="form-group">
                     <label for="cmbCity">Mesto:</label>
                     <asp:DropDownList ID="cmbCity" runat="server" CssClass="form-control"></asp:DropDownList>
+                    <asp:RangeValidator ID="rangeValidator1" runat="server" ControlToValidate="cmbCity" MinimumValue="0" MaximumValue="99999" ErrorMessage="Odaberite mesto"></asp:RangeValidator>
                 </div>
                 <div class="form-group">
                     <label for="txtPhone">Telefon:</label>

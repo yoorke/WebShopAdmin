@@ -95,6 +95,14 @@
                                                 <asp:TextBox ID="txtPositionY" runat="server" CssClass="form-control"></asp:TextBox>
                                             </div>
                                         </div>
+                                        <div class="row margin-top-05">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Ikonica:</label>
+                                                    <asp:TextBox ID="txtIcon" runat="server" CssClass="form-control"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div><!--form-group-->
                                     
                                 </div><!--form-->

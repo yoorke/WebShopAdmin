@@ -63,43 +63,60 @@ namespace WebShopAdmin.webshopAdmin
 
         private void loadRetail(int retailID)
         {
-            Retail retail = new RetailBL().GetRetail(retailID);
-            txtName.Text = retail.Name;
-            txtAddress.Text = retail.Address;
-            cmbCity.SelectedValue = retail.City.CityID.ToString();
-            txtPhone.Text = retail.Phone;
-            txtMobilePhone.Text = retail.MobilePhone;
-            txtLocation.Text = retail.Location;
-            chkIsActive.Checked = retail.IsActive;
-            lblRetailID.Value = retail.RetailID.ToString();
-            ViewState.Add("lblRetailName", retail.Name);
-            lblRetailName.Text = retail.Name;
+            try
+            { 
+                Retail retail = new RetailBL().GetRetail(retailID);
+                txtName.Text = retail.Name;
+                txtAddress.Text = retail.Address;
+                cmbCity.SelectedValue = retail.City.CityID.ToString();
+                txtPhone.Text = retail.Phone;
+                txtMobilePhone.Text = retail.MobilePhone;
+                txtLocation.Text = retail.Location;
+                chkIsActive.Checked = retail.IsActive;
+                lblRetailID.Value = retail.RetailID.ToString();
+                ViewState.Add("lblRetailName", retail.Name);
+                lblRetailName.Text = retail.Name;
+            }
+            catch(Exception ex)
+            {
+                setMessage(ex.Message, System.Drawing.Color.Red, true, "danger");
+            }
         }
 
         private void saveRetail()
         {
-            Retail retail = new Retail();
-            retail.Name = txtName.Text;
-            retail.Address = txtAddress.Text;
-            retail.City = new City(int.Parse(cmbCity.SelectedValue), string.Empty, string.Empty);
-            retail.Phone = txtPhone.Text;
-            retail.MobilePhone = txtMobilePhone.Text;
-            retail.Location = txtLocation.Text;
-            retail.IsActive = chkIsActive.Checked;
-            if (lblRetailID.Value != string.Empty)
-                retail.RetailID = int.Parse(lblRetailID.Value);
+            try
+            { 
+                Retail retail = new Retail();
+                retail.Name = txtName.Text;
+                retail.Address = txtAddress.Text;
+                retail.City = new City(int.Parse(cmbCity.SelectedValue), string.Empty, string.Empty);
+                retail.Phone = txtPhone.Text;
+                retail.MobilePhone = txtMobilePhone.Text;
+                retail.Location = txtLocation.Text;
+                retail.IsActive = chkIsActive.Checked;
+                if (lblRetailID.Value != string.Empty)
+                    retail.RetailID = int.Parse(lblRetailID.Value);
+                ViewState.Add("lblRetailName", retail.Name);
+                lblRetailName.Text = retail.Name;
 
 
-            int status = retail.RetailID == 0 ? new RetailBL().Insert(retail) : new RetailBL().Update(retail);
+                int status = retail.RetailID == 0 ? new RetailBL().Insert(retail) : new RetailBL().Update(retail);
 
-            setMessage("Prodajno mesto uspešno sačuvano", System.Drawing.Color.Green, true);
+                setMessage("Prodajno mesto uspešno sačuvano", System.Drawing.Color.Green, true, "success");
+            }
+            catch(Exception ex)
+            {
+                setMessage(ex.Message, System.Drawing.Color.Red, true, "danger");
+            }
         }
             
-        private void setMessage(string message, System.Drawing.Color color, bool visible)
+        private void setMessage(string message, System.Drawing.Color color, bool visible, string status)
         {
             customStatus.Text = message;
             customStatus.ForeColor = color;
             customStatus.Visible = visible;
+            customStatus.Class = "status alert alert-" + status;
             customStatus.Show();
         }
     }

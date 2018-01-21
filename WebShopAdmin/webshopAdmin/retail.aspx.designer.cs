@@ -76,6 +76,15 @@ namespace WebShopAdmin.webshopAdmin {
         protected global::System.Web.UI.WebControls.TextBox txtName;
         
         /// <summary>
+        /// requiredFieldValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator1;
+        
+        /// <summary>
         /// txtAddress control.
         /// </summary>
         /// <remarks>
@@ -92,6 +101,15 @@ namespace WebShopAdmin.webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbCity;
+        
+        /// <summary>
+        /// rangeValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator rangeValidator1;
         
         /// <summary>
         /// txtPhone control.
