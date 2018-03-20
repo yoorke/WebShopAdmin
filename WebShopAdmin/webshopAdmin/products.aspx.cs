@@ -55,7 +55,7 @@ namespace webshopAdmin
             ProductBL productsBL = new ProductBL();
 
             //List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : null);
-            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, txtSearch.Text);
+            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, txtSearch.Text, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : "product.Name", string.Empty);
 
             //if (txtSearch.Text.Length > 0)
             //{
@@ -130,6 +130,8 @@ namespace webshopAdmin
 
             cmbSort.Items.Add(new ListItem("Nazivu", "brand.name, product.name"));
             cmbSort.Items.Add(new ListItem("Datumu unosa", "product.insertDate"));
+            cmbSort.Items.Add(new ListItem("Datumu izmene", "product.updateDate"));
+            cmbSort.Items.Add(new ListItem("Datum izmene opadajuće", "product.updateDate DESC"));
         }
 
         protected void btnShowProducts_Click(object sender, EventArgs e)

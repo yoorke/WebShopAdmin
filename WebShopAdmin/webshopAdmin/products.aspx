@@ -223,6 +223,12 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Datum izmene" ControlStyle-Width="70px" ItemStyle-Width="70px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblUpdateDate" runat="server" Text='<%#Eval("updateDate") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
                                     <asp:HyperLink ID="lnkProductPage" runat="server" NavigateUrl='<%#"~/proizvodi/proizvod/" + Eval("name") + "-" + Eval("productID") %>' Target="_blank"><span class="fa fa-fw fa-sign-in"></span></asp:HyperLink>
