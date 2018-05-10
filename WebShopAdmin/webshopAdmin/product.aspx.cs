@@ -123,8 +123,8 @@ namespace webshopAdmin
                     lblPageHeader.Text = ViewState["productName"] != null ? ViewState["productName"].ToString() : "Proizvod";
                     TabName.Value = Request.Form[TabName.UniqueID];
                 }
-                txtPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]);
-                txtWebPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]);
+                txtPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]) || Page.Request.QueryString["id"] == null;
+                txtWebPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]) || Page.Request.QueryString["id"] == null;
             }
             else
                 Page.Response.Redirect("/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/login.aspx?returnUrl=" + Page.Request.RawUrl);
@@ -201,85 +201,88 @@ namespace webshopAdmin
             ProductBL productBL = new ProductBL();
             Product product = productBL.GetProduct(productID, string.Empty, false, string.Empty);
 
-            lblProductID.Value = product.ProductID.ToString();
-            txtCode.Text = product.Code;
-            txtSupplierCode.Text = product.SupplierCode;
-            txtName.Text = product.Name;
-            cmbBrand.SelectedValue = cmbBrand.Items.FindByValue(product.Brand.BrandID.ToString()).Value;
-            txtDescription.Text = product.Description;
-            txtPrice.Text = string.Format("{0:N2}", product.Price);
-            txtWebPrice.Text = string.Format("{0:N2}", product.WebPrice);
-            txtInsertDate.Text = product.InsertDate.ToString();
-            txtUpdateDate.Text = product.UpdateDate.ToString();
-            cmbVat.SelectedValue = cmbVat.Items.FindByValue(product.VatID.ToString()).Value;
-            cmbSupplier.SelectedValue = cmbSupplier.Items.FindByValue(product.SupplierID.ToString()).Value;
-            chkApproved.Checked = product.IsApproved;
-            chkActive.Checked = product.IsActive;
-            chkLocked.Checked = product.IsLocked;
-            chkInStock.Checked = product.IsInStock;
-            txtEan.Text = product.Ean;
-            txtSpecification.Text = product.Specification;
-            Page.Title = product.Name + " | Admin panel";
-            ViewState.Add("pageTitle", Page.Title);
-            txtSupplierPrice.Text = string.Format("{0:N2}", product.SupplierPrice);
-            cmbUnitOfMeasure.SelectedValue = product.UnitOfMeasure.UnitOfMeasureID.ToString();
-            lblPageHeader.Text = product.Name;
-            ViewState.Add("productName", product != null ? product.Name : string.Empty);
+            if(product != null)
+            { 
+                lblProductID.Value = product.ProductID.ToString();
+                txtCode.Text = product.Code;
+                txtSupplierCode.Text = product.SupplierCode;
+                txtName.Text = product.Name;
+                cmbBrand.SelectedValue = cmbBrand.Items.FindByValue(product.Brand.BrandID.ToString()).Value;
+                txtDescription.Text = product.Description;
+                txtPrice.Text = string.Format("{0:N2}", product.Price);
+                txtWebPrice.Text = string.Format("{0:N2}", product.WebPrice);
+                txtInsertDate.Text = product.InsertDate.ToString();
+                txtUpdateDate.Text = product.UpdateDate.ToString();
+                cmbVat.SelectedValue = cmbVat.Items.FindByValue(product.VatID.ToString()).Value;
+                cmbSupplier.SelectedValue = cmbSupplier.Items.FindByValue(product.SupplierID.ToString()).Value;
+                chkApproved.Checked = product.IsApproved;
+                chkActive.Checked = product.IsActive;
+                chkLocked.Checked = product.IsLocked;
+                chkInStock.Checked = product.IsInStock;
+                txtEan.Text = product.Ean;
+                txtSpecification.Text = product.Specification;
+                Page.Title = product.Name + " | Admin panel";
+                ViewState.Add("pageTitle", Page.Title);
+                txtSupplierPrice.Text = string.Format("{0:N2}", product.SupplierPrice);
+                cmbUnitOfMeasure.SelectedValue = product.UnitOfMeasure.UnitOfMeasureID.ToString();
+                lblPageHeader.Text = product.Name;
+                ViewState.Add("productName", product != null ? product.Name : string.Empty);
 
-            if (product.Promotion != null)
-            {
-                cmbPromotions.SelectedValue = cmbPromotions.Items.FindByValue(product.Promotion.PromotionID.ToString()).Value;
-                txtPromotionPrice.Text = product.Promotion.Price.ToString();
-            }
-
-            if (product.Categories != null)
-            {
-                cmbCategory.SelectedValue = cmbCategory.Items.FindByValue(product.Categories[0].CategoryID.ToString()).Value;
-                createControls();
-                int i = 0;
-                if (product.Attributes != null)
+                if (product.Promotion != null)
                 {
-                    int attributeID = -1;
-                    foreach (object control in pnlAttributes.Controls)
+                    cmbPromotions.SelectedValue = cmbPromotions.Items.FindByValue(product.Promotion.PromotionID.ToString()).Value;
+                    txtPromotionPrice.Text = product.Promotion.Price.ToString();
+                }
+
+                if (product.Categories != null)
+                {
+                    cmbCategory.SelectedValue = cmbCategory.Items.FindByValue(product.Categories[0].CategoryID.ToString()).Value;
+                    createControls();
+                    int i = 0;
+                    if (product.Attributes != null)
                     {
-                        if (control is Literal)
+                        int attributeID = -1;
+                        foreach (object control in pnlAttributes.Controls)
                         {
-                            int.TryParse(((Literal)control).Text, out attributeID);
+                            if (control is Literal)
+                            {
+                                int.TryParse(((Literal)control).Text, out attributeID);
+                            }
+                            if (control is customControls.AttributeControl)
+                            {
+                                int index;
+                                if ((index = hasAttribute(product.Attributes, attributeID)) > -1)
+                                    ((customControls.AttributeControl)control).AttributeValueID = product.Attributes[index].AttributeValueID;
+                                else
+                                    ((customControls.AttributeControl)control).AttributeValue = "NP";
+                            }
                         }
-                        if (control is customControls.AttributeControl)
+                    }
+                    btnAddProductToCategory.Enabled = true;
+
+                    if(product.Categories.Count > 1)
+                    {
+                        for(int j = 1; j < product.Categories.Count; j++)
                         {
-                            int index;
-                            if ((index = hasAttribute(product.Attributes, attributeID)) > -1)
-                                ((customControls.AttributeControl)control).AttributeValueID = product.Attributes[index].AttributeValueID;
-                            else
-                                ((customControls.AttributeControl)control).AttributeValue = "NP";
+                            lstCategories.Items.Add(new ListItem(product.Categories[j].Name, product.Categories[j].CategoryID.ToString()));
                         }
                     }
                 }
-                btnAddProductToCategory.Enabled = true;
 
-                if(product.Categories.Count > 1)
+                if (product.Images != null)
                 {
-                    for(int j = 1; j < product.Categories.Count; j++)
-                    {
-                        lstCategories.Items.Add(new ListItem(product.Categories[j].Name, product.Categories[j].CategoryID.ToString()));
-                    }
-                }
-            }
+                    ViewState.Add("images", product.Images);
+                    loadImages();
 
-            if (product.Images != null)
-            {
-                ViewState.Add("images", product.Images);
-                loadImages();
-
-                string imageUrl = product.Images[0].ImageUrl.Substring(0, product.Images[0].ImageUrl.LastIndexOf("."));
-                string extension = product.Images[0].ImageUrl.Substring(product.Images[0].ImageUrl.LastIndexOf('.'));
-                string directory = new ProductBL().CreateImageDirectory(int.Parse(imageUrl));
-                imgProduct.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["mainName"] + extension;
-                imgHome.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["listName"] + extension;
-                imgLarge.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["thumbName"] + extension;
-                imgThumb.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["thumbName"] + extension;
+                    string imageUrl = product.Images[0].ImageUrl.Substring(0, product.Images[0].ImageUrl.LastIndexOf("."));
+                    string extension = product.Images[0].ImageUrl.Substring(product.Images[0].ImageUrl.LastIndexOf('.'));
+                    string directory = new ProductBL().CreateImageDirectory(int.Parse(imageUrl));
+                    imgProduct.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["mainName"] + extension;
+                    imgHome.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["listName"] + extension;
+                    imgLarge.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["thumbName"] + extension;
+                    imgThumb.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["thumbName"] + extension;
                 
+                }
             }
             /*rptImages.DataSource = product.Images;
             rptImages.DataBind();*/

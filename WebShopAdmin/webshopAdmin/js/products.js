@@ -73,6 +73,10 @@ function SaveProduct(code, isApproved, isActive, categoryID) {
             //alert(msg);
             //return 1;
             SetSaveStatus(++saveProductsCurrent, saveProductsCount);
+            if (msg.d.indexOf('Not saved') > -1){
+                $('#errorStatus')[0].innerText += msg.d + '\n';
+                $('#errorStatus').show();
+            }
         },
         error: function (jqXHR, textStatus, errorThrown) {
             //alert(jqXHR.responseText);

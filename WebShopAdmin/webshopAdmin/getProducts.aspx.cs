@@ -351,6 +351,8 @@ namespace webshopAdmin
             {
                 subcategories += lstCategory.Items[i].Text + "|";
             }
+            if(subcategories.Length > 0)
+            { 
             subcategories = subcategories.Remove(subcategories.Length - 1, 1);
             int productsCount = new EweBL().ParseProductsForSaving(cmbEweCategory.SelectedItem.Text, subcategories.Split('|'), int.Parse(cmbCategory.SelectedValue), int.Parse(cmbEweCategory.SelectedValue));
             SetStatus("Preuzeto " + productsCount.ToString() + " proizvoda", System.Drawing.Color.Green, true, "success");
@@ -369,6 +371,7 @@ namespace webshopAdmin
                     eweBL.SaveEweCategoryForCategory(int.Parse(cmbCategory.SelectedValue), int.Parse(lstSubCategory.Items[i].Value), false);
             }
             eweBL.SaveSelected(categoryIDs.Substring(0, categoryIDs.Length - 1), selected.Substring(0, selected.Length - 1));
+            }
         }
 
         private void loadCategory(int categoryID)

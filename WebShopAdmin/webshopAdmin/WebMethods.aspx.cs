@@ -76,12 +76,13 @@ namespace webshopAdmin
         {
             try
             {
-                new EweBL().SaveProduct(code, isApproved, isActive, categoryID);
-                return "Saved";
+                bool saved = new EweBL().SaveProduct(code, isApproved, isActive, categoryID);
+                return saved ? "Saved" : "Not saved";
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Error: Code " + code);
+                return "Not saved. " + ex.Message;
+                //throw new Exception("Error: Code " + code + ". " + ex.Message);
             }
         }
 
