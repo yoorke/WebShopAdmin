@@ -139,7 +139,7 @@
 
                             <asp:TemplateField HeaderText="Cena" ControlStyle-Width="100px" ItemStyle-HorizontalAlign="Right">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("price")) %>'></asp:Label>
+                                    <asp:Label ID="lblPrice" runat="server" Text='<%#String.Format("{0:N2}", Eval("priceRebate")) %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
