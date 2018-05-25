@@ -248,7 +248,7 @@ namespace webshopAdmin
         {
             csStatus.Text = text;
             //csStatus.ForeColor = foreColor;
-            csStatus.Class = "alert alert-" + classes + " status";
+            csStatus.Class = classes;
             csStatus.Show();
         }
 

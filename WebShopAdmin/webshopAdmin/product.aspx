@@ -440,7 +440,7 @@
         lblAttributeID.value = hidden.value;
         var attributeName = document.getElementById('<%=lblAttributeName.ClientID %>');
         //alert(attributeName);
-        attributeName.value = id.toString().substring(54, 67);
+        attributeName.value = id.toString().replace('ctl00_ContentPlaceHolder1_', '').substring(0, id.toString().replace('ctl00_ContentPlaceHolder1_', '').lastIndexOf('_'));
         //alert(lblAttributeID.value);
         var type = document.getElementById('<%=lblType.ClientID %>');
         type.value = 'attribute';

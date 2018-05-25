@@ -240,7 +240,7 @@ namespace webshopAdmin
             csStatus.Text = message;
             csStatus.ForeColor = foreColor;
             csStatus.Visible = visible;
-            csStatus.Class = "status " + status;
+            csStatus.Class = status;
             csStatus.Show();
         }
 

@@ -119,7 +119,7 @@ namespace webshopAdmin
         private void setCustomStatus(string text, string classes)
         {
             customStatus.Text = text;
-            customStatus.Class = "alert alert-" + classes + " status";
+            customStatus.Class = classes;
             customStatus.Show();
         }
     }

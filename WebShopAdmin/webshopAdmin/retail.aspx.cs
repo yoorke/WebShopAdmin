@@ -116,7 +116,7 @@ namespace WebShopAdmin.webshopAdmin
             customStatus.Text = message;
             customStatus.ForeColor = color;
             customStatus.Visible = visible;
-            customStatus.Class = "status alert alert-" + status;
+            customStatus.Class = status;
             customStatus.Show();
         }
     }

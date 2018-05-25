@@ -313,7 +313,7 @@ namespace webshopAdmin
         private void setStatus(string message, string classes)
         {
             customStatus.Text = message;
-            customStatus.Class = "alert alert-" + classes + " status";
+            customStatus.Class = classes;
             customStatus.Show();
         }
     }

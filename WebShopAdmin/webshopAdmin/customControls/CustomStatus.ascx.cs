@@ -58,7 +58,8 @@ namespace webshopAdmin
             lblStatusText.Text = _text;
             //lblStatusText.ForeColor = _foreColor;
             lblStatusText.Visible = true;
-            lblStatusText.Attributes["class"] = _class;
+            //lblStatusText.Attributes["class"] = _class;
+            divCol.Attributes["class"] = "alert alert-" + _class + " text-center";
             this.Visible = true;
         }
     }

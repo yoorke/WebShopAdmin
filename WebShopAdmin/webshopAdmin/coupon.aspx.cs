@@ -151,7 +151,7 @@ namespace webshopAdmin
             status.Text = text;
             status.ForeColor = foreColor;
             status.Visible = visible;
-            status.Class = "status " + cssclass;
+            status.Class = cssclass;
             status.Show();
             
         }
