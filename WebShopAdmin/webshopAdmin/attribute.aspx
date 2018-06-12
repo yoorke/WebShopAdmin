@@ -105,6 +105,7 @@
                             <div class="col-lg-6">
                                 <asp:Button ID="btnAddValue" runat="server" Text="Dodaj" OnClick="btnAddValue_Click" CssClass="btn btn-primary" />
                             </div>
+                        </div>
                     </div><!--tab-pane-->
                 </div><!--tab-content-->
             </div>

@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="webshopAdmin\attributeKupindoAttribute.aspx" />
+    <Content Include="webshopAdmin\brand.aspx" />
+    <Content Include="webshopAdmin\brands.aspx" />
     <Content Include="webshopAdmin\companySettings.aspx" />
     <Content Include="webshopAdmin\kupindoMapCategories.aspx" />
     <Content Include="webshopAdmin\attribute.aspx" />
@@ -214,6 +216,20 @@
     </Compile>
     <Compile Include="webshopAdmin\attributeKupindoAttribute.aspx.designer.cs">
       <DependentUpon>attributeKupindoAttribute.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\brand.aspx.cs">
+      <DependentUpon>brand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\brand.aspx.designer.cs">
+      <DependentUpon>brand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\brands.aspx.cs">
+      <DependentUpon>brands.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\brands.aspx.designer.cs">
+      <DependentUpon>brands.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\companySettings.aspx.cs">
       <DependentUpon>companySettings.aspx</DependentUpon>

@@ -678,7 +678,7 @@ namespace webshopAdmin
                 case "brand":
                     {
                         BrandBL brandBL = new BrandBL();
-                        brandBL.SaveBrand(new Brand(-1, txtAttributeValue.Text));
+                        brandBL.SaveBrand(new Brand(-1, txtAttributeValue.Text, string.Empty));
                         loadBrands();
                         break;
                     }
