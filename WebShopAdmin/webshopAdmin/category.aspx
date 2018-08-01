@@ -147,6 +147,9 @@
                                     <div class="form-group">
                                         <asp:CheckBox ID="chkShowInFooter" runat="server" CssClass="checkbox" Text="Prikaži u footer-u" />
                                     </div>
+                                    <div class="form-group">
+                                        <asp:CheckBox ID="chkShowProductsFromSubCategories" runat="server" CssClass="checkbox" Text="Prikaži proizvode iz podkategorija" />
+                                    </div>
                                 </div>
                             </div>
                         </div><!--row-->

@@ -125,6 +125,8 @@ namespace webshopAdmin
                 }
                 txtPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]) || Page.Request.QueryString["id"] == null;
                 txtWebPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]) || Page.Request.QueryString["id"] == null;
+
+                Page.MaintainScrollPositionOnPostBack = true;
             }
             else
                 Page.Response.Redirect("/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/login.aspx?returnUrl=" + Page.Request.RawUrl);

@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row margin-top-2">
-            <div class="col-md-12">
+            <div class="col-md-5">
                 <div class="form-horizontal" role="form">
                     <div class="form-group">
                         <asp:HiddenField ID="lblBrandID" runat="server" />
@@ -34,15 +34,17 @@
                             <asp:RequiredFieldValidator ID="requiredFieldValidator1" runat="server" ControlToValidate="txtName" ErrorMessage="Naziv je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for='<%#fluImageUpload.ClientID %>' runat="server" class="control-label col-md-2">Logo: </label>
-                        <div class="col-md-4">
-                            <asp:Image ID="imgImage" runat="server" />
+                    <div class="form-group background-gray padding-05">
+                        <label for='<%#fluImageUpload.ClientID %>' runat="server" class="col-md-12">Logo: </label>
+                        <div class="col-md-12 margin-top-05">
+                            <div class="brand-image">
+                                <asp:Image ID="imgImage" runat="server" />
+                            </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12 margin-top-05">
                             <asp:FileUpload ID="fluImageUpload" runat="server" />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-12 margin-top-05">
                             <asp:Button ID="btnImageUpload" runat="server" OnClick="btnImageUpload_Click" Text="Sačuvaj sliku" CssClass="btn btn-primary" />
                         </div>
                     </div>

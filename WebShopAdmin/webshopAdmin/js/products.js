@@ -144,3 +144,55 @@ function SetSaveStatus(current, count) {
     else
         $('#saveStatus')[0].innerText = "Sačuvano " + count + " proizvoda";
 }
+
+function btnChangeCategory_Click() {
+    var newCategoryID = parseInt($('[id*=cmbNewCategory]').val());
+    var i = 0;
+    var productsCount = 0;
+    var productsProcessed = 0;
+    if (newCategoryID > 1) {
+        $('[id*=dgvProducts] > tbody > tr').each(function () {
+            if (i++ > 0)
+                if (this.cells[0].children[0].children[0].checked)
+                
+                    productsCount++;
+        })
+        i = 0;
+        setChangeCategoryStatus(productsProcessed, productsCount, 'success');
+        $('[id*=dgvProducts] > tbody > tr').each(function () {
+            if (i++ > 0) {
+                if (this.cells[0].children[0].children[0].checked) {
+                    var productID = parseInt(this.cells[1].children[0].innerText);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/webshopAdmin/WebMethods.aspx/ChangeCategory',
+                        data: JSON.stringify({ "productID": productID, "newCategoryID": newCategoryID }),
+                        contentType: 'application/json;charset=utf-8',
+                        dataType: 'json',
+                        success: function (msg) {
+                            ++productsProcessed;
+                            setChangeCategoryStatus(productsProcessed, productsCount, 'success');
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            productsProcessed++;
+                            //setChangeCategoryStatus(productsProcessed, productsCount, 'danger');
+                            setChangeCategoryErrorStatus(textStatus + ', ' + productID)
+                        }
+                    })
+                }
+            }
+        })
+    }
+}
+
+function setChangeCategoryStatus(processed, total, status) {
+    //$('#statusBox').addClass("alert alert-" + status);
+    $('#statusBox').show();
+    $('#statusBox')[0].innerText = 'Sačuvano ' + processed + '/' + total;
+}
+
+function setChangeCategoryErrorStatus(status) {
+    $('#errorStatusBox').show();
+    $('#errorStatusBox')[0].innerHTML += '<div>' + status + '</div>';
+}

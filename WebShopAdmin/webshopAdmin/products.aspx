@@ -79,6 +79,13 @@
                         <asp:Button ID="btnSaveProductCategory" runat="server" OnClick="btnSaveProductCategory_Click" Text="Dodaj kategoriju" CssClass="btn btn-primary margin-top-05" />
                     </div>
                 </div>
+                <div class="row margin-top-2">
+                    <div class="col-lg-12">
+                        <label for="cmbNewCategory">Kategorija:</label>
+                        <asp:DropDownList ID="cmbNewCategory" runat="server" CssClass="form-control"></asp:DropDownList>
+                        <button type="button" id="btnChangeCategory" class="btn btn-primary margin-top-05" onclick="btnChangeCategory_Click()">Prebaci u kategoriju</button>
+                    </div>
+                </div>
             </div>
         </div><!--row-->
         <div class="row">
@@ -106,6 +113,16 @@
                 <uc1:CustomStatus ID="csStatus" runat="server" Visible="false" />        
             </div><!--col-->
         </div><!--row-->
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="statusBox" class="alert alert-success text-center" style="display:none"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="errorStatusBox" class="alert alert-danger text-center" style="display:none"></div>
+            </div>
+        </div>
         <div class="row margin-top-05">
             <div class="col-lg-6">
                 <label for="lblProductsCount">Ukupno proizvoda:</label>
@@ -138,7 +155,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="ProductID" ControlStyle-Width="50px" Visible="false">
+                            <asp:TemplateField HeaderText="ProductID" ControlStyle-Width="50px" Visible="true">
                                 <ItemTemplate>
                                     <asp:Label ID="lblProductID" runat="server" Text='<%#Eval("productID") %>'></asp:Label>
                                 </ItemTemplate>
@@ -231,7 +248,7 @@
 
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="lnkProductPage" runat="server" NavigateUrl='<%#"~/proizvodi/proizvod/" + Eval("name") + "-" + Eval("productID") %>' Target="_blank"><span class="fa fa-fw fa-sign-in"></span></asp:HyperLink>
+                                    <asp:HyperLink ID="lnkProductPage" runat="server" NavigateUrl='<%#"~/proizvodi/" + Eval("FullCategoryUrl") + "/" + Eval("name") + "-" + Eval("productID") %>' Target="_blank"><span class="fa fa-fw fa-sign-in"></span></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

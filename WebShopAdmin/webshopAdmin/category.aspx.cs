@@ -92,6 +92,7 @@ namespace webshopAdmin
                 category.ImageUrlPositionX = int.TryParse(txtPositionX.Text, out positionX) ? int.Parse(txtPositionX.Text) : 0;
                 category.ImageUrlPositionY = int.TryParse(txtPositionY.Text, out positionY) ? int.Parse(txtPositionY.Text) : 0;
                 category.Icon = txtIcon.Text;
+                category.ShowProductsFromSubCategories = chkShowProductsFromSubCategories.Checked;
 
                 CategoryBL categoryBl = new CategoryBL();
                 int categoryID = categoryBl.SaveCategory(category);
@@ -205,6 +206,7 @@ namespace webshopAdmin
             txtPositionX.Text = category.ImageUrlPositionX.ToString();
             txtPositionY.Text = category.ImageUrlPositionY.ToString();
             txtIcon.Text = category.Icon;
+            chkShowProductsFromSubCategories.Checked = category.ShowProductsFromSubCategories;
         }
 
         protected void btnAddAttribute_Click(object sender, EventArgs e)
@@ -351,9 +353,9 @@ namespace webshopAdmin
             {
                 string extension = fluUpload.FileName.Substring(fluUpload.FileName.LastIndexOf('.'));
                 string filename = bool.Parse(ConfigurationManager.AppSettings["useCategorySprites"]) ? fluUpload.FileName : txtUrl.Text + extension;
-                fluUpload.SaveAs(Server.MapPath("~/images/" + (bool.Parse(ConfigurationManager.AppSettings["useCategorySprites"]) ? txtUrl.Text + extension : fluUpload.FileName)));
+                fluUpload.SaveAs(Server.MapPath("~/images/" + filename));
                 txtImageUrl.Text = filename;
-                imgIcon.ImageUrl = filename;
+                imgIcon.ImageUrl = ResolveUrl("~/images/" + filename);
             }
             else
                 setStatus("Unesite naziv kategorije", System.Drawing.Color.Red, "warning");

@@ -99,5 +99,18 @@ namespace webshopAdmin
                 throw new Exception("Error: Code " + code);
             }
         }
+
+        [WebMethod()]
+        public static bool ChangeCategory(int productID, int newCategoryID)
+        {
+            try
+            { 
+                return new ProductBL().ChangeCategory(productID, newCategoryID);
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Error: " + productID);
+            }
+        }
     }
 }
