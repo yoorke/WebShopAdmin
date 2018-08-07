@@ -18,7 +18,7 @@ namespace webshopAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+            if (User.Identity.IsAuthenticated && (User.IsInRole("Administrator") || User.IsInRole("korisnik") || User.IsInRole("prodavac")))
             {
                 if (!Page.IsPostBack)
                 {

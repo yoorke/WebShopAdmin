@@ -5,7 +5,7 @@
  */
 
 body {
-    background-color: #f8f8f8;
+    /*background-color: #464c40;*/
 }
 
 #wrapper {
@@ -22,8 +22,8 @@ body {
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 2em 250px;
-        padding: 0 30px;
+        margin: 0 0 2em 200px;
+        padding: 20px 30px;
         border-left: 1px solid #e7e7e7;
     }
 }
@@ -96,11 +96,12 @@ body {
 }
 
 .sidebar ul li {
-    border-bottom: 1px solid #e7e7e7;
+    /*border-bottom: 1px solid #e7e7e7;*/
 }
 
 .sidebar ul li a.active {
     background-color: #eee;
+    color:#444 !important;
 }
 
 .sidebar .arrow {
@@ -122,6 +123,7 @@ body {
 
 .sidebar .nav-second-level li a {
     padding-left: 37px;
+    font-size:0.9em;
 }
 
 .sidebar .nav-third-level li a {
@@ -131,9 +133,10 @@ body {
 @media(min-width:768px) {
     .sidebar {
         z-index: 1;
-        position: absolute;
-        width: 250px;
-        margin-top: 0px;
+        position: fixed;
+        width: 200px;
+        margin-top: 50px;
+        height:100%;
     }
 
     .navbar-top-links .dropdown-messages,

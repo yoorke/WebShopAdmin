@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12">
             <asp:CreateUserWizard ID="CreateUserWizard1" runat="server" OnCreatingUser="CreateUserWizard1_CreatingUser"
-                CompleteSuccessText="Korisnik uspešno kreiran" ContinueButtonText="Nastavi" ContinueDestinationPageUrl="/users.aspx"
+                CompleteSuccessText="Korisnik uspešno kreiran" ContinueButtonText="Nastavi" ContinueDestinationPageUrl="/webshopadmin/users.aspx"
                 CreateUserButtonText="Sačuvaj" OnLoad="CreateUserWizard1_Load" CssClass="table">
                 <WizardSteps>
                     <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">

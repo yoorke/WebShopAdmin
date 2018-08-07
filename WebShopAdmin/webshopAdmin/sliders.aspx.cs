@@ -18,7 +18,7 @@ namespace webshopAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
+            if (User.Identity.IsAuthenticated && (User.IsInRole("administrator") || User.IsInRole("korisnik") || User.IsInRole("prodavac")))
             {
                 SliderBL sliderBL = new SliderBL();
                 dgvSliders.DataSource = sliderBL.GetSliders(false);

@@ -27,6 +27,9 @@ namespace webshopAdmin
                 if(Page.User.Identity.IsAuthenticated)
                     loadMenu();
             }
+
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+                lblUsername.Text = HttpContext.Current.User.Identity.Name;
         }
 
         protected void btnLogout_Click(object sender, EventArgs e)

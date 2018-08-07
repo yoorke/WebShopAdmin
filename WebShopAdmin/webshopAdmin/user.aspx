@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="row margin-top-2">
-            <div class="col-lg-5 col-md-5 col-sm-10 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div role="form">
                     <asp:HiddenField ID="lblUserID" runat="server" />
                     <div class="form-group">
@@ -63,22 +63,39 @@
                         <label for="txtCity">Mesto: </label>
                         <asp:TextBox ID="txtCity" runat="server" CssClass="form-control"></asp:TextBox>
                     </div>
-                    <div class="form-group">
-                        <label for="cmbUserType">Tip: </label>
-                        <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control"></asp:DropDownList>
-                    </div><!--form-group-->
-                    <div id="divDiscount" runat="server">
-                        <div class="form-group">
-                            <label for="txtDiscount">Popust: </label>
-                            <asp:TextBox ID="txtDiscount" runat="server" CssClass="form-control"></asp:TextBox>
-                        </div>
-                        <div class="form-group">
-                            <label for="cmbDiscountType">Tip popusta: </label>
-                            <asp:DropDownList ID="cmbDiscountType" runat="server" CssClass="form-control"></asp:DropDownList>
-                        </div>
-                    </div>
+                    
+                    
                 </div><!--form-->
             </div><!--col-->
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label for="cmbUserType">Tip: </label>
+                    <asp:DropDownList ID="cmbUserType" runat="server" CssClass="form-control"></asp:DropDownList>
+                </div><!--form-group-->
+                <div id="divDiscount" runat="server">
+                    <div class="form-group">
+                        <label for="txtDiscount">Popust: </label>
+                        <asp:TextBox ID="txtDiscount" runat="server" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <div class="form-group">
+                        <label for="cmbDiscountType">Tip popusta: </label>
+                        <asp:DropDownList ID="cmbDiscountType" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 background-gray padding-05 margin-top-1-5">
+                <div class="form-group">
+                    <asp:CheckBox ID="chkActive" runat="server" Text="Aktivan" CssClass="checkbox" />
+                </div>
+                <div class="form-group"><%--</div>--%>
+                    <asp:CheckBox ID="chkBlocked" runat="server" Text="Blokiran" CssClass="checkbox" />
+                </div>
+                <div class="form-group margin-top-2">
+                    <label for="txtNewPassword">Izmena šifre</label>
+                    <asp:TextBox ID="txtNewPassword" runat="server" CssClass="form-control" placeholder="Nova šifra"></asp:TextBox>
+                    <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" Text="Izmeni šifru" CssClass="btn btn-default margin-top-05 width-100" />
+                </div>
+            </div>
         </div><!--row-->
     </div><!--page-wrapper-->
     <%--<div id="topMenu">

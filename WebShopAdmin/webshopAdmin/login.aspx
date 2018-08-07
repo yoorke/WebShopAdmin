@@ -40,7 +40,7 @@
                             </tr>
                             <tr>
                                 <td align="right" colspan="2">
-                                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log in" CssClass="btn btn-lg btn-success btn-block" />
+                                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="Log in" CssClass="btn btn-lg btn-primary btn-block" />
                                 </td>
                             </tr>
                             

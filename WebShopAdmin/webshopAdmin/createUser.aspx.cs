@@ -33,12 +33,15 @@ namespace webshopAdmin
 
         protected void CreateUserWizard1_Load(object sender, EventArgs e)
         {
-            DropDownList cmbUserType = (CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("cmbUserType") as DropDownList);
+            if(!Page.IsPostBack)
+            { 
+                DropDownList cmbUserType = (CreateUserWizard1.CreateUserStep.ContentTemplateContainer.FindControl("cmbUserType") as DropDownList);
 
-            cmbUserType.DataSource = UserBL.GetUserTypes();
-            cmbUserType.DataTextField = "name";
-            cmbUserType.DataValueField = "userTypeID";
-            cmbUserType.DataBind();
+                cmbUserType.DataSource = UserBL.GetUserTypes();
+                cmbUserType.DataTextField = "name";
+                cmbUserType.DataValueField = "userTypeID";
+                cmbUserType.DataBind();
+            }
         }
     }
 }
