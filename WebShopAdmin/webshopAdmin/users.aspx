@@ -20,7 +20,7 @@
                 <div class="table-responsive">
                     <asp:GridView ID="dgvUsers" runat="server" CssClass="table table-condensed table-bordered table-hover table-striped"
                         AutoGenerateColumns="false"
-                        OnRowDeleting="dgvUsers_RowDeleting" DataKeyNames="userID">
+                        OnRowDeleting="dgvUsers_RowDeleting" DataKeyNames="userID" OnRowDataBound="dgvUsers_RowDataBound">
                         <Columns>
                             <asp:TemplateField Visible="false">
                                 <ItemTemplate>
@@ -44,6 +44,12 @@
                             <asp:TemplateField HeaderText="Prezime" ControlStyle-Width="100px">
                                 <ItemTemplate>
                                     <asp:Label ID="lblLastName" runat="server" Text='<%#Eval("lastName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Type" ControlStyle-Width="100px">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblUserType" runat="server" Text='<%#Eval("userType") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

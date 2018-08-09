@@ -248,7 +248,7 @@
 
                             <asp:TemplateField HeaderText="">
                                 <ItemTemplate>
-                                    <asp:HyperLink ID="lnkProductPage" runat="server" NavigateUrl='<%#"~/proizvodi/" + Eval("FullCategoryUrl") + "/" + Eval("name") + "-" + Eval("productID") %>' Target="_blank"><span class="fa fa-fw fa-sign-in"></span></asp:HyperLink>
+                                    <asp:HyperLink ID="lnkProductPage" runat="server" NavigateUrl='<%#"~/proizvodi/" + (bool.Parse(ConfigurationManager.AppSettings["includeParentUrlInCategoryUrl"]) ? Eval("FullCategoryUrl") : "proizvod") + "/" + Eval("name") + "-" + Eval("productID") %>' Target="_blank"><span class="fa fa-fw fa-sign-in"></span></asp:HyperLink>
                                 </ItemTemplate>
                             </asp:TemplateField>
 

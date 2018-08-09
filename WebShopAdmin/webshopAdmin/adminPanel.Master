@@ -45,9 +45,10 @@
             <div class="top">
                 <div class="row">
                     <div class="col-md-4">
-                        <span class="header">WebShop Admin panel</span>
+                        <span class="header"><span class="header-highlighted">WS</span>Admin</span>
                     </div>
                     <div class="col-md-4 pull-right text-right">
+                        <span>Korisnik: </span>
                         <asp:Label ID="lblUsername" runat="server" CssClass="username"></asp:Label>
                     </div>
                 </div>

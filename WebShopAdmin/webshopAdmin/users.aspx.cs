@@ -45,5 +45,14 @@ namespace webshopAdmin
         {
             Response.Redirect("~/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/createUser.aspx");
         }
+
+        protected void dgvUsers_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (((Label)e.Row.FindControl("lblUsername")).Text.StartsWith("admin"))
+                    ((ImageButton)e.Row.Cells[5].Controls[0]).Visible = false;
+            }
+        }
     }
 }
