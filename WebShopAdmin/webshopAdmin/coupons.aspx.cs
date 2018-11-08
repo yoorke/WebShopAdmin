@@ -32,14 +32,28 @@ namespace webshopAdmin
 
         protected void dgvCoupons_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            new CouponBL().DeleteCoupon(int.Parse(dgvCoupons.DataKeys[e.RowIndex].Values[0].ToString()));
-            loadCoupons();
+            try
+            {
+                new CouponBL().DeleteCoupon(int.Parse(dgvCoupons.DataKeys[e.RowIndex].Values[0].ToString()));
+                loadCoupons();
+            }
+            catch(Exception ex)
+            {
+                setStatus(ex.Message, "alert alert-danger");
+            }
         }
 
         private void loadCoupons()
         {
             dgvCoupons.DataSource = new CouponBL().GetCoupons();
             dgvCoupons.DataBind();
+        }
+
+        private void setStatus(string text, string classes)
+        {
+            customStatus.Text = text;
+            customStatus.Class = classes;
+            customStatus.Show();
         }
     }
 }

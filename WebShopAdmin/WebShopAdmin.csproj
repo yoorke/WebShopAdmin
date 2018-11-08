@@ -17,7 +17,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebShopAdmin</RootNamespace>
     <AssemblyName>WebShopAdmin</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -37,6 +37,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -45,6 +46,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.5.7.1213, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
@@ -83,9 +85,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -165,6 +167,7 @@
     <Content Include="webshopAdmin\retails.aspx" />
     <Content Include="webshopAdmin\slider.aspx" />
     <Content Include="webshopAdmin\sliders.aspx" />
+    <Content Include="webshopAdmin\unusedImagesSettings.aspx" />
     <Content Include="webshopAdmin\user.aspx" />
     <Content Include="webshopAdmin\users.aspx" />
     <Content Include="webshopAdmin\WebMethods.aspx" />
@@ -488,6 +491,13 @@
     </Compile>
     <Compile Include="webshopAdmin\sliders.aspx.designer.cs">
       <DependentUpon>sliders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\unusedImagesSettings.aspx.cs">
+      <DependentUpon>unusedImagesSettings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\unusedImagesSettings.aspx.designer.cs">
+      <DependentUpon>unusedImagesSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\uploadImage.ashx.cs">
       <DependentUpon>uploadImage.ashx</DependentUpon>

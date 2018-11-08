@@ -56,7 +56,7 @@ namespace webshopAdmin
             ProductBL productsBL = new ProductBL();
 
             //List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : null);
-            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, txtSearch.Text, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : "product.Name", string.Empty);
+            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, txtSearch.Text, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : "product.Name", string.Empty, cmbHasImage.SelectedItem.Text);
 
             //if (txtSearch.Text.Length > 0)
             //{
@@ -133,11 +133,16 @@ namespace webshopAdmin
             cmbSort.Items.Add(new ListItem("Datumu unosa", "product.insertDate"));
             cmbSort.Items.Add(new ListItem("Datumu izmene", "product.updateDate"));
             cmbSort.Items.Add(new ListItem("Datum izmene opadajuće", "product.updateDate DESC"));
+            cmbSort.Items.Add(new ListItem("Datum unosa opadajuće", "product.insertDate DESC"));
 
             cmbNewCategory.DataSource = new CategoryBL().GetNestedCategoriesDataTable(true, true);
             cmbNewCategory.DataTextField = "name";
             cmbNewCategory.DataValueField = "categoryID";
             cmbNewCategory.DataBind();
+
+            cmbHasImage.Items.Add(new ListItem("Sve", "null"));
+            cmbHasImage.Items.Add(new ListItem("Ima", "true"));
+            cmbHasImage.Items.Add(new ListItem("Nema", "false"));
         }
 
         protected void btnShowProducts_Click(object sender, EventArgs e)

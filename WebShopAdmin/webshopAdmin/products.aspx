@@ -38,7 +38,10 @@
                         <label for="cmbPromotion">Promocija:</label>
                         <asp:DropDownList id="cmbPromotion" runat="server" CssClass="form-control"></asp:DropDownList>
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="cmbHasImage">Slika:</label>
+                        <asp:DropDownList ID="cmbHasImage" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
                         
                     
                 </div><!--form-->

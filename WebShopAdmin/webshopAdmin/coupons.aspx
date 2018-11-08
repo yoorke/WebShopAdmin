@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/webshopAdmin/adminPanel.Master" AutoEventWireup="true" CodeBehind="coupons.aspx.cs" Inherits="webshopAdmin.coupons" %>
+<%@ Register Src="customControls/CustomStatus.ascx" TagName="CustomStatus" TagPrefix="Ws2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -14,6 +15,11 @@
                 <div class="btn-group">
                     <asp:Button ID="btnAddCoupon" runat="server" OnClick="btnAddCoupon_Click" Text="Dodaj kupon" CssClass="btn btn-primary" />
                 </div>
+            </div>
+        </div>
+        <div class="row margin-top-05">
+            <div class="col-md-12">
+                <Ws2:CustomStatus ID="customStatus" runat="server" visible="false"></Ws2:CustomStatus>
             </div>
         </div>
         <div class="row">

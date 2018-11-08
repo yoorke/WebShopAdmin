@@ -7,36 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace webshopAdmin {
+namespace WebShopAdmin.webshopAdmin {
     
     
-    public partial class coupons {
+    public partial class unusedImagesSettings {
         
         /// <summary>
-        /// btnAddCoupon control.
+        /// btnRefresh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCoupon;
+        protected global::System.Web.UI.WebControls.Button btnRefresh;
         
         /// <summary>
-        /// customStatus control.
+        /// btnDeleteAll control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::webshopAdmin.CustomStatus customStatus;
+        protected global::System.Web.UI.WebControls.Button btnDeleteAll;
         
         /// <summary>
-        /// dgvCoupons control.
+        /// dgvImages control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvCoupons;
+        protected global::System.Web.UI.WebControls.GridView dgvImages;
     }
 }

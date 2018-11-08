@@ -19,7 +19,7 @@ namespace webshopAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.Identity.IsAuthenticated && User.IsInRole("administrator"))
             {
                 if (!Page.IsPostBack)
                 {
@@ -55,7 +55,8 @@ namespace webshopAdmin
             {
                 OrderBL orderBL = new OrderBL();
                 int status = orderBL.DeleteOrder(int.Parse(dgvOrders.DataKeys[e.RowIndex].Values[0].ToString()));
-                Response.Redirect("~/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/orders.aspx");
+                //Response.Redirect("~/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/orders.aspx");
+                loadOrders();
             }
             catch (BLException ex)
             {
