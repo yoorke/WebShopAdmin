@@ -22,6 +22,7 @@ namespace webshopAdmin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //this.Form.DefaultButton = btnShowProducts.ClientID;
             if (User.Identity.IsAuthenticated && (User.IsInRole("administrator") || User.IsInRole("korisnik") || User.IsInRole("prodavac")))
             {
                 if (!Page.IsPostBack)
@@ -143,6 +144,11 @@ namespace webshopAdmin
             cmbHasImage.Items.Add(new ListItem("Sve", "null"));
             cmbHasImage.Items.Add(new ListItem("Ima", "true"));
             cmbHasImage.Items.Add(new ListItem("Nema", "false"));
+
+            cmbCustomPage.DataSource = new CustomPageBL().GetCustomPages();
+            cmbCustomPage.DataTextField = "title";
+            cmbCustomPage.DataValueField = "customPageID";
+            cmbCustomPage.DataBind();
         }
 
         protected void btnShowProducts_Click(object sender, EventArgs e)
@@ -323,6 +329,21 @@ namespace webshopAdmin
                 }
 
                 setStatus("Proizvodi dodati u kategoriju", System.Drawing.Color.Black, true, "success");
+            }
+        }
+
+        protected void btnAddProductsToCustomPage_Click(object sender, EventArgs e)
+        {
+            if(cmbCustomPage.SelectedIndex > -1)
+            { 
+            List<CustomPageProduct> products = new List<CustomPageProduct>();
+            for(int i = 0;i < dgvProducts.Rows.Count; i++)
+            {
+                if (((CheckBox)dgvProducts.Rows[i].FindControl("chkSelect")).Checked)
+                    products.Add(new CustomPageProduct(int.Parse(((Label)dgvProducts.Rows[i].FindControl("lblProductID")).Text), ((Label)dgvProducts.Rows[i].FindControl("lblName")).Text));
+            }
+
+            new CustomPageBL().SaveCustomPageProducts(products, int.Parse(cmbCustomPage.SelectedValue));
             }
         }
     }

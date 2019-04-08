@@ -9,14 +9,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-3">
                 <div class="btn-group">
                     <asp:Button ID="btnRefresh" runat="server" Text="Osveži" OnClick="btnRefresh_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnDeleteAll" runat="server" Text="Obriši sve" OnClick="btnDeleteAll_Click" CssClass="btn btn-primary" />
                 </div>
             </div>
+            <div class="col-md-3">
+                <asp:CheckBox ID="chkShowImages" runat="server" Text="Prikaži slike" CssClass="checkbox" />
+            </div>
         </div>
-        <div class="row">
+        <div class="row margin-top-2">
+            <div class="col-md-3">
+                Ukupno nekorišćenih slika: <asp:Label ID="lblImagesCount" runat="server"></asp:Label>
+            </div>
+            <div class="col-md-3">
+                Ukupno MB: <asp:Label ID="lblImagesSize" runat="server"></asp:Label>
+            </div>
+        </div>
+        <div class="row margin-top-2">
             <div class="col-md-12">
                 <div class="table-responsive">
                     <asp:GridView ID="dgvImages" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-bordered table-hover table-striped"

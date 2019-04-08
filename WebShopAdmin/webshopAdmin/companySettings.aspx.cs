@@ -31,8 +31,14 @@ namespace WebShopAdmin.webshopAdmin
             settings.CompanyName = txtCompanyName.Text;
             settings.Phone = txtPhone.Text;
             settings.WorkingHours = txtWorkingHours.Text;
+            double deliveryCost = 0;
+            double freeDeliveryTotalValue = 0;
+            settings.DeliveryCost = double.TryParse(txtDeliveryCost.Text, out deliveryCost) ? deliveryCost : 0;
+            settings.FreeDeliveryTotalValue = double.TryParse(txtFreeDeliveryTotalValue.Text, out freeDeliveryTotalValue) ? freeDeliveryTotalValue : 0;
 
             new SettingsBL().SaveSettings(settings);
+
+            setStatus("Uspešno sačuvano", "success");
         }
 
         private void loadSettings()
@@ -41,6 +47,15 @@ namespace WebShopAdmin.webshopAdmin
             txtCompanyName.Text = settings.CompanyName;
             txtPhone.Text = settings.Phone;
             txtWorkingHours.Text = settings.WorkingHours;
+            txtDeliveryCost.Text = string.Format("{0:N2}", settings.DeliveryCost);
+            txtFreeDeliveryTotalValue.Text = string.Format("{0:N2}", settings.FreeDeliveryTotalValue);
+        }
+
+        private void setStatus(string message, string classes)
+        {
+            csStatus.Text = message;
+            csStatus.Class = "alert alert-" + classes;
+            csStatus.Show();
         }
     }
 }

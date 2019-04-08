@@ -225,8 +225,8 @@ namespace webshopAdmin
                 EweBL eweBL = new EweBL();
                 string subcategories = string.Empty;
                 for (int i = 0; i < lstCategory.Items.Count; i++)
-                    subcategories += lstCategory.Items[i].Text + ",";
-                string status = eweBL.parseProductsStockPrice(cmbEweCategory.SelectedItem.Text, subcategories.Substring(0, subcategories.Length - 1).Split(','), int.Parse(cmbCategory.SelectedValue), 1);
+                    subcategories += lstCategory.Items[i].Text + "|";
+                string status = eweBL.parseProductsStockPrice(cmbEweCategory.SelectedItem.Text, subcategories.Substring(0, subcategories.Length - 1).Split('|'), int.Parse(cmbCategory.SelectedValue), 1);
                 SetStatus(status, System.Drawing.Color.Green, true, "success");
                 //Page.Response.Redirect("/administrator/products.aspx");
                 divPleaseWait.Style.Add("display", "none");

@@ -193,6 +193,24 @@ namespace webshopAdmin {
         protected global::System.Web.UI.WebControls.DropDownList cmbNewCategory;
         
         /// <summary>
+        /// cmbCustomPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cmbCustomPage;
+        
+        /// <summary>
+        /// btnAddProductsToCustomPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddProductsToCustomPage;
+        
+        /// <summary>
         /// btnShowProducts control.
         /// </summary>
         /// <remarks>
