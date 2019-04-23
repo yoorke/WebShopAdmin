@@ -100,6 +100,20 @@ namespace webshopAdmin
             }
         }
 
+        [WebMethod]
+        public static string SaveProductThreeg(string code, bool isApproved, bool isActive, int categoryID)
+        {
+            try
+            {
+                bool saved = new ThreegBL().SaveProduct(code, isApproved, isActive, categoryID);
+                return saved ? "Saved" : "Not saved";
+            }
+            catch(Exception ex)
+            {
+                return "Not saved. " + ex.Message;
+            }
+        }
+
         [WebMethod()]
         public static bool ChangeCategory(int productID, int newCategoryID)
         {

@@ -62,10 +62,15 @@ function btnMessageBoxClose_Click(){
     $('#messageBox').hide();
 }
 
-function SaveProduct(code, isApproved, isActive, categoryID) {
+function SaveProduct(code, isApproved, isActive, categoryID, type) {
+    var url = '';
+    switch (type) {
+        case 'ewe': url = '/webshopAdmin/WebMethods.aspx/SaveProduct'; break;
+        case 'threeg': url = '/webshopAdmin/WebMethods.aspx/SaveProductThreeg'; break;
+    }
     $.ajax({
         type: "POST",
-        url: '/webshopAdmin/WebMethods.aspx/SaveProduct',
+        url: url,
         data: JSON.stringify({ 'code': code, 'isApproved': isApproved, 'isActive': isActive, 'categoryID': parseInt(categoryID) }),
         contentType: 'application/json;charset=utf-8',
         dataType: 'json',
@@ -104,6 +109,11 @@ function SaveProductKimtec(code, isApproved, isActive, categoryID) {
     })
 }
 
+//function SaveProductThreeg(code, isApproved, isActive, categoryID) {
+    //alert(code + ' ' + isApproved + ' ' + isActive + ' ' + categoryID);
+    //SaveProduct(code, isApproved, isActive, categoryID, 'threeg');
+//}
+
 var saveProductsCount = 0;
 var saveProductsCurrent = 0;
 
@@ -131,7 +141,12 @@ function btnSaveProducts_Click(type) {
         if (i++ > 0)
             if (this.cells[0].children[0].children[0].checked) {
                 var code = this.cells[1].innerText;
-                type == 'ewe' ? SaveProduct(code, isApproved, isActive, categoryID) : SaveProductKimtec(code, isApproved, isActive, categoryID);
+                switch (type) {
+                    //type == 'ewe' ? SaveProduct(code, isApproved, isActive, categoryID) : SaveProductKimtec(code, isApproved, isActive, categoryID);
+                    case 'ewe': SaveProduct(code, isApproved, isActive, categoryID, 'ewe'); break;
+                    case 'kimtec': SaveProductKimtec(code, isApproved, isActive, categoryID); break;
+                    case 'threeg': SaveProduct(code, isApproved, isActive, categoryID, 'threeg'); break;
+                }
                 //$('#saveStatus')[0].innerText = ++current + '/' + count;
             }
     })

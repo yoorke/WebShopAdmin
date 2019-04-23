@@ -99,6 +99,7 @@
     <Content Include="webshopAdmin\brand.aspx" />
     <Content Include="webshopAdmin\brands.aspx" />
     <Content Include="webshopAdmin\companySettings.aspx" />
+    <Content Include="webshopAdmin\getProductsThreeg.aspx" />
     <Content Include="webshopAdmin\kupindoMapCategories.aspx" />
     <Content Include="webshopAdmin\attribute.aspx" />
     <Content Include="webshopAdmin\attributeKimtecAttribute.aspx" />
@@ -240,6 +241,13 @@
     </Compile>
     <Compile Include="webshopAdmin\companySettings.aspx.designer.cs">
       <DependentUpon>companySettings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\getProductsThreeg.aspx.cs">
+      <DependentUpon>getProductsThreeg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\getProductsThreeg.aspx.designer.cs">
+      <DependentUpon>getProductsThreeg.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\kupindoMapCategories.aspx.cs">
       <DependentUpon>kupindoMapCategories.aspx</DependentUpon>
