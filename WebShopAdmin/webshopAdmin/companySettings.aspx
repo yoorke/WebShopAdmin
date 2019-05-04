@@ -45,6 +45,10 @@
                     <label for="txtFreeDeliveryTotalValue">Min vrednost za besplatnu dostavu:</label>
                     <asp:TextBox ID="txtFreeDeliveryTotalValue" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
+                <div class="form-group">
+                    <label for="txtExchangeRate">Kurs:</label>
+                    <asp:TextBox ID="txtExchangeRate" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
             </div>
         </div>
     </div>

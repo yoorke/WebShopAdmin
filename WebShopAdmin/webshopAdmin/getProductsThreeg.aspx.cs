@@ -42,7 +42,19 @@ namespace WebShopAdmin.webshopAdmin
 
         protected void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstCategory.Items.Clear();
+            if (cmbCategory.SelectedIndex > -1)
+            {
+                cmbThreegCategory1.SelectedValue = new ThreegBL().GetCategory1ForCategory(int.Parse(cmbCategory.SelectedValue)).ToString();
+                cmbThreegCategory1_SelectedIndexChanged(this, null);
 
+                cmbThreegCategory2.SelectedValue = new ThreegBL().GetCategory2ForCategory(int.Parse(cmbCategory.SelectedValue)).ToString();
+                cmbThreegCategory2_SelectedIndexChanged(this, null);
+
+                DataTable threegCategories = new ThreegBL().GetThreegCategoriesForCategory(int.Parse(cmbCategory.SelectedValue));
+                foreach (DataRow row in threegCategories.Rows)
+                    lstCategory.Items.Add(new ListItem(row["name"].ToString(), row["id"].ToString()));
+            }
         }
 
         protected void cmbThreegCategory1_SelectedIndexChanged(object sender, EventArgs e)
@@ -102,6 +114,9 @@ namespace WebShopAdmin.webshopAdmin
             pnlOptions.Visible = true;
             chkSelectNew.Checked = false;
             divPleaseWait.Style.Add("display", "none");
+
+            deleteThreegCategoryForCategory();
+            saveThreegCategoriesForCategory();
         }
 
         protected void dgvProducts_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -128,6 +143,31 @@ namespace WebShopAdmin.webshopAdmin
         protected void chkSelectNew_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void saveThreegCategoriesForCategory()
+        {
+            if(cmbCategory.SelectedIndex > -1)
+            {
+                if (cmbThreegCategory1.SelectedIndex > 0)
+                    saveThreegCategoryForCategory(int.Parse(cmbCategory.SelectedValue), int.Parse(cmbThreegCategory1.SelectedValue), true, false);
+                if (cmbThreegCategory2.SelectedIndex > 0)
+                    saveThreegCategoryForCategory(int.Parse(cmbCategory.SelectedValue), int.Parse(cmbThreegCategory2.SelectedValue), false, true);
+
+                for (int i = 0; i < lstCategory.Items.Count; i++)
+                    saveThreegCategoryForCategory(int.Parse(cmbCategory.SelectedValue), int.Parse(lstCategory.Items[i].Value), false, false);
+            }
+        }
+
+        private void saveThreegCategoryForCategory(int categoryID, int threegCategoryID, bool isCategory1, bool isCategory2)
+        {
+            new ThreegBL().SaveThreegCategoryForCategory(categoryID, threegCategoryID, isCategory1, isCategory2);
+        }
+
+        private void deleteThreegCategoryForCategory()
+        {
+            if(cmbCategory.SelectedIndex > -1)
+                new ThreegBL().DeleteThreegCategoryForCategory(int.Parse(cmbCategory.SelectedValue));
         }
     }
 }

@@ -35,6 +35,8 @@ namespace WebShopAdmin.webshopAdmin
             double freeDeliveryTotalValue = 0;
             settings.DeliveryCost = double.TryParse(txtDeliveryCost.Text, out deliveryCost) ? deliveryCost : 0;
             settings.FreeDeliveryTotalValue = double.TryParse(txtFreeDeliveryTotalValue.Text, out freeDeliveryTotalValue) ? freeDeliveryTotalValue : 0;
+            double exchangeRate = 0;
+            settings.ExchangeRate = double.TryParse(txtExchangeRate.Text, out exchangeRate) ? exchangeRate : 0;
 
             new SettingsBL().SaveSettings(settings);
 
@@ -49,6 +51,7 @@ namespace WebShopAdmin.webshopAdmin
             txtWorkingHours.Text = settings.WorkingHours;
             txtDeliveryCost.Text = string.Format("{0:N2}", settings.DeliveryCost);
             txtFreeDeliveryTotalValue.Text = string.Format("{0:N2}", settings.FreeDeliveryTotalValue);
+            txtExchangeRate.Text = string.Format("{0:N2}", settings.ExchangeRate);
         }
 
         private void setStatus(string message, string classes)
