@@ -41,12 +41,12 @@
                 <asp:ListBox ID="lstThreegSubCategory" runat="server" Width="100%" Height="200px" SelectionMode="Multiple" OnDataBound="lstThreegSubCategory_DataBound" OnDataBinding="lstThreegSubCategory_DataBinding" CssClass="form-control"></asp:ListBox>
             </div>
         </div>
-        <div class="row">
+        <div class="row margin-top-05">
             <div class="col-md-6">
                 <asp:Button ID="btnLoadProducts" runat="server" Text="Učitaj" OnClick="btnLoadProducts_Click" OnClientClick="showPleaseWait()" CssClass="btn btn-primary" />
             </div>
         </div>
-        <div class="row">
+        <div class="row margin-top-05">
             <div class="col-md-6">
                 <asp:Panel ID="pnlOptions" runat="server" Visible="false">
                     <div class="row">

@@ -20,6 +20,8 @@ namespace WebShopAdmin.webshopAdmin
                 if (!Page.IsPostBack)
                 {
                     loadIntoForm();
+                    if (Page.Request.QueryString.ToString().Contains("categoryID"))
+                        loadCategory(int.Parse(Page.Request.QueryString["categoryID"]));
                 }
             }
             else
@@ -42,6 +44,8 @@ namespace WebShopAdmin.webshopAdmin
 
         protected void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvProducts.DataSource = null;
+            dgvProducts.DataBind();
             lstCategory.Items.Clear();
             if (cmbCategory.SelectedIndex > -1)
             {
@@ -142,7 +146,9 @@ namespace WebShopAdmin.webshopAdmin
 
         protected void chkSelectNew_CheckedChanged(object sender, EventArgs e)
         {
-
+            for (int i = 0; i < dgvProducts.Rows.Count; i++)
+                if (((Image)dgvProducts.Rows[i].FindControl("imgStatus")).ImageUrl == string.Empty)
+                    ((CheckBox)dgvProducts.Rows[i].FindControl("chkSave")).Checked = chkSelectNew.Checked;
         }
 
         private void saveThreegCategoriesForCategory()
@@ -168,6 +174,13 @@ namespace WebShopAdmin.webshopAdmin
         {
             if(cmbCategory.SelectedIndex > -1)
                 new ThreegBL().DeleteThreegCategoryForCategory(int.Parse(cmbCategory.SelectedValue));
+        }
+
+        private void loadCategory(int categoryID)
+        {
+            cmbCategory.SelectedValue = categoryID.ToString();
+            cmbCategory_SelectedIndexChanged(this, null);
+            btnLoadProducts_Click(this, null);
         }
     }
 }

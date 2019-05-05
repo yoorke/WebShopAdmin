@@ -35,6 +35,10 @@
                     <label for="txtWorkingHours">Radno vreme:</label>
                     <asp:TextBox ID="txtWorkingHours" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
+                <div class="form-group">
+                    <label for="txtUnknownBrandName">Naziv za nepoznatog proizvođača:</label>
+                    <asp:TextBox ID="txtUnknownBrandName" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
             </div>
             <div class="col-lg-3">
                 <div class="form-group">

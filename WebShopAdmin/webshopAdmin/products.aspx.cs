@@ -47,7 +47,7 @@ namespace webshopAdmin
                 supplierID = int.Parse(cmbSupplier.SelectedValue);
 
             int? brandID = null;
-            if (cmbBrand.SelectedIndex > 1)
+            if (cmbBrand.SelectedIndex > 0)
                 brandID = int.Parse(cmbBrand.SelectedValue);
 
             int? promotionID = null;
