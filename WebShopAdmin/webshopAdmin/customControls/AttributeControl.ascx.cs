@@ -57,7 +57,7 @@ namespace webshopAdmin.customControls
 
         }
 
-        public void setValues()
+        public void setValues(string attributeValue = "")
         {
             AttributeBL attributeBL = new AttributeBL();
 
@@ -65,7 +65,7 @@ namespace webshopAdmin.customControls
             cmbAttribute.DataValueField = "attributeValueID";
             cmbAttribute.DataTextField = "value";
             cmbAttribute.DataBind();
-            cmbAttribute.SelectedValue = cmbAttribute.Items.FindByText("NP").Value;
+            cmbAttribute.SelectedValue = attributeValue != string.Empty ? cmbAttribute.Items.FindByText(attributeValue).Value : cmbAttribute.Items.FindByText("NP").Value;
             lblAttributeID.Value = _attributeID.ToString();
         }
 

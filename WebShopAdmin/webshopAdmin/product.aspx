@@ -114,6 +114,7 @@
                                                     <asp:CheckBox ID="chkActive" runat="server" Text="Aktivan" CssClass="checkbox" />
                                                     <asp:CheckBox ID="chkLocked" runat="server" Text="Zaključan" CssClass="checkbox" />
                                                     <asp:CheckBox ID="chkInStock" runat="server" Text="Na stanju" CssClass="checkbox" />
+                                                    <asp:CheckBox ID="chkPriceLocked" runat="server" Text="Zaključana cena" CssClass="checkbox" />
                                                 </div><!--form-group-->
                                             </div><!--col-->
                                         </div><!--row-->

@@ -346,5 +346,13 @@ namespace webshopAdmin
             new CustomPageBL().SaveCustomPageProducts(products, int.Parse(cmbCustomPage.SelectedValue));
             }
         }
+
+        protected void chkPriceLocked_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chkPriceLocked = (CheckBox)sender;
+            GridViewRow gridViewRow = (GridViewRow)chkPriceLocked.NamingContainer;
+
+            new ProductBL().SetPriceLocked(int.Parse(((Label)gridViewRow.FindControl("lblProductID")).Text), bool.Parse(((CheckBox)gridViewRow.FindControl("chkPriceLocked")).Checked.ToString()));
+        }
     }
 }
