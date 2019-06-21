@@ -263,6 +263,13 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" ControlToValidate="txtWebPricePercent" ErrorMessage="Morate uneti Web cena procenat" runat="server"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
                                     <div class="form-group">
+                                        <label for="txtPriceFixedAmount">Fiksni deo: </label>
+                                        <div class="input-group">
+                                            <asp:TextBox ID="txtPriceFixedAmount" runat="server" CssClass="form-control" placeholder="Fiksni deo"></asp:TextBox>
+                                            <span class="input-group-addon">din</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <p>Maloprodajna cena se izračunava tako što se na nabavnu cenu doda procenat unet u polje MP cena i iznos PDV-a.<br />
                                             Web cena se izračunava tako što se na nabavnu cenu doda procenat unet u polje Web cena i iznos PDV-a.
                                         </p>
@@ -270,6 +277,63 @@
                                 </div><!--form-->
                             </div><!--col-->
                         </div><!--row-->
+                        <div class="row margin-top-05">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="cmbCategoryBrand">Brand:</label>
+                                    <asp:DropDownList ID="cmbCategoryBrand" runat="server" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="txtCategoryBrandPricePercent">MP cena [%]:</label>
+                                    <asp:TextBox ID="txtCategoryBrandPricePercent" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="txtCategoryBrandWebPricePercent">Web cena [%]:</label>
+                                    <asp:TextBox ID="txtCategoryBrandWebPricePercent" runat="server" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <asp:Button ID="btnSaveCategoryBrand" runat="server" CssClass="btn btn-primary" OnClick="btnSaveCategoryBrand_Click" Text="Sačuvaj" style="margin-top:23px" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <asp:GridView ID="dgvCategoryBrand" runat="server" AutoGenerateColumns="false"
+                                        CssClass="table table-condensed table-striped table-hover table-bordered"
+                                        OnRowDeleting="dgvCategoryBrand_RowDeleting"
+                                        DataKeyNames="brandID">
+                                        <Columns>
+                                            <asp:TemplateField Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCategoryBrandID" runat="server" Text='<%#Eval("brandID") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Brand">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblCategoryBrand" runat="server" Text='<%#Eval("brandName") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Cena [%]" ControlStyle-Width="100px" ItemStyle-Width="100px">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtCategoryBrandPrice" runat="server" Text='<%#Eval("pricePercent") %>' CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="Web cena [%]" ControlStyle-Width="100px" ItemStyle-Width="100px">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txtCategoryBrandWebPrice" runat="server" Text='<%#Eval("webPricePercent") %>' CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+                            </div>
+                        </div>
                     </div><!--izracunavanjeCene-->
                     <div class="tab-pane" id="prvaStrana">
                         <div class="row">

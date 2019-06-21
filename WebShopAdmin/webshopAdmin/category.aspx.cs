@@ -93,6 +93,7 @@ namespace webshopAdmin
                 category.ImageUrlPositionY = int.TryParse(txtPositionY.Text, out positionY) ? int.Parse(txtPositionY.Text) : 0;
                 category.Icon = txtIcon.Text;
                 category.ShowProductsFromSubCategories = chkShowProductsFromSubCategories.Checked;
+                category.PriceFixedAmount = txtPriceFixedAmount.Text.Length > 0 ? double.Parse(txtPriceFixedAmount.Text) : 0;
 
                 CategoryBL categoryBl = new CategoryBL();
                 int categoryID = categoryBl.SaveCategory(category);
@@ -152,7 +153,10 @@ namespace webshopAdmin
             chkUpdateProductsFromExternalApplication.Visible = bool.Parse(ConfigurationManager.AppSettings["updateProductsFromExternalApplication"]);
             chkExportProducts.Visible = bool.Parse(ConfigurationManager.AppSettings["exportProducts"]);
 
-            
+            cmbCategoryBrand.DataSource = new BrandBL().GetBrands(false);
+            cmbCategoryBrand.DataTextField = "name";
+            cmbCategoryBrand.DataValueField = "brandID";
+            cmbCategoryBrand.DataBind();
         }
 
         private void loadCategory(int categoryID)
@@ -207,6 +211,8 @@ namespace webshopAdmin
             txtPositionY.Text = category.ImageUrlPositionY.ToString();
             txtIcon.Text = category.Icon;
             chkShowProductsFromSubCategories.Checked = category.ShowProductsFromSubCategories;
+            txtPriceFixedAmount.Text = string.Format("{0:N2}", category.PriceFixedAmount);
+            loadCategoryBrandPrice();
         }
 
         protected void btnAddAttribute_Click(object sender, EventArgs e)
@@ -359,6 +365,31 @@ namespace webshopAdmin
             }
             else
                 setStatus("Unesite naziv kategorije", System.Drawing.Color.Red, "warning");
+        }
+
+        protected void btnSaveCategoryBrand_Click(object sender, EventArgs e)
+        {
+            try
+            { 
+                new CategoryBrandBL().Save(new CategoryBrand(int.Parse(lblCategoryID.Value), int.Parse(cmbCategoryBrand.SelectedValue), double.Parse(txtCategoryBrandPricePercent.Text), double.Parse(txtCategoryBrandWebPricePercent.Text)));
+                loadCategoryBrandPrice();
+            }
+            catch(BLException ex)
+            {
+                setStatus(ex.Message, System.Drawing.Color.Red, "danger");
+            }
+        }
+
+        private void loadCategoryBrandPrice()
+        {
+            dgvCategoryBrand.DataSource = new CategoryBrandBL().GetDataTable(int.Parse(lblCategoryID.Value));
+            dgvCategoryBrand.DataBind();
+        }
+
+        protected void dgvCategoryBrand_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            new CategoryBrandBL().Delete(int.Parse(lblCategoryID.Value), int.Parse(dgvCategoryBrand.DataKeys[e.RowIndex].Values[0].ToString()));
+            loadCategoryBrandPrice();
         }
     }
 }

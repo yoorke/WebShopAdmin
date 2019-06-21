@@ -275,6 +275,10 @@
     font-size:0.9em;
 }
 
+.table td span{
+    word-break: break-word;
+}
+
 .top{
     position:fixed;
     width:100%;

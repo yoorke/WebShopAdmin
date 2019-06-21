@@ -12,10 +12,14 @@
         <div class="row">
             <div class="col-lg-12 margin-top-05">
                 <div class="btn-group">
-                    <asp:Button ID="btnAddProduct" runat="server" Text="Dodaj proizvod" OnClick="btnAddProduct_Click" CssClass="btn btn-primary" />
+                    <%--<asp:Button ID="btnAddProduct" runat="server" Text="Dodaj proizvod" OnClick="btnAddProduct_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnApproveAll" runat="server" Text="Odobri selektovane" OnClick="btnApproveAll_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnActivateAll" runat="server" Text="Aktiviraj selektovane" OnClick="btnActivateAll_Click" CssClass="btn btn-primary" />
-                    <asp:Button ID="btnDeleteAll" runat="server" Text="Obriši selektovane" OnClick="btnDeleteAll_Click" CssClass="btn btn-primary" />                    
+                    <asp:Button ID="btnDeleteAll" runat="server" Text="Obriši selektovane" OnClick="btnDeleteAll_Click" CssClass="btn btn-primary" />                    --%>
+                    <asp:LinkButton ID="btnAddProduct" runat="server" OnClick="btnAddProduct_Click" CssClass="btn btn-primary" ToolTip="Dodaj proizvod"><span class="fa fa-plus"></span></asp:LinkButton>
+                    <asp:LinkButton ID="btnApproveAll" runat="server" OnClick="btnApproveAll_Click" CssClass="btn btn-primary" ToolTip="Odobri selektovane"><span class="fa fa-check"></span></asp:LinkButton>
+                    <asp:LinkButton ID="btnActivateAll" runat="server" OnClick="btnActivateAll_Click" CssClass="btn btn-primary" ToolTip="Aktiviraj selektovane"><span class="fa fa-check-square"></span></asp:LinkButton>
+                    <asp:LinkButton ID="btnDeleteAll" runat="server" OnClick="btnDeleteAll_Click" CssClass="btn btn-primary" ToolTip="Obriši selektovane"><span class="fa fa-trash"></span></asp:LinkButton>
                 </div><!--btn-group-->
             </div>
         </div>
@@ -167,7 +171,7 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="ProductID" ControlStyle-Width="50px" Visible="false">
+                            <asp:TemplateField HeaderText="ID" ControlStyle-Width="50px" Visible="true" ItemStyle-Width="50px">
                                 <ItemTemplate>
                                     <asp:Label ID="lblProductID" runat="server" Text='<%#Eval("productID") %>'></asp:Label>
                                 </ItemTemplate>

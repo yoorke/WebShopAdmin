@@ -161,6 +161,7 @@ namespace webshopAdmin
             cmbUnitOfMeasure.DataSource = new UnitOfMeasureBL().GetUnitsOfMeasure(true);
             cmbUnitOfMeasure.DataTextField = "FullName";
             cmbUnitOfMeasure.DataValueField = "unitOfMeasureID";
+            cmbUnitOfMeasure.SelectedValue = "2";
             cmbUnitOfMeasure.DataBind();
 
             cmbCategories.DataSource = categoryBL.GetNestedCategoriesDataTable();

@@ -19,7 +19,7 @@ namespace webshopAdmin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddProduct;
+        protected global::System.Web.UI.WebControls.LinkButton btnAddProduct;
         
         /// <summary>
         /// btnApproveAll control.
@@ -28,7 +28,7 @@ namespace webshopAdmin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnApproveAll;
+        protected global::System.Web.UI.WebControls.LinkButton btnApproveAll;
         
         /// <summary>
         /// btnActivateAll control.
@@ -37,7 +37,7 @@ namespace webshopAdmin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnActivateAll;
+        protected global::System.Web.UI.WebControls.LinkButton btnActivateAll;
         
         /// <summary>
         /// btnDeleteAll control.
@@ -46,7 +46,7 @@ namespace webshopAdmin {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteAll;
+        protected global::System.Web.UI.WebControls.LinkButton btnDeleteAll;
         
         /// <summary>
         /// cmbCategory control.
