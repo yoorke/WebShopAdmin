@@ -100,10 +100,15 @@
         <div class="row form-horizontal">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-md-2">Artikal: </label>
-                    <div class="col-md-2">
-                        <asp:TextBox ID="txtProductID" runat="server" CssClass="form-control" ></asp:TextBox>
+                    <div class="col-md-4 col-md-offset-2">
+                        <input type="text" id="txtSearchName" class="form-control" placeholder="Naziv" />
                     </div>
+                    <div class="col-md-4">
+                        <asp:TextBox ID="txtProductID" runat="server" CssClass="form-control" placeholder="Product ID" ></asp:TextBox>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2">Artikal: </label>
                     <div class="col-md-8">
                         <asp:DropDownList ID="cmbProduct" runat="server" CssClass="form-control"></asp:DropDownList>
                     </div>
@@ -142,7 +147,22 @@
             })
 
             $('[id*=txtProductID]').on('change', function () {
-                $('[id*=cmbProduct]').val($('[id*=txtProductID').val());
+                if ($('[id*=txtProductID]').val().trim() != '')
+                    $('[id*=cmbProduct]').val($('[id*=txtProductID]').val());
+            })
+
+            $('[id*=txtSearchName]').on('change', function () {
+                var searchString = $('[id*=txtSearchName]').val().toLowerCase().trim();
+                //if (searchString != '') {
+                    var isSet = false;
+                    $('[id*=cmbProduct] > option').each(function () {
+                        this.style.display = this.text.toLowerCase().indexOf(searchString) > -1 ? '' : 'none';
+                        if (this.style.display == '' && !isSet) {
+                            $('[id*=cmbProduct]').val(this.value);
+                            isSet = true;
+                        }
+                    })
+                //}
             })
         })
     </script>

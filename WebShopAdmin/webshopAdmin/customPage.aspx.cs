@@ -166,8 +166,9 @@ namespace webshopAdmin
                 if (lstProduct.Items[i].Selected)
                     ((List<CustomPageProduct>)ViewState["products"]).RemoveAt(i);
 
-                showProducts();
+                
             }
+            showProducts();
         }
            
     }

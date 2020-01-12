@@ -14,6 +14,7 @@ using eshopBL;
 using System.Web.Configuration;
 using Newtonsoft.Json;
 using System.Web.Services;
+using eshopUtilities;
 
 namespace webshopAdmin
 {
@@ -124,6 +125,19 @@ namespace webshopAdmin
             catch(Exception ex)
             {
                 throw new Exception("Error: " + productID);
+            }
+        }
+
+        public static string GetProductsByNameAndCode(string name)
+        {
+            try
+            {
+                return JsonConvert.SerializeObject(new ProductBL().GetProductsByNameAndCode(name));
+            }
+            catch(Exception ex)
+            {
+                ErrorLog.LogError(ex);
+                throw;
             }
         }
     }

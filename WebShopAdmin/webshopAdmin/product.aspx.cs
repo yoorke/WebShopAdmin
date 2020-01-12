@@ -733,5 +733,28 @@ namespace webshopAdmin
             }
             return code;
         }
+
+        protected void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            int productID = -1;
+            if(int.TryParse(lblProductID.Value, out productID))
+            {
+                lblProductID.Value = "-1";
+                txtCode.Text = string.Empty;
+                txtSupplierCode.Text = string.Empty;
+                txtEan.Text = string.Empty;
+
+                txtCode.Focus();
+
+                setStatus("Proizvod će biti sačuvan kao novi nakon unosa šifre, barkoda i šifre dobavljača.", "info");
+            }
+        }
+
+        private void setStatus(string text, string classes)
+        {
+            customStatus.Text = text;
+            customStatus.Class = classes;
+            customStatus.Show();
+        }
     }
 }

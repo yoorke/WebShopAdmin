@@ -31,8 +31,13 @@ namespace webshopAdmin
                     {
                         loadIntoForm();
                         loadStatuses();
+                        loadDeliveryServices();
                         orderID = int.Parse(Request.QueryString["orderID"]);
                         loadOrder(orderID);
+                        ViewState.Add("orderID", orderID);
+
+                        //cmbDeliveryService.Visible = false;
+                        //txtTrackCode.Visible = false;
                     }
                 }
                 else
@@ -50,7 +55,7 @@ namespace webshopAdmin
             lblDate.Text = order.Date.ToString();
             lblFirstname.Text = order.Firstname;
             lblLastname.Text = order.Lastname;
-            lblUserType.Text = lblName.Text.Length > 0 ? "Pravno lice" : "Fizičko lice";//order.UserType;
+            lblUserType.Text = order.Name.Length > 0 || lblName.Text.Length > 0 ? "Pravno lice" : "Fizičko lice";//order.UserType;
             lblName.Text = order.Name.Length > 0 ? order.Name : "-";
             lblPib.Text = order.Pib.Trim().Length > 0 ? order.Pib : "-";
             lblAddress.Text = order.Address;
@@ -67,6 +72,16 @@ namespace webshopAdmin
             this.Title = "Narudžbenica - " + order.Firstname + " " + order.Lastname + " | Admin panel";
             lblOrderID.Value = order.OrderID.ToString();
             ViewState.Add("title", Page.Title);
+            cmbDeliveryService.SelectedValue = order.DeliveryServiceID.ToString();
+            txtTrackCode.Text = order.TrackCode;
+            OrderStatus orderStatus = new OrderStatusBL().GetByID(order.OrderStatus.OrderStatusID);
+            //if (orderStatus.SendDeliveryInfo)
+            //{
+            cmbDeliveryService.Visible = orderStatus.SendDeliveryInfo;
+            lblDeliveryService.Visible = orderStatus.SendDeliveryInfo;
+            txtTrackCode.Visible = orderStatus.SendDeliveryInfo;
+            lblTrackCode.Visible = orderStatus.SendDeliveryInfo;
+            //}
 
             dgvItems.DataSource = orderBL.GetOrderItemsFull(orderID);
             dgvItems.DataBind();
@@ -87,10 +102,15 @@ namespace webshopAdmin
 
         private void loadStatuses()
         {
-            OrderBL orderBL = new OrderBL();
-            cmbStatus.DataSource = orderBL.GetOrderStatuses(false);
-            cmbStatus.DataValueField = "orderStatusID";
-            cmbStatus.DataTextField = "name";
+            //OrderBL orderBL = new OrderBL();
+            //cmbStatus.DataSource = orderBL.GetOrderStatuses(false);
+            //cmbStatus.DataValueField = "orderStatusID";
+            //cmbStatus.DataTextField = "name";
+            //cmbStatus.DataBind();
+
+            cmbStatus.DataSource = new OrderStatusBL().GetAll();
+            cmbStatus.DataValueField = "OrderStatusID";
+            cmbStatus.DataTextField = "Name";
             cmbStatus.DataBind();
         }
 
@@ -278,10 +298,21 @@ namespace webshopAdmin
 
         protected void cmbStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbStatus.SelectedIndex > -1)
-            {
-                OrderBL orderBL = new OrderBL();
-                orderBL.UpdateOrderStatus(int.Parse(lblOrderID.Value), int.Parse(cmbStatus.SelectedValue), lblEmail.Text, lblCode.Text, lblFirstname.Text + " " + lblLastname.Text, cmbStatus.SelectedItem.Text, lblDate.Text);
+            //if (cmbStatus.SelectedIndex > -1)
+            //{
+            //OrderBL orderBL = new OrderBL();
+            //orderBL.UpdateOrderStatus(int.Parse(lblOrderID.Value), int.Parse(cmbStatus.SelectedValue), lblEmail.Text, lblCode.Text, lblFirstname.Text + " " + lblLastname.Text, cmbStatus.SelectedItem.Text, lblDate.Text);
+            //}
+            if(cmbStatus.SelectedIndex > -1)
+            { 
+                OrderStatus orderStatus = new OrderStatusBL().GetByID(int.Parse(cmbStatus.SelectedValue));
+                //if (orderStatus.SendDeliveryInfo)
+                //{
+                cmbDeliveryService.Visible = orderStatus.SendDeliveryInfo;
+                lblDeliveryService.Visible = orderStatus.SendDeliveryInfo;
+                    txtTrackCode.Visible = orderStatus.SendDeliveryInfo;
+                lblTrackCode.Visible = orderStatus.SendDeliveryInfo;
+                //}
             }
         }
 
@@ -332,6 +363,50 @@ namespace webshopAdmin
             customStatus.Text = message;
             customStatus.Class = classes;
             customStatus.Show();
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            saveDeliveryInfoAndStatus();
+        }
+
+        private void saveDeliveryInfoAndStatus()
+        {
+            try
+            { 
+                OrderStatus orderStatus = new OrderStatusBL().GetByID(int.Parse(cmbStatus.SelectedValue));
+                if(!orderStatus.SendDeliveryInfo)
+                {
+                    cmbDeliveryService.SelectedIndex = -1;
+                    txtTrackCode.Text = string.Empty;
+                }
+                if(orderStatus.SendDeliveryInfo && cmbDeliveryService.SelectedIndex < 1)
+                {
+                    setStatus("Odaberite kurirsku službu", "warning");
+                    return;
+                }
+                DeliveryService deliveryService = cmbDeliveryService.Visible && cmbDeliveryService.SelectedIndex > -1 ? new DeliveryServiceBL().GetByID(int.Parse(cmbDeliveryService.SelectedValue)) : null;
+                new OrderBL().UpdateOrderStatus(int.Parse(lblOrderID.Value), orderStatus, lblEmail.Text, lblCode.Text, lblFirstname.Text + " " + lblLastname.Text, lblDate.Text, deliveryService, txtTrackCode.Text);
+
+                setStatus("Narudžbina uspešno sačuvana.", "success");
+            }
+            catch(BLException ex)
+            {
+                setStatus(ex.Message, "danger");
+            }
+            catch(Exception exx)
+            {
+                setStatus(exx.Message, "danger");
+            }
+        }
+
+        private void loadDeliveryServices()
+        {
+            cmbDeliveryService.DataSource = new DeliveryServiceBL().GetAll(true);
+            cmbDeliveryService.DataTextField = "Name";
+            cmbDeliveryService.DataValueField = "ID";
+            cmbDeliveryService.SelectedIndex = -1;
+            cmbDeliveryService.DataBind();
         }
     }
 }

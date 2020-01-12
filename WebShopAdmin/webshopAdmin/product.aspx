@@ -1,6 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/webshopAdmin/adminPanel.Master" AutoEventWireup="true" CodeBehind="product.aspx.cs" Inherits="webshopAdmin.product" Title="Proizvod | Admin panel" ValidateRequest="false" %>
 <%@ Reference Control="customControls/AttributeControl.ascx" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
+<%@ Register Src="customControls/CustomStatus.ascx" TagPrefix="ws" TagName="customStatus" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -48,15 +49,21 @@
                 <div class="btn-group">
                     <asp:Button ID="btnSave" runat="server" Text="Sačuvaj" OnClick="btnSave_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnSaveClose" runat="server" Text="Sačuvaj i zatvori" OnClick="btnSaveClose_Click" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnSaveAs" runat="server" Text="Kreiraj novi na osnovu" OnClick="btnSaveAs_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnClose" runat="server" Text="Zatvori" OnClick="btnClose_Click" CssClass="btn btn-primary" CausesValidation="false" />
                 </div><!--btn-group-->
             </div><!--col-->
         </div><!--row-->
-        <div class="row">
+        <%--<div class="row">
             <div class="col-lg-12">
                 <asp:Label ID="lblStatus" runat="server" Visible="false"></asp:Label>
             </div><!--col-->
-        </div><!--row-->
+        </div><!--row-->--%>
+        <div class="row margin-top-05">
+            <div class="col-md-12">
+                <ws:customStatus ID="customStatus" runat="server" visible="false"></ws:customStatus>
+            </div>
+        </div>
         <div class="row margin-top-2">
             <div class="col-lg-12">
                 <asp:HiddenField ID="TabName" runat="server" />

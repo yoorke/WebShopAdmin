@@ -139,6 +139,15 @@ namespace webshopAdmin {
         protected global::System.Web.UI.WebControls.Button btnSaveClose;
         
         /// <summary>
+        /// btnSaveAs control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveAs;
+        
+        /// <summary>
         /// btnClose control.
         /// </summary>
         /// <remarks>
@@ -148,13 +157,13 @@ namespace webshopAdmin {
         protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
-        /// lblStatus control.
+        /// customStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected global::webshopAdmin.CustomStatus customStatus;
         
         /// <summary>
         /// TabName control.

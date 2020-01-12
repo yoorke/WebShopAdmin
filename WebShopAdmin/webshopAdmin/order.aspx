@@ -15,6 +15,7 @@
                 <div class="btn-group">
                     <asp:Button ID="btnClose" runat="server" Text="Zatvori" OnClick="btnClose_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnPrint" runat="server" Text="Štampaj" OnClick="btnPrint_Click" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnSave" runat="server" Text="Sačuvaj" OnClick="btnSave_Click" CssClass="btn btn-primary" />
                 </div><!--btn-group-->
             </div><!--col-->
         </div><!--row-->
@@ -136,6 +137,18 @@
                             <asp:DropDownList ID="cmbStatus" runat="server" AutoPostBack="true" OnSelectedIndexChanged="cmbStatus_SelectedIndexChanged" CssClass="form-control"></asp:DropDownList>
                         </div>
                     </div><!--form-group-->
+                    <div class="form-group">
+                        <label ID="lblDeliveryService" runat="server" for="cmbDeliveryService" class="control-label col-sm-3">Dostavljač:</label>
+                        <div class="col-sm-9">
+                            <asp:DropDownList ID="cmbDeliveryService" runat="server" CssClass="form-control"></asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label ID="lblTrackCode" runat="server" for="txtTrackCode" class="control-label col-sm-3">Kod za praćenje:</label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="txtTrackCode" runat="server" CssClass="form-control"></asp:TextBox>
+                        </div>
+                    </div>
                     <asp:HiddenField ID="lblOrderID" runat="server" />
                 </div><!--form-->
             </div><!--col-->
