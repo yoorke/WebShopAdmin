@@ -17,10 +17,21 @@
                     <asp:Button ID="btnActivateAll" runat="server" Text="Aktiviraj selektovane" OnClick="btnActivateAll_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnDeleteAll" runat="server" Text="Obriši selektovane" OnClick="btnDeleteAll_Click" CssClass="btn btn-primary" />                    --%>
                     <asp:LinkButton ID="btnAddProduct" runat="server" OnClick="btnAddProduct_Click" CssClass="btn btn-primary" ToolTip="Dodaj proizvod"><span class="fa fa-plus"></span></asp:LinkButton>
+                </div>
+                <div class="btn-group">
                     <asp:LinkButton ID="btnApproveAll" runat="server" OnClick="btnApproveAll_Click" CssClass="btn btn-primary" ToolTip="Odobri selektovane"><span class="fa fa-check"></span></asp:LinkButton>
+                    <asp:LinkButton ID="btnDeapproveAll" runat="server" OnClick="btnDeapproveAll_Click" CssClass="btn btn-primary" ToolTip="Ne prikazuj selektovane"><span class="fa fa-times"></span></asp:LinkButton>
+                </div>
+                <div class="btn-group">
                     <asp:LinkButton ID="btnActivateAll" runat="server" OnClick="btnActivateAll_Click" CssClass="btn btn-primary" ToolTip="Aktiviraj selektovane"><span class="fa fa-check-square"></span></asp:LinkButton>
+                    <asp:LinkButton ID="btnDeactivateAll" runat="server" OnClick="btnDeactivateAll_Click" CssClass="btn btn-primary" ToolTip="Deaktiviraj selektovane"><span class="fa fa-times"></span></asp:LinkButton>
+                </div>
+                <div class="btn-group">
                     <asp:LinkButton ID="btnDeleteAll" runat="server" OnClick="btnDeleteAll_Click" CssClass="btn btn-primary" ToolTip="Obriši selektovane"><span class="fa fa-trash"></span></asp:LinkButton>
                 </div><!--btn-group-->
+                <div class="btn-group">
+                    <asp:LinkButton ID="btnCopyData" runat="server" OnClick="btnCopyData_Click" CssClass="btn btn-primary" ToolTip="Kopiraj podatke"><span class="fa fa-copy"></span></asp:LinkButton>
+                </div>
             </div>
         </div>
         <asp:Panel runat="server" DefaultButton="btnShowProducts">

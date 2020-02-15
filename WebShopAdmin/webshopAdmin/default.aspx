@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p>Poslednjih 10 porudžbina</p>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 
-                <div class="col-lg-4">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p>Poslednjih 10 registrovanih korisnika</p>
@@ -86,8 +86,9 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-lg-4">
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p>Poslednjhi 10 dodatih proizvoda</p>
@@ -125,14 +126,14 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
+            <%--</div>--%>
+            <%--<div class="row">--%>
+                <%--<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">--%>
                     
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-4">
+                <%--</div>--%>
+            <%--</div>--%>
+            <%--<div class="row">--%>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p>Aktivne promocije</p>
@@ -163,7 +164,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p>Najposećeniji proizvodi</p>
@@ -194,7 +197,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <p>Najprodavaniji proizvodi</p>

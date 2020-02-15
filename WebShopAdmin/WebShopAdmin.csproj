@@ -160,6 +160,7 @@
     <Content Include="webshopAdmin\orders-graph.aspx" />
     <Content Include="webshopAdmin\orders.aspx" />
     <Content Include="webshopAdmin\product.aspx" />
+    <Content Include="webshopAdmin\productCopyData.aspx" />
     <Content Include="webshopAdmin\products.aspx" />
     <Content Include="webshopAdmin\promotion.aspx" />
     <Content Include="webshopAdmin\promotions.aspx" />
@@ -450,6 +451,13 @@
     </Compile>
     <Compile Include="webshopAdmin\product.aspx.designer.cs">
       <DependentUpon>product.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\productCopyData.aspx.cs">
+      <DependentUpon>productCopyData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\productCopyData.aspx.designer.cs">
+      <DependentUpon>productCopyData.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\products.aspx.cs">
       <DependentUpon>products.aspx</DependentUpon>

@@ -354,5 +354,30 @@ namespace webshopAdmin
 
             new ProductBL().SetPriceLocked(int.Parse(((Label)gridViewRow.FindControl("lblProductID")).Text), bool.Parse(((CheckBox)gridViewRow.FindControl("chkPriceLocked")).Checked.ToString()));
         }
+
+        protected void btnDeapproveAll_Click(object sender, EventArgs e)
+        {
+            ProductBL productBL = new ProductBL();
+            for(int i = 0; i < dgvProducts.Rows.Count; i++)
+            {
+                if (((CheckBox)dgvProducts.Rows[i].FindControl("chkSelect")).Checked)
+                    productBL.SetApproved(int.Parse(((Label)dgvProducts.Rows[i].FindControl("lblProductID")).Text), false);
+            }
+        }
+
+        protected void btnDeactivateAll_Click(object sender, EventArgs e)
+        {
+            ProductBL productBL = new ProductBL();
+            for(int i = 0; i < dgvProducts.Rows.Count; i++)
+            {
+                if (((CheckBox)dgvProducts.Rows[i].FindControl("chkSelect")).Checked)
+                    productBL.SetActive(int.Parse(((Label)dgvProducts.Rows[i].FindControl("lblProductID")).Text), false);
+            }
+        }
+
+        protected void btnCopyData_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/" + ConfigurationManager.AppSettings["webShopAdminUrl"] + "/productCopyData.aspx");
+        }
     }
 }
