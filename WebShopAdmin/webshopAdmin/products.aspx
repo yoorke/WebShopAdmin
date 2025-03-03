@@ -10,7 +10,7 @@
             </div>
         </div><!--row-->
         <div class="row">
-            <div class="col-lg-12 margin-top-05">
+            <div class="col-lg-8 margin-top-05">
                 <div class="btn-group">
                     <%--<asp:Button ID="btnAddProduct" runat="server" Text="Dodaj proizvod" OnClick="btnAddProduct_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnApproveAll" runat="server" Text="Odobri selektovane" OnClick="btnApproveAll_Click" CssClass="btn btn-primary" />
@@ -50,6 +50,10 @@
                         <label for="cmbApproved">Odobreno:</label>
                         <asp:DropDownList ID="cmbApproved" runat="server" CssClass="form-control"></asp:DropDownList>        
                     </div><!--form-group-->
+                    <div class="form-group">
+                        <label for="cmbInStock">Lager:</label>
+                        <asp:DropDownList ID="cmbInStock" runat="server" CssClass="form-control"></asp:DropDownList>
+                    </div>
                     <div class="form-group">
                         <label for="cmbPromotion">Promocija:</label>
                         <asp:DropDownList id="cmbPromotion" runat="server" CssClass="form-control"></asp:DropDownList>
@@ -151,16 +155,26 @@
             </div>
         </div>
         <div class="row margin-top-05">
-            <div class="col-lg-6">
+            <div class="col-lg-3">
                 <label for="lblProductsCount">Ukupno proizvoda:</label>
                 <asp:Label ID="lblProductsCount" runat="server"></asp:Label>
             </div><!--col-->
             <div class="col-lg-6">
                 <div class="row">
-                    <div class="col-lg-9">
-                        <label for="cmbPageSize" class="pull-right">Proizvoda po stranici:</label>
+                    <div class="col-lg-6">
+                        <label for="txtSearchTable" class="text-right margin-top-05" style="display: block">Pretraga:</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <input type="text" id="txtSearchTable" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <label for="cmbPageSize" class="pull-right margin-top-05">Proizvoda po stranici:</label>
                     </div><!--col-->
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <asp:DropDownList ID="cmbPageSize" runat="server" OnSelectedIndexChanged="cmbPageSize_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
                     </div><!--col-->
                 </div><!--row-->
@@ -239,31 +253,42 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Odob" ControlStyle-Width="20px" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkApproved" runat="server" Checked='<%#Eval("isApproved") %>' AutoPostBack="true" OnCheckedChanged="chkApproved_CheckChanged" />
+                                    <%--<asp:CheckBox ID="chkApproved" runat="server" Checked='<%#Eval("isApproved") %>' AutoPostBack="true" OnCheckedChanged="chkApproved_CheckChanged" />--%>
+                                    <asp:CheckBox ID="chkApproved" runat="server" Checked='<%#Eval("isApproved") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Akt" ControlStyle-Width="20px" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkActive" runat="server" Checked='<%#Eval("isActive") %>' AutoPostBack="true" OnCheckedChanged="chkActive_CheckChanged" />
+                                    <%--<asp:CheckBox ID="chkActive" runat="server" Checked='<%#Eval("isActive") %>' AutoPostBack="true" OnCheckedChanged="chkActive_CheckChanged" />--%>
+                                    <asp:CheckBox ID="chkActive" runat="server" Checked='<%#Eval("isActive") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Zaklj" ControlStyle-Width="20px" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkLocked" runat="server" Checked='<%#Eval("isLocked") %>' OnCheckedChanged="chkLocked_CheckedChanged" AutoPostBack="true" />
+                                    <%--<asp:CheckBox ID="chkLocked" runat="server" Checked='<%#Eval("isLocked") %>' OnCheckedChanged="chkLocked_CheckedChanged" AutoPostBack="true" />--%>
+                                    <asp:CheckBox ID="chkLocked" runat="server" Checked='<%#Eval("isLocked") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Na stanju" ControlStyle-Width="20px" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkInStock" runat="server" Checked='<%#Eval("isInStock") %>' OnCheckedChanged="chkInStock_CheckedChanged" AutoPostBack="true" />
+                                    <%--<asp:CheckBox ID="chkInStock" runat="server" Checked='<%#Eval("isInStock") %>' OnCheckedChanged="chkInStock_CheckedChanged" AutoPostBack="true" />--%>
+                                    <asp:CheckBox ID="chkInStock" runat="server" Checked='<%#Eval("isInStock") %>' />
                                 </ItemTemplate>
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Zak. cena" ControlStyle-Width="20px" ItemStyle-Width="20px">
                                 <ItemTemplate>
-                                    <asp:CheckBox ID="chkPriceLocked" runat="server" Checked='<%#Eval("isPriceLocked") %>' OnCheckedChanged="chkPriceLocked_CheckedChanged" AutoPostBack="true" />
+                                    <%--<asp:CheckBox ID="chkPriceLocked" runat="server" Checked='<%#Eval("isPriceLocked") %>' OnCheckedChanged="chkPriceLocked_CheckedChanged" AutoPostBack="true" />--%>
+                                    <asp:CheckBox ID="chkPriceLocked" runat="server" Checked='<%#Eval("isPriceLocked") %>' />
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Sort" ControlStyle-Width="40px" ItemStyle-Width="40px">
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtSortIndex" runat="server" Text='<%#Eval("sortIndex") %>' TextMode="Number"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -285,7 +310,13 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                            <asp:TemplateField>
+                                <ItemTemplate>
+                                    <button ID="btnDelete" runat="server" type="button" class="fa-solid fa-trash delete-button"></button>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <%--<asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />--%>
                         </Columns>
                     </asp:GridView>
                 </div>
@@ -388,4 +419,26 @@
     }
     </script>
 
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[id*=cmbCategory]").select2();
+            $("[id*=cmbSupplier]").select2();
+            $("[id*=cmbApproved]").select2();
+            $("[id*=cmbPromotion]").select2();
+            $("[id*=cmbHasImage]").select2();
+            $("[id*=cmbActive]").select2();
+            $("[id*=cmbBrand]").select2();
+            $("[id*=cmbSort]").select2();
+            $("[id*=cmbNewCategory]").select2();
+            $("[id*=cmbCustomPage]").select2();
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            searchTable('dgvProducts', 'txtSearchTable');
+        })
+    </script>
 </asp:Content>

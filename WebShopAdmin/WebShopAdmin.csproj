@@ -61,13 +61,26 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\CKEditor.NET.dll</HintPath>
     </Reference>
-    <Reference Include="eshopBE">
+    <Reference Include="eshop.Import.BE">
+      <HintPath>..\..\..\WebShop - Framework\WebShopFramework\eshop.Import.BE\bin\Debug\eshop.Import.BE.dll</HintPath>
+    </Reference>
+    <Reference Include="eshop.Import.BL">
+      <HintPath>..\..\..\WebShop - Framework\WebShopFramework\eshop.Import.BL\bin\Debug\eshop.Import.BL.dll</HintPath>
+    </Reference>
+    <Reference Include="eshopBE, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebShop - Framework\WebShopFramework\eshopBE\bin\Debug\eshopBE.dll</HintPath>
     </Reference>
-    <Reference Include="eshopBL">
+    <Reference Include="eshopBL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebShop - Framework\WebShopFramework\eshopBL\bin\Debug\eshopBL.dll</HintPath>
     </Reference>
-    <Reference Include="eshopUtilities">
+    <Reference Include="eshopBLInterfaces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\WebShop - Framework\WebShopFramework\eshopBEInterfaces\bin\Debug\eshopBLInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="eshopUtilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\WebShop - Framework\WebShopFramework\eshopUtilities\bin\Debug\eshopUtilities.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -100,6 +113,7 @@
     <Content Include="webshopAdmin\brands.aspx" />
     <Content Include="webshopAdmin\companySettings.aspx" />
     <Content Include="webshopAdmin\getProductsThreeg.aspx" />
+    <Content Include="webshopAdmin\importProducts.aspx" />
     <Content Include="webshopAdmin\kupindoMapCategories.aspx" />
     <Content Include="webshopAdmin\attribute.aspx" />
     <Content Include="webshopAdmin\attributeKimtecAttribute.aspx" />
@@ -249,6 +263,13 @@
     </Compile>
     <Compile Include="webshopAdmin\getProductsThreeg.aspx.designer.cs">
       <DependentUpon>getProductsThreeg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="webshopAdmin\importProducts.aspx.cs">
+      <DependentUpon>importProducts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="webshopAdmin\importProducts.aspx.designer.cs">
+      <DependentUpon>importProducts.aspx</DependentUpon>
     </Compile>
     <Compile Include="webshopAdmin\kupindoMapCategories.aspx.cs">
       <DependentUpon>kupindoMapCategories.aspx</DependentUpon>

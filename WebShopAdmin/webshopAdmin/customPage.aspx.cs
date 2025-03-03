@@ -133,7 +133,7 @@ namespace webshopAdmin
             cmbCustomPageCategory.DataBind();
 
             cmbProduct.DataSource = new ProductBL().GetProductsDataTable();
-            cmbProduct.DataTextField = "FullName";
+            cmbProduct.DataTextField = "CodeName";
             cmbProduct.DataValueField = "ProductID";
             cmbProduct.DataBind();
         }

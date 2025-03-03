@@ -9,11 +9,21 @@
             </div><!--col-->
         </div><!--row-->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-6">
                 <div class="btn-group">
                     <asp:Button ID="btnAddUser" runat="server" Text="Dodaj korisnika" OnClick="btnAddUser_Click" CssClass="btn btn-primary" />
                 </div><!--btn-group-->
             </div><!--col-->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="txtSearchTable" class="text-right margin-top-05" style="display: block">Pretraga:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" id="txtSearchTable" class="form-control" />
+                    </div>
+                </div>
+            </div>
         </div><!--row-->
         <div class="row margin-top-2">
             <div class="col-lg-12">
@@ -69,4 +79,11 @@
     
         
     </div>--%>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            searchTable('dgvUsers', 'txtSearchTable');
+        })
+    </script>
 </asp:Content>

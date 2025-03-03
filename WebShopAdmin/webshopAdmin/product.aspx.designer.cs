@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace webshopAdmin {
-    
-    
-    public partial class product {
-        
+namespace webshopAdmin
+{
+
+
+    public partial class product
+    {
+
         /// <summary>
         /// ToolKitScriptManager1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ToolkitScriptManager ToolKitScriptManager1;
-        
+
         /// <summary>
         /// pnlAddAttributeValue control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAddAttributeValue;
-        
+
         /// <summary>
         /// txtAttributeValue control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAttributeValue;
-        
+
         /// <summary>
         /// btnAddAttributeValue control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddAttributeValue;
-        
+
         /// <summary>
         /// btnCancelPopup control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancelPopup;
-        
+
         /// <summary>
         /// modalExtender control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ModalPopupExtender modalExtender;
-        
+
         /// <summary>
         /// lnkShowPopup control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkShowPopup;
-        
+
         /// <summary>
         /// lblAttributeID control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lblAttributeID;
-        
+
         /// <summary>
         /// lblAttributeName control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lblAttributeName;
-        
+
         /// <summary>
         /// lblType control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lblType;
-        
+
         /// <summary>
         /// lblProductID control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField lblProductID;
-        
+
         /// <summary>
         /// lblPageHeader control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal lblPageHeader;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-        
+
         /// <summary>
         /// btnSaveClose control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveClose;
-        
+
         /// <summary>
         /// btnSaveAs control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveAs;
-        
+
         /// <summary>
         /// btnClose control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClose;
-        
+
         /// <summary>
         /// customStatus control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::webshopAdmin.CustomStatus customStatus;
-        
+
         /// <summary>
         /// TabName control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField TabName;
-        
+
         /// <summary>
         /// txtCode control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCode;
-        
+
         /// <summary>
         /// requiredFieldValidator1 control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator1;
-        
+
         /// <summary>
         /// txtEan control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEan;
-        
+
         /// <summary>
         /// cmbSupplier control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbSupplier;
-        
+
         /// <summary>
         /// txtSupplierCode control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSupplierCode;
-        
+
         /// <summary>
         /// cmbBrand control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbBrand;
-        
+
         /// <summary>
         /// txtName control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtName;
-        
+
         /// <summary>
         /// requiredFieldValidator2 control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator2;
-        
+
         /// <summary>
         /// chkApproved control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkApproved;
-        
+
         /// <summary>
         /// chkActive control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkActive;
-        
+
         /// <summary>
         /// chkLocked control.
         /// </summary>
@@ -272,7 +274,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkLocked;
-        
+
         /// <summary>
         /// chkInStock control.
         /// </summary>
@@ -281,7 +283,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkInStock;
-        
+
         /// <summary>
         /// chkPriceLocked control.
         /// </summary>
@@ -290,7 +292,25 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkPriceLocked;
-        
+
+        /// <summary>
+        /// chkCanBeDelivered control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkCanBeDelivered;
+
+        /// <summary>
+        /// chkIsFreeDelivery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkIsFreeDelivery;
+
         /// <summary>
         /// imgProduct control.
         /// </summary>
@@ -299,7 +319,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgProduct;
-        
+
         /// <summary>
         /// imgLarge control.
         /// </summary>
@@ -308,7 +328,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgLarge;
-        
+
         /// <summary>
         /// imgHome control.
         /// </summary>
@@ -317,7 +337,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgHome;
-        
+
         /// <summary>
         /// imgThumb control.
         /// </summary>
@@ -326,7 +346,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Image imgThumb;
-        
+
         /// <summary>
         /// txtSupplierPrice control.
         /// </summary>
@@ -335,7 +355,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtSupplierPrice;
-        
+
         /// <summary>
         /// txtPrice control.
         /// </summary>
@@ -344,7 +364,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
-        
+
         /// <summary>
         /// requiredFieldValidator3 control.
         /// </summary>
@@ -353,7 +373,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator requiredFieldValidator3;
-        
+
         /// <summary>
         /// txtWebPrice control.
         /// </summary>
@@ -362,7 +382,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtWebPrice;
-        
+
         /// <summary>
         /// reqiredFieldValidator4 control.
         /// </summary>
@@ -371,7 +391,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqiredFieldValidator4;
-        
+
         /// <summary>
         /// cmbUnitOfMeasure control.
         /// </summary>
@@ -380,7 +400,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbUnitOfMeasure;
-        
+
         /// <summary>
         /// rangeValidator2 control.
         /// </summary>
@@ -389,7 +409,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RangeValidator rangeValidator2;
-        
+
         /// <summary>
         /// cmbVat control.
         /// </summary>
@@ -398,7 +418,25 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbVat;
-        
+
+        /// <summary>
+        /// txtWeight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtWeight;
+
+        /// <summary>
+        /// txtSortIndex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSortIndex;
+
         /// <summary>
         /// txtInsertDate control.
         /// </summary>
@@ -407,7 +445,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInsertDate;
-        
+
         /// <summary>
         /// txtUpdateDate control.
         /// </summary>
@@ -416,7 +454,25 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtUpdateDate;
-        
+
+        /// <summary>
+        /// txtShortDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShortDescription;
+
+        /// <summary>
+        /// txtListDescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtListDescription;
+
         /// <summary>
         /// txtDescription control.
         /// </summary>
@@ -425,7 +481,25 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
-        
+
+        /// <summary>
+        /// txtDeclaration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDeclaration;
+
+        /// <summary>
+        /// txtComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtComment;
+
         /// <summary>
         /// rptImages control.
         /// </summary>
@@ -434,7 +508,25 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptImages;
-        
+
+        /// <summary>
+        /// btnConvertImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnConvertImage;
+
+        /// <summary>
+        /// btnResizeImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnResizeImage;
+
         /// <summary>
         /// fluImage control.
         /// </summary>
@@ -443,7 +535,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fluImage;
-        
+
         /// <summary>
         /// btnImageUpload control.
         /// </summary>
@@ -452,7 +544,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnImageUpload;
-        
+
         /// <summary>
         /// cmbCategory control.
         /// </summary>
@@ -461,7 +553,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbCategory;
-        
+
         /// <summary>
         /// divProductInMultipleCategories control.
         /// </summary>
@@ -470,7 +562,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divProductInMultipleCategories;
-        
+
         /// <summary>
         /// cmbCategories control.
         /// </summary>
@@ -479,7 +571,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbCategories;
-        
+
         /// <summary>
         /// btnAddProductToCategory control.
         /// </summary>
@@ -488,7 +580,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddProductToCategory;
-        
+
         /// <summary>
         /// lstCategories control.
         /// </summary>
@@ -497,7 +589,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lstCategories;
-        
+
         /// <summary>
         /// btnRemoveProductFromCategory control.
         /// </summary>
@@ -506,7 +598,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRemoveProductFromCategory;
-        
+
         /// <summary>
         /// pnlAttributes control.
         /// </summary>
@@ -515,7 +607,70 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAttributes;
-        
+
+        /// <summary>
+        /// txtVariantCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVariantCode;
+
+        /// <summary>
+        /// txtVariantPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtVariantPrice;
+
+        /// <summary>
+        /// chkVariantIsInStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkVariantIsInStock;
+
+        /// <summary>
+        /// pnlVariantAttributes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlVariantAttributes;
+
+        /// <summary>
+        /// btnAddProductVariant control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddProductVariant;
+
+        /// <summary>
+        /// btnCreateAllProductVariants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateAllProductVariants;
+
+        /// <summary>
+        /// dgvProductVariants control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvProductVariants;
+
         /// <summary>
         /// cmbPromotions control.
         /// </summary>
@@ -524,7 +679,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList cmbPromotions;
-        
+
         /// <summary>
         /// txtPromotionPrice control.
         /// </summary>
@@ -533,7 +688,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPromotionPrice;
-        
+
         /// <summary>
         /// rangeValidator1 control.
         /// </summary>
@@ -542,7 +697,7 @@ namespace webshopAdmin {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RangeValidator rangeValidator1;
-        
+
         /// <summary>
         /// txtSpecification control.
         /// </summary>

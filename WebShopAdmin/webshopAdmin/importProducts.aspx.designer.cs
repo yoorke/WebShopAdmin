@@ -7,73 +7,46 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace webshopAdmin {
+namespace WebShopAdmin.webshopAdmin {
     
     
-    public partial class products {
+    public partial class importProducts {
         
         /// <summary>
-        /// btnAddProduct control.
+        /// divPleaseWait control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnAddProduct;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPleaseWait;
         
         /// <summary>
-        /// btnApproveAll control.
+        /// lblSupplierCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnApproveAll;
+        protected global::System.Web.UI.WebControls.HiddenField lblSupplierCode;
         
         /// <summary>
-        /// btnDeapproveAll control.
+        /// lblSupplierName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDeapproveAll;
+        protected global::System.Web.UI.WebControls.Label lblSupplierName;
         
         /// <summary>
-        /// btnActivateAll control.
+        /// lblStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnActivateAll;
-        
-        /// <summary>
-        /// btnDeactivateAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDeactivateAll;
-        
-        /// <summary>
-        /// btnDeleteAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnDeleteAll;
-        
-        /// <summary>
-        /// btnCopyData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnCopyData;
+        protected global::System.Web.UI.WebControls.Label lblStatus;
         
         /// <summary>
         /// cmbCategory control.
@@ -85,202 +58,148 @@ namespace webshopAdmin {
         protected global::System.Web.UI.WebControls.DropDownList cmbCategory;
         
         /// <summary>
-        /// cmbSupplier control.
+        /// cmbImportCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbSupplier;
+        protected global::System.Web.UI.WebControls.DropDownList cmbImportCategory;
         
         /// <summary>
-        /// cmbApproved control.
+        /// lstCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbApproved;
+        protected global::System.Web.UI.WebControls.ListBox lstCategory;
         
         /// <summary>
-        /// cmbInStock control.
+        /// btnAddCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbInStock;
+        protected global::System.Web.UI.WebControls.Button btnAddCategory;
         
         /// <summary>
-        /// cmbPromotion control.
+        /// btnRemoveCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbPromotion;
+        protected global::System.Web.UI.WebControls.Button btnRemoveCategory;
         
         /// <summary>
-        /// cmbHasImage control.
+        /// lstImportCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbHasImage;
+        protected global::System.Web.UI.WebControls.ListBox lstImportCategory;
         
         /// <summary>
-        /// cmbActive control.
+        /// btnGetProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbActive;
+        protected global::System.Web.UI.WebControls.Button btnGetProducts;
         
         /// <summary>
-        /// cmbBrand control.
+        /// btnUpdatePriceAndStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbBrand;
+        protected global::System.Web.UI.WebControls.Button btnUpdatePriceAndStock;
         
         /// <summary>
-        /// txtSearch control.
+        /// btnUpdateCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Button btnUpdateCategories;
         
         /// <summary>
-        /// cmbSort control.
+        /// chkIncludeParentCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbSort;
+        protected global::System.Web.UI.WebControls.CheckBox chkIncludeParentCategory;
         
         /// <summary>
-        /// cmbPromotions control.
+        /// divLoadControls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbPromotions;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoadControls;
         
         /// <summary>
-        /// btnAddToPromotion control.
+        /// cmbManufacturer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddToPromotion;
+        protected global::System.Web.UI.WebControls.DropDownList cmbManufacturer;
         
         /// <summary>
-        /// btnDeleteFromPromotion control.
+        /// btnLoadProducts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDeleteFromPromotion;
+        protected global::System.Web.UI.WebControls.Button btnLoadProducts;
         
         /// <summary>
-        /// divAdditionalCategory control.
+        /// pnlOptions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdditionalCategory;
+        protected global::System.Web.UI.WebControls.Panel pnlOptions;
         
         /// <summary>
-        /// cmbAdditionallyCategory control.
+        /// chkActive control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbAdditionallyCategory;
+        protected global::System.Web.UI.WebControls.CheckBox chkActive;
         
         /// <summary>
-        /// btnSaveProductCategory control.
+        /// chkApproved control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaveProductCategory;
+        protected global::System.Web.UI.WebControls.CheckBox chkApproved;
         
         /// <summary>
-        /// cmbNewCategory control.
+        /// btnSave control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbNewCategory;
-        
-        /// <summary>
-        /// cmbCustomPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbCustomPage;
-        
-        /// <summary>
-        /// btnAddProductsToCustomPage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddProductsToCustomPage;
-        
-        /// <summary>
-        /// btnShowProducts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowProducts;
-        
-        /// <summary>
-        /// csStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::webshopAdmin.CustomStatus csStatus;
-        
-        /// <summary>
-        /// lblProductsCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductsCount;
-        
-        /// <summary>
-        /// cmbPageSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cmbPageSize;
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnSave;
         
         /// <summary>
         /// dgvProducts control.

@@ -334,3 +334,46 @@
 .page-header{
     font-size:2.2em;
 }
+
+.select2-selection--single{
+    border:1px solid #ccc !important;
+    height:34px !important;
+}
+
+.select2-container{
+    width: 100% !important;
+}
+
+button.delete-button {
+    background: none;
+    border: none;
+    color: #d9534f;
+}
+
+.b-1 {
+    border: 1px solid #ccc;
+}
+
+.m-1 {
+    margin: 10px;
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
+
+.mb-1 {
+    margin-bottom: 10px;
+}
+
+.p-1 {
+    padding: 10px;
+}
+
+.pl-1{
+    padding-left: 10px;
+}
+
+.pr-1 {
+    padding-right: 10px;
+}

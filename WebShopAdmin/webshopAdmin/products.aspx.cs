@@ -57,7 +57,7 @@ namespace webshopAdmin
             ProductBL productsBL = new ProductBL();
 
             //List<Product> products = productsBL.GetProducts(categoryID, supplierID, cmbApproved.SelectedItem.Text, cmbActive.SelectedItem.Text, brandID, promotionID, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : null);
-            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, txtSearch.Text, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : "product.Name", string.Empty, cmbHasImage.SelectedItem.Text);
+            DataTable products = productsBL.GetProductsDataTable(categoryID, supplierID, promotionID, brandID, cmbActive.SelectedItem.Text, cmbApproved.SelectedItem.Text, txtSearch.Text, cmbSort.SelectedIndex > -1 ? cmbSort.SelectedValue : "product.Name", string.Empty, cmbHasImage.SelectedItem.Text, cmbInStock.SelectedItem.Text);
 
             //if (txtSearch.Text.Length > 0)
             //{
@@ -97,6 +97,10 @@ namespace webshopAdmin
             cmbApproved.Items.Add("Sve");
             cmbApproved.Items.Add("Odobrene");
             cmbApproved.Items.Add("Neodobrene");
+
+            cmbInStock.Items.Add("Sve");
+            cmbInStock.Items.Add("Na stanju");
+            cmbInStock.Items.Add("Nema na stanju");
             
 
             cmbActive.Items.Add("Sve");
@@ -135,6 +139,7 @@ namespace webshopAdmin
             cmbSort.Items.Add(new ListItem("Datumu izmene", "product.updateDate"));
             cmbSort.Items.Add(new ListItem("Datum izmene opadajuće", "product.updateDate DESC"));
             cmbSort.Items.Add(new ListItem("Datum unosa opadajuće", "product.insertDate DESC"));
+            cmbSort.Items.Add(new ListItem("Sort indeks", "product.sortIndex"));
 
             cmbNewCategory.DataSource = new CategoryBL().GetNestedCategoriesDataTable(true, true);
             cmbNewCategory.DataTextField = "name";
@@ -225,8 +230,32 @@ namespace webshopAdmin
             else if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 string imageUrl = ((Image)e.Row.FindControl("imgProduct")).ImageUrl;
+                string productID = ((Label)e.Row.FindControl("lblProductID")).Text;
+
                 if(imageUrl != string.Empty)
                     ((Image)e.Row.FindControl("imgProduct")).ImageUrl = new ProductBL().CreateImageDirectory(int.Parse(imageUrl.Substring(0, imageUrl.IndexOf(".")))) + imageUrl.Substring(0, imageUrl.IndexOf(".")) + "-" + ConfigurationManager.AppSettings["thumbName"] + imageUrl.Substring(imageUrl.IndexOf("."));
+
+                CheckBox chkActive = (CheckBox)e.Row.FindControl("chkActive");
+                chkActive.Attributes.Add("onclick", "setProductActiveState(this)");
+                chkActive.Attributes.Add("value", productID);
+
+                CheckBox chkApproved = (CheckBox)e.Row.FindControl("chkApproved");
+                chkApproved.Attributes.Add("onclick", "setProductApprovedState(this)");
+
+                CheckBox chkIsInStock = (CheckBox)e.Row.FindControl("chkInStock");
+                chkIsInStock.Attributes.Add("onclick", "setProductIsInStock(this)");
+
+                CheckBox chkIsLocked = (CheckBox)e.Row.FindControl("chkLocked");
+                chkIsLocked.Attributes.Add("onclick", "setProductIsLocked(this)");
+
+                CheckBox chkIsPriceLocked = (CheckBox)e.Row.FindControl("chkPriceLocked");
+                chkIsPriceLocked.Attributes.Add("onclick", "setProductIsPriceLocked(this)");
+
+                TextBox txtSortIndex = (TextBox)e.Row.FindControl("txtSortIndex");
+                txtSortIndex.Attributes.Add("onblur", "setProductSortIndex(this)");
+
+                HtmlButton btnDelete = (HtmlButton)e.Row.FindControl("btnDelete");
+                btnDelete.Attributes.Add("onclick", $"deleteProduct({productID}, this)");
             }
         }
 

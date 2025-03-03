@@ -211,3 +211,229 @@ function setChangeCategoryErrorStatus(status) {
     $('#errorStatusBox').show();
     $('#errorStatusBox')[0].innerHTML += '<div>' + status + '</div>';
 }
+
+function SaveImportProduct(supplierCode) {
+    let i = 0;
+    let saveProductsCount = 0;
+    let isApproved = $('[id*=chkApproved]')[0].checked;
+    let isActive = $('[id*=chkActive]')[0].checked;
+    let categoryID = $('[id*=cmbCategory]').val();
+    let savedProducts = 0;
+
+    $('[id*=dgvProducts] > tbody > tr').each(function () {
+        if (i++ > 0) {
+            if (this.cells[0].children[0].children[0].checked) {
+                saveProductsCount++;
+            }
+        }
+    });
+    i = 0;
+
+    SetSaveStatus(0, saveProductsCount);
+    $('#saveStatus').show();
+    $('#errorStatus').hide();
+
+    $('[id*=dgvProducts] > tbody > tr').each(function () {
+        if (i++ > 0) {
+            if (this.cells[0].children[0].children[0].checked) {
+                let code = this.cells[1].innerText;
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/webshopAdmin/WebMethods.aspx/SaveImportProduct',
+                    data: JSON.stringify({
+                        'supplierCode': supplierCode,
+                        'productCode': code,
+                        'isApproved': isApproved,
+                        'isActive': isActive,
+                        'categoryID': parseInt(categoryID)
+                    }),
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (msg) {
+                        SetSaveStatus(++savedProducts, saveProductsCount);
+                        if (msg.d.indexOf('Not saved') > -1) {
+                            $('#errorStatus')[0].innerText += msg.d + '\n';
+                            $('#errorStatus').show();
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        $('#errorStatus')[0].innerText += JSON.parse(jqXHR.responseText).Message + '\n';
+                        //$('#errorStatus')[0].innerText += errorThrown;
+                        $('#errorStatus').show();
+                    }
+                });
+            }
+        }
+    });
+}
+
+function setProductActiveState(checkbox) {
+    let productID = $(checkbox).closest('tr').find('td')[1].children[0].innerText;
+    let isChecked = checkbox.checked;
+
+    $.ajax({
+        type: 'POST',
+        url: '/webshopAdmin/WebMethods.aspx/SetActive',
+        data: JSON.stringify({
+            'productID': productID,
+            'isActive': isChecked
+        }),
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        success: function (msg) {
+            $('#statusBox')[0].innerText = 'Artikal uspešno ' + (isChecked ? 'aktiviran' : 'deaktiviran') + '.';
+            $('#statusBox').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#errorStatus')[0].innerText += errorThrown;
+            $('#errorSTatus').show();
+        }
+    });
+}
+
+function setProductApprovedState(checkbox) {
+    let productID = $(checkbox).closest('tr').find('td')[1].children[0].innerText;
+    let isChecked = checkbox.checked;
+
+    $.ajax({
+        type: 'POST',
+        url: '/webshopAdmin/WebMethods.aspx/SetApproved',
+        data: JSON.stringify({
+            'productID': productID,
+            'isApproved': isChecked
+        }),
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        success: function (msg) {
+            $('#statusBox')[0].innerText = 'Artikal uspešno ' + (isChecked ? 'odobren' : 'isključen') + '.';
+            $('#statusBox').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#errorStatus')[0].innerText += errorThrown;
+            $('#errorStatus').show();
+        }
+    });
+}
+
+function setProductIsInStock(checkbox) {
+    let productID = $(checkbox).closest('tr').find('td')[1].children[0].innerText;
+    let isChecked = checkbox.checked;
+
+    $.ajax({
+        type: 'POST',
+        url: '/webshopAdmin/WebMethods.aspx/SetIsInStock',
+        data: JSON.stringify({
+            'productID': productID,
+            'isInStock': isChecked
+        }),
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        success: function (msg) {
+            $('#statusBox')[0].innerText = 'Artikal uspešno postavljen kao ' + (isChecked ? 'dostupan' : 'nedostupan') + '.';
+            $('#statusBox').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#errorStatus')[0].innerText += errorThrown;
+            $('#errorStatus').show();
+        }
+    });
+}
+
+function setProductIsLocked(checkbox) {
+    let productID = $(checkbox).closest('tr').find('td')[1].children[0].innerText;
+    let isChecked = checkbox.checked;
+
+    $.ajax({
+        type: 'POST',
+        url: '/webshopAdmin/WebMethods.aspx/SetIsLocked',
+        data: JSON.stringify({
+            'productID': productID,
+            'isLocked': isChecked
+        }),
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        success: function (msg) {
+            $('#statusBox')[0].innerText = 'Artikal uspešno ' + (isChecked ? 'zaključan' : 'otključan') + '.';
+            $('#statusBox').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#errorStatus')[0].innerText += errorThrown;
+            $('#errorStatus').show();
+        }
+    });
+}
+
+function setProductIsPriceLocked(checkbox) {
+    let productID = $(checkbox).closest('tr').find('td')[1].children[0].innerText;
+    let isChecked = checkbox.checked;
+
+    $.ajax({
+        type: 'POST',
+        url: '/webshopAdmin/WebMethods.aspx/SetIsPriceLocked',
+        data: JSON.stringify({
+            'productID': productID,
+            'isPriceLocked': isChecked
+        }),
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        success: function (msg) {
+            $('#statusBox')[0].innerText = 'Cena artikla uspešno ' + (isChecked ? 'zaključana' : 'otključana') + '.';
+            $('#statusBox').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#errorStatus')[0].innerText += errorThrown;
+            $('#errorStatus').show();
+        }
+    });
+}
+
+function setProductSortIndex(textbox) {
+    let productID = $(textbox).closest('tr').find('td')[1].children[0].innerText;
+    let sortIndex = textbox.value;
+
+    $.ajax({
+        type: 'POST',
+        url: '/webshopAdmin/WebMethods.aspx/SetSortIndex',
+        data: JSON.stringify({
+            'productID': productID,
+            'sortIndex': sortIndex
+        }),
+        contentType: 'application/json;charset=utf-8',
+        dataType: 'json',
+        success: function (msg) {
+            $('#statusBox')[0].innerText = 'Index sortiranja sačuvan';
+            $('#statusBox').show();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            $('#errorStatus')[0].innerText += errorThrown;
+            $('#errorStatus').show();
+        }
+    })
+}
+
+function deleteProduct(productID, button) {
+    if (confirm('Da li ste sigurni da želite da obrišete artikal sa ID: ' + productID + '?')) {
+        $.ajax({
+            type: 'POST',
+            url: '/webshopAdmin/WebMethods.aspx/DeleteProduct',
+            data: JSON.stringify({
+                'productID': productID
+            }),
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            success: function (msg) {
+                if (msg.d === true) {
+                    $(button.closest('tr')).remove();
+
+                    $('#statusBox')[0].innerText = 'Artikal sa ID: ' + productID + ' uspešno obrisan';
+                    $('#statusBox').show();
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                $('#errorStatus')[0].innerText += errorThrown;
+                $('#errorStatus').show();
+            }
+        });
+    }
+}

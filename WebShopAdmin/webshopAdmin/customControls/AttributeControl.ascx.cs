@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
@@ -10,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
+using eshopBE;
 using eshopBL;
 
 namespace webshopAdmin.customControls
@@ -17,6 +19,7 @@ namespace webshopAdmin.customControls
     public partial class AttributeControl : System.Web.UI.UserControl
     {
         private int _attributeID;
+        private bool _showNP = true;
 
         public int AttributeID
         {
@@ -52,6 +55,17 @@ namespace webshopAdmin.customControls
             set { cmbAttribute.SelectedValue = cmbAttribute.Items.FindByText(value).Value; }
         }
 
+        public bool ShowNP
+        {
+            get { return _showNP; }
+            set { _showNP = value; }
+        }
+
+        public List<AttributeValue> GetValues()
+        {
+            return (List<AttributeValue>)cmbAttribute.DataSource;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -61,11 +75,11 @@ namespace webshopAdmin.customControls
         {
             AttributeBL attributeBL = new AttributeBL();
 
-            cmbAttribute.DataSource = attributeBL.GetAttributeValues(_attributeID);
+            cmbAttribute.DataSource = attributeBL.GetAttributeValues(_attributeID, _showNP);
             cmbAttribute.DataValueField = "attributeValueID";
             cmbAttribute.DataTextField = "value";
             cmbAttribute.DataBind();
-            cmbAttribute.SelectedValue = attributeValue != string.Empty ? cmbAttribute.Items.FindByText(attributeValue).Value : cmbAttribute.Items.FindByText("NP").Value;
+            cmbAttribute.SelectedValue = attributeValue != string.Empty ? cmbAttribute.Items.FindByText(attributeValue).Value : (_showNP ? cmbAttribute.Items.FindByText("NP").Value : null);
             lblAttributeID.Value = _attributeID.ToString();
         }
 

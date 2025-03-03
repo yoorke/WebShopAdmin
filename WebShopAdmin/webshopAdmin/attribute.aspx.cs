@@ -75,6 +75,7 @@ namespace webshopAdmin
         {
             eshopBE.Attribute attribute = new eshopBE.Attribute();
             attribute.Name = txtName.Text;
+            attribute.DisplayName = txtName.Text;
             attribute.IsDescription = chkIsDescription.Checked;
             if (lblAttributeID.Value != string.Empty)
                 attribute.AttributeID = int.Parse(lblAttributeID.Value);

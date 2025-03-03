@@ -26,3 +26,23 @@ function createFriendlyUrl(name) {
 
     return name;
 }
+
+function searchTable(tableName, searchControlName) {
+    var searchControl = $('#' + searchControlName)[0];
+    searchControl.onkeyup = function () {
+        var searchValue = $(this).val().toLowerCase().trim();
+
+        $('[id*=' + tableName + '] tr').filter(function () {
+            $(this).toggle($(this).text().toLowerCase().trim().indexOf(searchValue) > -1);
+        });
+    };
+}
+
+function checkAllInTable(tableId, checkbox) {
+    let table = $(tableId)[0];
+    $("#" + table.id + " input[type='checkbox']").each(function () {
+        if (this.id.indexOf('SelectAll') === -1) {
+            this.checked = checkbox.checked;
+        }
+    });
+}

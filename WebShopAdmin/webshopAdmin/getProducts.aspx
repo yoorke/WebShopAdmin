@@ -288,3 +288,11 @@
         }
     </script>
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[id*=cmbCategory]").select2();
+            $("[id*=cmbEweCategory]").select2();
+        })
+    </script>
+</asp:Content>

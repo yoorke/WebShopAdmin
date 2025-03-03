@@ -143,4 +143,10 @@
             document.getElementById('<%=divPleaseWait.ClientID%>').style.display = "block";
         }
     </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[id*=cmbCategory]").select2();
+            $("[id*=cmbThreegCategory]").select2();
+        })
+    </script>
 </asp:Content>

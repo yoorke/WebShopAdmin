@@ -15,6 +15,9 @@ using eshopBL;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using eshopBLInterfaces;
+using eshopUtilities;
+using System.IO;
 
 namespace webshopAdmin
 {
@@ -122,14 +125,19 @@ namespace webshopAdmin
                     Page.Title = ViewState["pageTitle"].ToString();
                     lblPageHeader.Text = ViewState["productName"] != null ? ViewState["productName"].ToString() : "Proizvod";
                     TabName.Value = Request.Form[TabName.UniqueID];
+                    if(ViewState["productVariantControlsCreated"] != null && bool.Parse(ViewState["productVariantControlsCreated"].ToString()))
+                        createVariantAttributeControls();
                 }
                 txtPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]) || Page.Request.QueryString["id"] == null;
                 txtWebPrice.Enabled = bool.Parse(ConfigurationManager.AppSettings["allowProductPriceChange"]) || Page.Request.QueryString["id"] == null;
+                txtCode.ReadOnly = bool.Parse(ConfigurationManager.AppSettings["autoGenerateProductCode"]);
 
                 Page.MaintainScrollPositionOnPostBack = true;
             }
             else
                 Page.Response.Redirect("/" + ConfigurationManager.AppSettings["webshopAdminUrl"] + "/login.aspx?returnUrl=" + Page.Request.RawUrl);
+
+            disableCache();
         }
 
         private void loadIntoForm()
@@ -164,7 +172,7 @@ namespace webshopAdmin
             cmbUnitOfMeasure.SelectedValue = "2";
             cmbUnitOfMeasure.DataBind();
 
-            cmbCategories.DataSource = categoryBL.GetNestedCategoriesDataTable();
+            cmbCategories.DataSource = categoryBL.GetNestedCategoriesDataTable(true, false);
             cmbCategories.DataTextField = "name";
             cmbCategories.DataValueField = "categoryID";
             cmbCategories.DataBind();
@@ -231,6 +239,14 @@ namespace webshopAdmin
                 lblPageHeader.Text = product.Name;
                 ViewState.Add("productName", product != null ? product.Name : string.Empty);
                 chkPriceLocked.Checked = product.IsPriceLocked;
+                txtDeclaration.Text = product.Declaration;
+                txtWeight.Text = string.Format("{0:N2}", product.Weight);
+                chkCanBeDelivered.Checked = product.CanBeDelivered;
+                txtComment.Text = product.Comment;
+                txtShortDescription.Text = product.ShortDescription;
+                chkIsFreeDelivery.Checked = product.IsFreeDelivery;
+                txtListDescription.Text = product.ListDescription;
+                txtSortIndex.Text = product.SortIndex.ToString();
 
                 if (product.Promotion != null)
                 {
@@ -242,6 +258,8 @@ namespace webshopAdmin
                 {
                     cmbCategory.SelectedValue = cmbCategory.Items.FindByValue(product.Categories[0].CategoryID.ToString()).Value;
                     createControls();
+                    createVariantAttributeControls();
+                    ViewState.Add("productVariantControlsCreated", true);
                     int i = 0;
                     if (product.Attributes != null)
                     {
@@ -271,6 +289,8 @@ namespace webshopAdmin
                             lstCategories.Items.Add(new ListItem(product.Categories[j].Name, product.Categories[j].CategoryID.ToString()));
                         }
                     }
+
+                    btnAddProductVariant.Enabled = true;
                 }
 
                 if (product.Images != null)
@@ -287,6 +307,8 @@ namespace webshopAdmin
                     imgThumb.ImageUrl = directory + imageUrl + "-" + ConfigurationManager.AppSettings["thumbName"] + extension;
                 
                 }
+
+                loadProductVariants();
             }
             /*rptImages.DataSource = product.Images;
             rptImages.DataBind();*/
@@ -303,6 +325,17 @@ namespace webshopAdmin
 
                 //fluImage.SaveAs(Server.MapPath("~") + "/images/" + fluImage.FileName);
                 fluImage.SaveAs(fullpath);
+
+                if(!(new ImagesBL().IsImageRezolutionSifficient(fullpath)))
+                {
+                    setStatus($"Veličina slike i rezolucija nisu dovoljni da bi prikaz slike proizvoda bio zadovoljavajući. Izaberite sliku koja ima rezoluciju od bar: " +
+                        $"{ConfigurationManager.AppSettings["preferredImageWidth"]}px x {ConfigurationManager.AppSettings["preferredImageHeight"]}px.", "warning");
+
+                    fluImage.Dispose();
+                    File.Delete(fullpath);
+
+                    return;
+                }
 
                 //System.Drawing.Image original = System.Drawing.Image.FromFile(Server.MapPath("~") + "/images/" + fluImage.FileName);
 
@@ -328,7 +361,16 @@ namespace webshopAdmin
 
                 bool exists = new ProductBL().CreateProductImages(fullpath);
                 if(exists)
-                    images.Add(new ProductImage(fullpath.Substring(fullpath.LastIndexOf('/') + 1), images.Count + 1));
+                {
+                    string filename = fullpath.Substring(fullpath.LastIndexOf('/') + 1);
+                    if(bool.Parse(ConfigurationManager.AppSettings["useWebPImages"]))
+                    {
+                        filename = filename.Substring(0, filename.LastIndexOf('.')) + ".webp";
+                    }
+
+                    //images.Add(new ProductImage(fullpath.Substring(fullpath.LastIndexOf('/') + 1), images.Count + 1));
+                    images.Add(new ProductImage(filename, images.Count + 1));
+                }
 
                 ViewState.Add("images",images);
 
@@ -364,105 +406,146 @@ namespace webshopAdmin
 
         private void saveProduct()
         {
-            //main data
-            Product product = new Product();
-            product.Name = txtName.Text;
-            //product.Code = bool.Parse(ConfigurationManager.AppSettings["fillZeroCode"]) ? txtCode.Text.PadLeft(13, '0') : txtCode.Text;
-            product.Code = fillZeros(bool.Parse(ConfigurationManager.AppSettings["fillZeroCode"]), txtCode.Text);
-            product.SupplierCode = txtSupplierCode.Text;
-            product.Brand = new Brand();
-            product.Brand.BrandID = int.Parse(cmbBrand.SelectedValue);
-            product.Description = txtDescription.Text;
-            product.Price = double.Parse(txtPrice.Text);
-            product.WebPrice = double.Parse(txtWebPrice.Text);
-            product.VatID = int.Parse(cmbVat.SelectedValue);
-            //product.InsertDate = product.UpdateDate = DateTime.Now;
-            product.SupplierID = int.Parse(cmbSupplier.SelectedValue);
-            product.IsApproved = chkApproved.Checked;
-            product.IsActive = chkActive.Checked;
-            product.IsLocked = chkLocked.Checked;
-            product.IsInStock = chkInStock.Checked;
-            //product.Ean = bool.Parse(ConfigurationManager.AppSettings["fillZeroBarcode"]) ? txtEan.Text.PadLeft(13, '0') : txtEan.Text;
-            product.Ean = fillZeros(bool.Parse(ConfigurationManager.AppSettings["fillZeroBarcode"]), txtEan.Text);
-            product.Specification = txtSpecification.Text;
-            product.ProductID = (lblProductID.Value != string.Empty) ? int.Parse(lblProductID.Value) : 0;
-            product.UnitOfMeasure = new UnitOfMeasure(int.Parse(cmbUnitOfMeasure.SelectedValue), cmbUnitOfMeasure.SelectedItem.Text, string.Empty);
-            product.IsPriceLocked = chkPriceLocked.Checked;
-
-            if (cmbPromotions.SelectedIndex > 0)
+            try
             {
-                product.Promotion = new Promotion();
-                product.Promotion.PromotionID = int.Parse(cmbPromotions.SelectedValue);
-                product.Promotion.Price = double.Parse(txtPromotionPrice.Text);
-            }
+                //main data
+                Product product = new Product();
+                product.Name = txtName.Text;
+                //product.Code = bool.Parse(ConfigurationManager.AppSettings["fillZeroCode"]) ? txtCode.Text.PadLeft(13, '0') : txtCode.Text;
+                product.Code = fillZeros(bool.Parse(ConfigurationManager.AppSettings["fillZeroCode"]), txtCode.Text);
+                product.SupplierCode = txtSupplierCode.Text;
+                product.Brand = new Brand();
+                product.Brand.BrandID = int.Parse(cmbBrand.SelectedValue);
+                product.Description = txtDescription.Text;
 
-            //category and attributes
-            if (cmbCategory.SelectedIndex > -1)
-            {
-                product.Categories = new List<Category>();
-                product.Categories.Add(new Category(int.Parse(cmbCategory.SelectedValue), cmbCategory.SelectedItem.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, 0, false, false, 0, 0, 0));
-                product.Attributes = new List<AttributeValue>();
+                double price = 0;
+                double.TryParse(txtPrice.Text, out price);
+                //product.Price = double.Parse(txtPrice.Text);
+                product.Price = price;
 
-                if(bool.Parse(ConfigurationManager.AppSettings["productInMultipleCategories"]))
-                    foreach (ListItem item in lstCategories.Items)
-                    {
-                        product.Categories.Add(new Category(int.Parse(item.Value), item.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, -1, false, false, 0, 0, 0));
-                    }
+                double webPrice = 0;
+                double.TryParse(txtWebPrice.Text, out webPrice);
+                //product.WebPrice = double.Parse(txtWebPrice.Text);
+                product.WebPrice = webPrice;
 
-                //foreach (object obj in TabContainer1.Controls)
-                //{
-                //if (obj is AjaxControlToolkit.TabPanel)
-                //{
-                //AjaxControlToolkit.TabPanel tabPanel = obj as AjaxControlToolkit.TabPanel;
+                product.VatID = int.Parse(cmbVat.SelectedValue);
+                //product.InsertDate = product.UpdateDate = DateTime.Now;
+                product.SupplierID = int.Parse(cmbSupplier.SelectedValue);
+                product.IsApproved = chkApproved.Checked;
+                product.IsActive = chkActive.Checked;
+                product.IsLocked = chkLocked.Checked;
+                product.IsInStock = chkInStock.Checked;
+                //product.Ean = bool.Parse(ConfigurationManager.AppSettings["fillZeroBarcode"]) ? txtEan.Text.PadLeft(13, '0') : txtEan.Text;
+                product.Ean = fillZeros(bool.Parse(ConfigurationManager.AppSettings["fillZeroBarcode"]), txtEan.Text);
+                product.Specification = txtSpecification.Text;
+                product.ProductID = (lblProductID.Value != string.Empty) ? int.Parse(lblProductID.Value) : 0;
+                product.UnitOfMeasure = new UnitOfMeasure(int.Parse(cmbUnitOfMeasure.SelectedValue), cmbUnitOfMeasure.SelectedItem.Text, string.Empty);
+                product.IsPriceLocked = chkPriceLocked.Checked;
+                product.Declaration = txtDeclaration.Text;
 
-                //if (tabPanel.ID == "tbpCategories")
-                //{
+                double weight = 0;
+                double.TryParse(txtWeight.Text, out weight);
 
-                foreach (object control in pnlAttributes.Controls)
-                    if (control is customControls.AttributeControl)
-                    {
-                        //Control c = tpControl as Control;
-                        //foreach (object innerCtrl in c.Controls)
-                        //{
-                        //if (innerCtrl is DropDownList)
-                        //if (((DropDownList)tpControl).ID != "cmbCategory")
-                        product.Attributes.Add(new AttributeValue(((customControls.AttributeControl)control).AttributeValueID, ((customControls.AttributeControl)control).AttributeValue, -1, 0, string.Empty, 0));
-                        //}
+            //product.Weight = double.Parse(txtWeight.Text);
+                product.Weight = weight;
+                product.WeightRangeID = null;
+                product.CanBeDelivered = chkCanBeDelivered.Checked;
+                product.Comment = txtComment.Text;
+                product.ShortDescription = txtShortDescription.Text;
+                product.IsFreeDelivery = chkIsFreeDelivery.Checked;
+                product.ListDescription = txtListDescription.Text;
+                int sortIndex = 0;
+                product.SortIndex = int.TryParse(txtSortIndex.Text, out sortIndex) ? sortIndex : 0;
 
-                    }
-                //}
-                //}
-                //}
-            }
-
-            //images
-            if (rptImages.Items.Count > 0)
-            {
-                product.Images = new List<ProductImage>();
-                //List<ProductImage> images = (List<ProductImage>)ViewState["images"];
-                foreach (RepeaterItem productImage in rptImages.Items)
+                if (cmbPromotions.SelectedIndex > 0)
                 {
-                    product.Images.Add(new ProductImage(((Label)productImage.FindControl("lblImageUrl")).Text, int.Parse(((TextBox)productImage.FindControl("txtSortOrder")).Text)));
+                    product.Promotion = new Promotion();
+                    product.Promotion.PromotionID = int.Parse(cmbPromotions.SelectedValue);
+                    product.Promotion.Price = double.Parse(txtPromotionPrice.Text);
                 }
+
+                //category and attributes
+                if (cmbCategory.SelectedIndex > -1)
+                {
+                    product.Categories = new List<Category>();
+                    product.Categories.Add(new Category(int.Parse(cmbCategory.SelectedValue), cmbCategory.SelectedItem.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, 0, false, false, 0, 0, 0));
+                    product.Attributes = new List<AttributeValue>();
+
+                    if(bool.Parse(ConfigurationManager.AppSettings["productInMultipleCategories"]))
+                        foreach (ListItem item in lstCategories.Items)
+                        {
+                            product.Categories.Add(new Category(int.Parse(item.Value), item.Text, 0, string.Empty, string.Empty, 0, 0, 0, string.Empty, true, -1, false, false, 0, 0, 0));
+                        }
+
+                    //foreach (object obj in TabContainer1.Controls)
+                    //{
+                    //if (obj is AjaxControlToolkit.TabPanel)
+                    //{
+                    //AjaxControlToolkit.TabPanel tabPanel = obj as AjaxControlToolkit.TabPanel;
+
+                    //if (tabPanel.ID == "tbpCategories")
+                    //{
+
+                    foreach (object control in pnlAttributes.Controls)
+                        if (control is customControls.AttributeControl)
+                        {
+                            //Control c = tpControl as Control;
+                            //foreach (object innerCtrl in c.Controls)
+                            //{
+                            //if (innerCtrl is DropDownList)
+                            //if (((DropDownList)tpControl).ID != "cmbCategory")
+                            product.Attributes.Add(new AttributeValue(((customControls.AttributeControl)control).AttributeValueID, ((customControls.AttributeControl)control).AttributeValue, -1, 0, string.Empty, 0));
+                            //}
+
+                        }
+                    //}
+                    //}
+                    //}
+                }
+
+                //images
+                if (rptImages.Items.Count > 0)
+                {
+                    product.Images = new List<ProductImage>();
+                    //List<ProductImage> images = (List<ProductImage>)ViewState["images"];
+                    foreach (RepeaterItem productImage in rptImages.Items)
+                    {
+                        product.Images.Add(new ProductImage(((Label)productImage.FindControl("lblImageUrl")).Text, int.Parse(((TextBox)productImage.FindControl("txtSortOrder")).Text)));
+                    }
+                }
+
+
+
+                ProductBL productBL = new ProductBL();
+                string productID = productBL.SaveProduct(product).ToString();
+                //if (lblProductID.Value == "0")
+                    lblProductID.Value = productID;
+
+                createVariantAttributeControls();
+                ViewState.Add("productVariantControlsCreated", true);
+                btnAddProductVariant.Enabled = true;
+
+                setStatus("Artikal uspešno sačuvan.", "success");
             }
-
-
-
-            ProductBL productBL = new ProductBL();
-            string productID = productBL.SaveProduct(product).ToString();
-            //if (lblProductID.Value == "0")
-                lblProductID.Value = productID;
-
-            
+            catch(Exception ex)
+            {
+                string message = ex.Message + (ex.InnerException != null ? " - " + ex.InnerException.Message : string.Empty);
+                setStatus($"Greška prilikom čuvanja artikla. {message}", "danger");
+                ErrorLog.LogError(ex);
+            }
         }
 
         protected void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             createControls();
+            //createVariantAttributeControls();
             if (cmbCategory.SelectedIndex > 0)
                 btnAddProductToCategory.Enabled = true;
 
-
+            if(bool.Parse(ConfigurationManager.AppSettings["autoGenerateProductCode"]))
+            {
+                createProductCode(int.Parse(cmbCategory.SelectedValue));
+            }
 
 
 
@@ -565,7 +648,7 @@ namespace webshopAdmin
                 foreach (eshopBE.Attribute attribute in attributes)
                 {
                     pnlAttributes.Controls.Add(new LiteralControl("<div class='form-group'>"));
-                    pnlAttributes.Controls.Add(new LiteralControl("<label for='cmbAttribute" + (count++).ToString() + "'>"));
+                    pnlAttributes.Controls.Add(new LiteralControl("<label for='ctl00_ContentPlaceHolder1_cmbAttribute" + (count).ToString() + "_cmbAttribute'>"));
                     Literal name = new Literal();
                     name.Text = attribute.Name + ": ";
                     pnlAttributes.Controls.Add(name);
@@ -743,6 +826,7 @@ namespace webshopAdmin
                 txtCode.Text = string.Empty;
                 txtSupplierCode.Text = string.Empty;
                 txtEan.Text = string.Empty;
+                cmbSupplier.SelectedIndex = -1;
 
                 txtCode.Focus();
 
@@ -756,5 +840,212 @@ namespace webshopAdmin
             customStatus.Class = classes;
             customStatus.Show();
         }
+
+        private void disableCache()
+        {
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.Cache.SetExpires(DateTime.Now.AddDays(-1));
+            Response.Cache.SetNoStore();
+            Response.Cache.SetProxyMaxAge(new TimeSpan(0, 0, 0));
+            Response.Cache.SetValidUntilExpires(false);
+            Response.Cache.SetRevalidation(HttpCacheRevalidation.AllCaches);
+        }
+
+        private void createProductCode(int categoryID)
+        {
+            txtCode.Text = new ProductBL().GetNewProductCode(categoryID);
+        }
+
+        private void createVariantAttributeControls()
+        {
+            List<eshopBE.Attribute> attributes = new AttributeBL().GetVariantAttributesForCategory(int.Parse(cmbCategory.SelectedValue));
+
+            if(attributes != null)
+            {
+                int count = 1;
+                string controlSize = "2";
+
+                pnlVariantAttributes.Controls.Clear();
+
+                foreach(eshopBE.Attribute attribute in attributes)
+                {
+                    pnlVariantAttributes.Controls.Add(new LiteralControl("<div class='col-lg-" + controlSize + "'>"));
+                    pnlVariantAttributes.Controls.Add(new LiteralControl("<div class='form-group'>"));
+                    pnlVariantAttributes.Controls.Add(new LiteralControl("<label for='cmbVariantAttribute" + (count).ToString() + "'>"));
+                    Literal lblName = new Literal();
+                    lblName.Text = attribute.Name + ":";
+                    pnlVariantAttributes.Controls.Add(lblName);
+                    Literal lblAttributeID = new Literal();
+                    lblAttributeID.Text = attribute.AttributeID.ToString();
+                    lblAttributeID.Visible = false;
+                    //pnlAddAttributeValue.Controls.Add(lblAttributeID);
+                    pnlVariantAttributes.Controls.Add(new LiteralControl("</label>"));
+                    Control ac = new Control();
+                    ac = LoadControl("customControls/AttributeControl.ascx");
+                    ac.ID = "cmbVariantAttribute" + (count++).ToString();
+                    ((customControls.AttributeControl)ac).ShowNP = false;
+                    ((customControls.AttributeControl)ac).AttributeID = attribute.AttributeID;
+                    //pnlAddAttributeValue.Controls.Add(ac);
+                    pnlVariantAttributes.Controls.Add(ac);
+                    pnlVariantAttributes.Controls.Add(new LiteralControl("</div>"));
+                    pnlVariantAttributes.Controls.Add(new LiteralControl("</div>"));
+                }
+            }
+        }
+
+        protected void btnAddProductVariant_Click(object sender, EventArgs e)
+        {
+            //if(txtVariantCode.Text.Trim() != string.Empty &&
+                //txtVariantPrice.Text.Trim() != string.Empty)
+            //{
+                ProductVariant productVariant = new ProductVariant();
+                productVariant.Code = txtVariantCode.Text;
+                productVariant.Price = txtVariantPrice.Text == string.Empty ? 0 : double.Parse(txtVariantPrice.Text);
+                productVariant.IsInStock = chkVariantIsInStock.Checked;
+                productVariant.ProductID = int.Parse(lblProductID.Value);
+                productVariant.Attributes = new List<AttributeValue>();
+
+                foreach(object control in pnlVariantAttributes.Controls)
+                {
+                    if(control is customControls.AttributeControl)
+                    {
+                        productVariant.Attributes.Add(new AttributeValue(((customControls.AttributeControl)control).AttributeValueID, ((customControls.AttributeControl)control).AttributeValue, -1, 0, string.Empty, 0));
+                    }
+                }
+
+                new ProductVariantBL().Save(productVariant);
+
+            loadProductVariants();
+            //}
+        }
+
+        private void loadProductVariants()
+        {
+            int productID = -1;
+            if (int.TryParse(lblProductID.Value, out productID)) { 
+                DataTable productVariants = new ProductVariantBL().GetProductVariants(productID);
+                dgvProductVariants.DataSource = productVariants;
+                dgvProductVariants.DataBind();
+            }
+        }
+
+        protected void dgvProductVariants_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            new ProductVariantBL().DeleteProductVariant(int.Parse(dgvProductVariants.DataKeys[e.RowIndex].Values[0].ToString()));
+            loadProductVariants();
+        }
+
+        protected void chkIsInStock_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkbox = (CheckBox)sender;
+            GridViewRow gridViewRow = (GridViewRow)checkbox.NamingContainer;
+
+            new ProductVariantBL().SetIsInStock(int.Parse(((Label)gridViewRow.FindControl("lblProductVariantID")).Text), bool.Parse(((CheckBox)gridViewRow.FindControl("chkIsInStock")).Checked.ToString()));
+        }
+
+        private void createProductVariant(string code, double price, bool isInStock, int productID, List<AttributeValue> attributeValues)
+        {
+            ProductVariant productVariant = new ProductVariant();
+            productVariant.Code = code;
+            productVariant.Price = price;
+            productVariant.IsInStock = isInStock;
+            productVariant.ProductID = productID;
+            productVariant.Attributes = new List<AttributeValue>();
+
+            foreach(var attributeValue in attributeValues)
+            {
+                productVariant.Attributes.Add(attributeValue);
+            }
+
+            new ProductVariantBL().Save(productVariant);
+        }
+
+        private void createAllProductVariantCombinations()
+        {
+            List<List<int>> values = getAllVariantAttributeValues();
+            int counter = 1;
+
+            var allValues = values.Aggregate(
+                Enumerable.Empty<int>().AsSingleton(),
+                (accumulator, sequence) => accumulator.SelectMany(
+                    accseq => sequence,
+                    (accseq, item) => accseq.Concat(new[] { item }))
+                );
+
+            foreach(var value in allValues)
+            {
+                List<AttributeValue> attributeValues = new List<AttributeValue>();
+                foreach(var attributeID in value)
+                {
+                    attributeValues.Add(new AttributeValue(attributeID, string.Empty, -1, 0, string.Empty, 0));
+                }
+                createProductVariant(txtCode.Text + $"-{(counter++).ToString()}", double.Parse(txtWebPrice.Text), true, int.Parse(lblProductID.Value), attributeValues);
+            }
+
+            loadProductVariants();
+        }
+
+        private List<List<int>> getAllVariantAttributeValues()
+        {
+            List<List<int>> values = new List<List<int>>();
+            foreach(object control in pnlVariantAttributes.Controls)
+            {
+                if(control is customControls.AttributeControl)
+                {
+                    List<int> attributeValuesList = new List<int>();
+                    foreach(var value in ((customControls.AttributeControl)control).GetValues())
+                    {
+                        attributeValuesList.Add(value.AttributeValueID);
+                    }
+                    values.Add(attributeValuesList);
+                }
+            }
+
+            return values;
+        }
+
+        protected void btnCreateAllProductVariants_Click(object sender, EventArgs e)
+        {
+            createAllProductVariantCombinations();
+        }
+
+        protected void btnConvertImage_Click(object sender, EventArgs e)
+        {
+            IImageConvertor imageConvertor = new ImageConvertor();
+            List<ProductImage> images = (List<ProductImage>)ViewState["images"];
+            List<ProductImage> convertedImages = new List<ProductImage>();
+
+            foreach(var image in images)
+            {
+                int imageId = int.Parse(image.ImageUrl.Substring(0, image.ImageUrl.LastIndexOf('.')));
+                string imagePath = new ProductBL().CreateImageDirectory(imageId) + image.ImageUrl;
+                string newImageUrl = imageConvertor.ConvertImageToWebP(imagePath);
+
+                ProductImage pi = new ProductImage()
+                {
+                    Filename = image.Filename,
+                    ImageUrl = newImageUrl,
+                    SortOrder = image.SortOrder
+                };
+                convertedImages.Add(pi);
+            }
+
+            ViewState["images"] = convertedImages;
+            loadImages();
+
+            setStatus("Slike uspešno konvertovane u WebP format.", "success");
+        }
+
+        protected void btnResizeImage_Click(object sender, EventArgs e)
+        {
+            new ImagesBL().ResizeProductImages(int.Parse(lblProductID.Value));
+
+            setStatus("Izmena rezolucija slika uspešno izvršena.", "success");
+        }
+    }
+
+    public static class Extensions
+    {
+        public static IEnumerable<T> AsSingleton<T>(this T item) => new[] { item };
     }
 }

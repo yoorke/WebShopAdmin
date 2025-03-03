@@ -208,6 +208,12 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
+                                            <asp:TemplateField HeaderText="Varijanta" ControlStyle-Width="30px" ItemStyle-Width="30px">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="chkIsVariant" runat="server" Checked='<%#Eval("isVariant") %>' OnCheckedChanged="chkIsVariant_CheckedChanged" AutoPostBack="true" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Pozicija" ControlStyle-Width="30px" ItemStyle-Width="30px">
                                                 <ItemTemplate>
                                                     <asp:TextBox ID="txtPosition" runat="server" Text='<%#Eval("position") %>'></asp:TextBox>
@@ -464,5 +470,15 @@
         })
 
         
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[id*=cmbParent]").select2();
+            $("[id*=cmbSlider]").select2();
+            $("[id*=cmbCategoryBanner]").select2();
+            $("[id*=cmbAttribute]").select2();
+            $("[id*=cmbCategoryBrand]").select2();
+            $("[id*=cmbCriterion]").select2();
+        })
     </script>
 </asp:Content>

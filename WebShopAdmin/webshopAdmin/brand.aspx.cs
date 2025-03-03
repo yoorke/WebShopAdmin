@@ -92,7 +92,7 @@ namespace WebShopAdmin.webshopAdmin
             {
                 string filename = txtName.Text;
                 string extension = fluImageUpload.FileName.Substring(fluImageUpload.FileName.LastIndexOf('.'));
-                fluImageUpload.SaveAs(Server.MapPath("~/images/brand/" + filename + extension));
+                fluImageUpload.SaveAs(Server.MapPath("~/images/brand/" + filename.ToLower() + extension));
                 imgImage.ImageUrl = "/images/brand/" + filename + extension;
             }
         }

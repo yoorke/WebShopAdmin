@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <label for="txtAttributeValue">Vrednost: </label>
+                            <label for='<%=txtAttributeValue.ClientID %>'>Vrednost: </label>
                             <asp:TextBox ID="txtAttributeValue" runat="server" CssClass="form-control"></asp:TextBox>
                         </div><!--form-group-->
                     </div>
@@ -47,7 +47,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="btn-group">
-                    <asp:Button ID="btnSave" runat="server" Text="Sačuvaj" OnClick="btnSave_Click" CssClass="btn btn-primary" />
+                    <asp:Button ID="btnSave" runat="server" Text="Sačuvaj" OnClick="btnSave_Click" CssClass="btn btn-primary" OnClientClick="disable(this)" />
                     <asp:Button ID="btnSaveClose" runat="server" Text="Sačuvaj i zatvori" OnClick="btnSaveClose_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnSaveAs" runat="server" Text="Kreiraj novi na osnovu" OnClick="btnSaveAs_Click" CssClass="btn btn-primary" />
                     <asp:Button ID="btnClose" runat="server" Text="Zatvori" OnClick="btnClose_Click" CssClass="btn btn-primary" CausesValidation="false" />
@@ -71,6 +71,7 @@
                     <li class="active"><a href="#product" data-toggle="tab">Proizvod</a></li>
                     <li><a href="#images" data-toggle="tab">Slike</a></li>
                     <li><a href="#categories" data-toggle="tab">Kategorije</a></li>
+                    <li><a href="#variants" data-toggle="tab">Varijante</a></li>
                     <li><a href="#promotions" data-toggle="tab">Promocije</a></li>
                     <li><a href="#specification" data-toggle="tab">Specifikacija</a></li>
                 </ul><!--tabs-->
@@ -80,16 +81,16 @@
                             <div class="col-lg-6">
                                 <div role="form">
                                     <div class="form-group">
-                                        <label for="txtCode">Šifra:</label>
+                                        <label for='<%=txtCode.ClientID %>'>Šifra:</label>
                                         <asp:TextBox ID="txtCode" runat="server" CssClass="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="requiredFieldValidator1" runat="server" ControlToValidate="txtCode" ErrorMessage="Šifra je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
                                     <div class="form-group">
-                                        <label for="txtEan">Ean:</label>
+                                        <label for='<%=txtEan.ClientID %>'>Ean:</label>
                                         <asp:TextBox ID="txtEan" runat="server" CssClass="form-control"></asp:TextBox>                
                                     </div><!--form-group-->
                                     <div class="form-group">
-                                        <label for="cmbSupplier">Dobavljač:</label>
+                                        <label for='<%=cmbSupplier.ClientID %>'>Dobavljač:</label>
                                         <div class="input-group">
                                             <asp:DropDownList ID="cmbSupplier" runat="server" CssClass="form-control"></asp:DropDownList>
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-plus cursor-pointer" onclick="ShowModalPopupSupplier();return false;"></i></span>
@@ -97,11 +98,11 @@
                                         </div>
                                     </div><!--form-group-->
                                     <div class="form-group">
-                                        <label for="txtSupplierCode">Šifra dobavljača:</label>
+                                        <label for='<%=txtSupplierCode.ClientID %>'>Šifra dobavljača:</label>
                                         <asp:TextBox ID="txtSupplierCode" runat="server" CssClass="form-control"></asp:TextBox>                
                                     </div><!--form-group-->
                                     <div class="form-group">
-                                        <label for="cmbBrand">Proizvođač:</label>
+                                        <label for='<%=cmbBrand.ClientID %>'>Proizvođač:</label>
                                         <div class="input-group">
                                             <asp:DropDownList ID="cmbBrand" runat="server" CssClass="form-control"></asp:DropDownList>
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-plus cursor-pointer" onclick="ShowModalPopupManufacturer();return false;"></i></span>
@@ -109,7 +110,7 @@
                                         <%--<asp:ImageButton ID="btnAddManufacturer" runat="server" ImageUrl="../images/add_icon.png" OnClientClick="ShowModalPopupManufacturer();return false;" />--%>
                                     </div><!--form-group-->
                                     <div class="form-group">
-                                        <label for="txtName">Naziv:</label>
+                                        <label for='<%=txtName.ClientID %>'>Naziv:</label>
                                         <asp:TextBox ID="txtName" runat="server" CssClass="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="requiredFieldValidator2" runat="server" ControlToValidate="txtName" ErrorMessage="Naziv je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
                                     </div><!--form-group-->
@@ -122,6 +123,8 @@
                                                     <asp:CheckBox ID="chkLocked" runat="server" Text="Zaključan" CssClass="checkbox" />
                                                     <asp:CheckBox ID="chkInStock" runat="server" Text="Na stanju" CssClass="checkbox" />
                                                     <asp:CheckBox ID="chkPriceLocked" runat="server" Text="Zaključana cena" CssClass="checkbox" />
+                                                    <asp:CheckBox ID="chkCanBeDelivered" runat="server" Text="Dostava" CssClass="checkbox" />
+                                                    <asp:CheckBox ID="chkIsFreeDelivery" runat="server" Text="Besplatna dostava" CssClass="checkbox" />
                                                 </div><!--form-group-->
                                             </div><!--col-->
                                         </div><!--row-->
@@ -138,38 +141,71 @@
                                     </div>
                                 </div>
                                 <div role="form">
-                                    <div class="form-group">
-                                        <label for="txtSupplierPrice">Nabavna cena:</label>
-                                        <asp:TextBox ID="txtSupplierPrice" runat="server" CssClass="form-control text-right" Enabled="false"></asp:TextBox>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for='<%=txtSupplierPrice.ClientID %>'>Nabavna cena:</label>
+                                                <asp:TextBox ID="txtSupplierPrice" runat="server" CssClass="form-control text-right" Enabled="false"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for='<%=txtPrice.ClientID %>'>Cena:</label>
+                                                <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control text-right"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="requiredFieldValidator3" runat="server" ControlToValidate="txtPrice" ErrorMessage="Cena je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
+                                            </div><!--form-group-->
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for='<%=txtWebPrice.ClientID %>'>Web cena:</label>
+                                                <asp:TextBox ID="txtWebPrice" runat="server" CssClass="form-control text-right"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="reqiredFieldValidator4" runat="server" ControlToValidate="txtWebPrice" ErrorMessage="Web cena je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
+                                            </div><!--form-group-->
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="txtPrice">Cena:</label>
-                                        <asp:TextBox ID="txtPrice" runat="server" CssClass="form-control text-right"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="requiredFieldValidator3" runat="server" ControlToValidate="txtPrice" ErrorMessage="Cena je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
-                                    </div><!--form-group-->
-                                    <div class="form-group">
-                                        <label for="txtWebPrice">Web cena:</label>
-                                        <asp:TextBox ID="txtWebPrice" runat="server" CssClass="form-control text-right"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="reqiredFieldValidator4" runat="server" ControlToValidate="txtWebPrice" ErrorMessage="Web cena je obavezan podatak" Display="Dynamic"></asp:RequiredFieldValidator>
-                                    </div><!--form-group-->
-                                    <div class="form-group">
-                                        <label for="cmbUnitOfMeasure">Jedinica mere:</label>
+                                        <label for='<%=cmbUnitOfMeasure.ClientID %>'>Jedinica mere:</label>
                                         <asp:DropDownList ID="cmbUnitOfMeasure" runat="server" CssClass="form-control"></asp:DropDownList>
                                         <asp:RangeValidator ID="rangeValidator2" runat="server" ControlToValidate="cmbUnitOfMeasure" MinimumValue="1" MaximumValue="999" ErrorMessage="Odaberite jedinicu mere" Display="Dynamic"></asp:RangeValidator>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cmbVat">PDV:</label>
+                                        <label for='<%=cmbVat.ClientID %>'>PDV:</label>
                                         <div class="input-group">
                                             <asp:DropDownList ID="cmbVat" runat="server" CssClass="form-control text-right"></asp:DropDownList>
                                             <span class="input-group-addon"><i>%</i></span>
                                         </div>
                                     </div><!--form-group-->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for='<%=txtWeight.ClientID %>'>Težina</label>
+                                                <div class="input-group">
+                                                    <asp:TextBox ID="txtWeight" runat="server" CssClass="form-control text-right" Text="0"></asp:TextBox>
+                                                    <span class="input-group-addon"><i>kg</i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%--<div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="cmbWeightRange">Težina oseg</label>
+                                                <asp:DropDownList ID="cmbWeightRange" runat="server" CssClass="form-control"></asp:DropDownList>
+                                            </div>
+                                        </div>--%>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for='<%=txtSortIndex %>'>Indeks sortiranja</label>
+                                                <asp:TextBox ID="txtSortIndex" runat="server" CssClass="form-control text-right" Text="0" TextMode="Number"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
-                                        <label for="txtInsertDate">Datum unosa:</label>
+                                        <label for='<%=txtInsertDate.ClientID %>'>Datum unosa:</label>
                                         <asp:TextBox ID="txtInsertDate" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                                     </div><!--form-group-->
                                     <div class="form-group">    
-                                        <label for="txtUpdateDate">Datum izmene:</label>
+                                        <label for='<%=txtUpdateDate.ClientID %>'>Datum izmene:</label>
                                         <asp:TextBox ID="txtUpdateDate" runat="server" Enabled="false" CssClass="form-control"></asp:TextBox>
                                     </div><!--form-group-->
                                 </div><!--form-->
@@ -178,17 +214,49 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                    <label for="txtDescription">Opis:</label>
+                                    <label for='<%=txtShortDescription.ClientID %>'>Kratak opis:</label>
+                                    <asp:TextBox ID="txtShortDescription" runat="server" TextMode="MultiLine" Rows="3" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for='<%=txtListDescription.ClientID %>'>Opis u listi:</label>
+                                    <asp:TextBox ID="txtListDescription" runat="server" TextMode="MultiLine" Rows ="2" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for='<%=txtDescription.ClientID %>'>Opis:</label>
                                     <asp:TextBox ID="txtDescription" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
                                     <%--<CKEditor:CKEditorControl ID="txtDescription" runat="server" BasePath="/ckeditor" Height="300px" CssClass="form-control"></CKEditor:CKEditorControl>--%>
                                 </div><!--form-group-->
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for='<%=txtDeclaration.ClientID %>'>Deklaracija:</label>
+                                    <asp:TextBox ID="txtDeclaration" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label for='<%=txtComment.ClientID %>'>Komentar:</label>
+                                    <asp:TextBox ID="txtComment" runat="server" TextMode="MultiLine" CssClass="form-control"></asp:TextBox>
+                                </div>
+                            </div>
+                        </div>
                         
                     </div><!--tab-pane-->
                     <div class="tab-pane" id="images">
-                        <div class="row">
-                            <div class="col-lg-5">
+                        <div class="row margin-top-2">
+                            <div class="col-md-9">
                                 <asp:Repeater ID="rptImages" runat="server" OnItemCommand="rptImages_ItemCommand" OnItemDataBound="rptImages_ItemDataBound">
                                     <ItemTemplate>
                                         <div class="productImage">                                  
@@ -200,6 +268,22 @@
                                     </ItemTemplate>
                                 </asp:Repeater>
                             </div><!--col-->
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="btn-group-vertical">
+                                            <asp:LinkButton ID="btnConvertImage" runat="server" OnClick="btnConvertImage_Click" CssClass="btn btn-primary" CausesValidation="false" ToolTip="Konvertuj u WebP format">
+                                                <span class="fa fa-clone"></span>
+                                                <span>Konvertuj slike u webP format</span>
+                                            </asp:LinkButton>
+                                            <asp:LinkButton ID="btnResizeImage" runat="server" OnClick="btnResizeImage_Click" CssClass="btn btn-primary" CausesValidation="false" ToolTip="Podesi veličinu slika po tipovima">
+                                                <span class="fa-solid fa-image"></span>
+                                                <span>Podesi veličinu slika</span>
+                                            </asp:LinkButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div><!--row-->
                         <div class="row margin-top-2">
                             <div class="col-lg-12">
@@ -213,7 +297,7 @@
                         </div><!--row-->
                         <div class="row margin-top-05">
                             <div class="col-lg-5">
-                                <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj" OnClick="btnImageUpload_Click" CssClass="btn btn-primary" />
+                                <asp:Button ID="btnImageUpload" runat="server" Text="Dodaj" OnClick="btnImageUpload_Click" CssClass="btn btn-primary" CausesValidation="false" />
                             </div><!--col-->
                         </div><!--row-->
                     </div><!--tab-pane-->
@@ -222,7 +306,7 @@
                             <div class="col-lg-5">
                                 <div role="form">
                                     <div class="form-group">
-                                        <label for="cmbCategory">Kategorija:</label>
+                                        <label for='<%=cmbCategory.ClientID %>'>Kategorija:</label>
                                         <asp:DropDownList ID="cmbCategory" runat="server" OnSelectedIndexChanged="cmbCategory_SelectedIndexChanged" AutoPostBack="true" CssClass="form-control"></asp:DropDownList>
                                     </div><!--form-group-->
                                 </div><!--form-->
@@ -233,7 +317,7 @@
                                         <div id="divProductInMultipleCategories" runat="server">
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <label for="cmbCategories">Kategorije:</label>
+                                                    <label for='<%=cmbCategories.ClientID %>'>Kategorije:</label>
                                                 </div>
                                             </div>
                                         
@@ -248,7 +332,7 @@
                                             </div>
                                             <div class="row margin-top-05">
                                                 <div class="col-md-10">
-                                                    <label for="lstCategories">Proizvod će se prikazivati u sledećim kategorijama:</label>
+                                                    <label for='<%=lstCategories.ClientID %>'>Proizvod će se prikazivati u sledećim kategorijama:</label>
                                                     <asp:ListBox ID="lstCategories" runat="server" CssClass="form-control"></asp:ListBox>
                                                 </div>
                                                 <div class="col-md-2 margin-top-1-5">
@@ -270,21 +354,100 @@
                             </div><!--col-->
                         </div><!--row-->
                     </div><!--tab-pane-->
+                    <div class="tab-pane" id="variants">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div role="form">
+                                    <div class="row">
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for='<%=txtVariantCode.ClientID %>'>Šifra:</label>
+                                                <asp:TextBox ID="txtVariantCode" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for='<%=txtVariantPrice.ClientID %>'>Cena:</label>
+                                                <asp:TextBox ID="txtVariantPrice" runat="server" CssClass="form-control text-right" Enabled="false"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <asp:CheckBox ID="chkVariantIsInStock" runat="server" Text="Na stanju" CssClass="checkbox" Checked="true" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="row">
+                                                <asp:Panel ID="pnlVariantAttributes" runat="server">
+
+                                                </asp:Panel>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <asp:Button ID="btnAddProductVariant" runat="server" CssClass="btn btn-primary" OnClick="btnAddProductVariant_Click" Text="Dodaj" Enabled="false" />
+                                            <asp:Button ID="btnCreateAllProductVariants" runat="server" CssClass="btn btn-primary" OnClick="btnCreateAllProductVariants_Click" Text="Dodaj sve varijante" Enabled="true" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row"></div>
+                            </div>
+                        </div>
+                        <div class="row margin-top-2">
+                            <div class="col-lg-6">
+                                <asp:GridView ID="dgvProductVariants" runat="server" AutoGenerateColumns="false" CssClass="table table-condensed table-hover table-striped table-bordered"
+                                    OnRowDeleting="dgvProductVariants_RowDeleting" DataKeyNames="ID">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="ID" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblProductVariantID" runat="server" Text='<%#Eval("id") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Šifra" ControlStyle-Width="100px" ItemStyle-Width="100px">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCode" runat="server" Text='<%#Eval("code") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Cena" ControlStyle-Width="100px" ItemStyle-Width="100px">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPrice" runat="server" Text='<%#Eval("Price") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Na stanju" ControlStyle-Width="50px" ItemStyle-Width="50px">
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="chkIsInStock" runat="server" Checked='<%#Eval("isInStock") %>' OnCheckedChanged="chkIsInStock_CheckedChanged" AutoPostBack="true" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Atributi" ControlStyle-Width="200px" ItemStyle-Width="200px">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblAttributeValues" runat="server" Text='<%#Eval("attributesValues") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:CommandField ShowDeleteButton="true" DeleteText="" ControlStyle-Width="20px" DeleteImageUrl="images/delete_icon.png" ButtonType="Image" ItemStyle-Width="20px" />
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
                     <div class="tab-pane" id="promotions">
                         <div class="row">
                             <div class="col-lg-5">
                                 <div role="form">
                                     <div class="form-group">
-                                        <label for="cmbPromotions">Promocija: </label>
+                                        <label for='<%=cmbPromotions.ClientID %>'>Promocija: </label>
                                         <asp:DropDownList ID="cmbPromotions" runat="server" OnSelectedIndexChanged="cmbPromotions_SelectedIndexChanged" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
                                     </div><!--form-control-->
                                     <div class="form-group">
-                                        <label for="txtPromotionPrice">Cena: </label>
+                                        <label for='<%=txtPromotionPrice.ClientID %>'>Cena: </label>
                                         <div class="input-group">
                                             <asp:TextBox ID="txtPromotionPrice" runat="server" CssClass="form-control"></asp:TextBox>
                                             <span class="input-group-addon">din</span>
                                         </div>
-                                        <asp:RangeValidator ID="rangeValidator1" runat="server" ControlToValidate="txtPromotionPrice" MinimumValue="1" MaximumValue="100000" ErrorMessage="Morate uneti numeričku vrednost." Type="Integer"></asp:RangeValidator>
+                                        <asp:RangeValidator ID="rangeValidator1" runat="server" ControlToValidate="txtPromotionPrice" MinimumValue="1" MaximumValue="1000000" ErrorMessage="Morate uneti numeričku vrednost." Type="Integer"></asp:RangeValidator>
                                     </div><!--form-control-->
                                 </div><!--form-->
                                 <%--<asp:Button ID="btnClearPromotion" runat="server" Text="Obriši sa promocije" OnClick="btnClearPromotion_Click" />--%>
@@ -499,6 +662,22 @@
 
         CKEDITOR.replace('<%=txtDescription.ClientID%>', { filebrowserUploadUrl: '/webShopAdmin/uploadImage.ashx' });
         CKEDITOR.config.height = 300;
+    })
+</script>
+    <script>
+        function disable(control) {
+            control.disable = true;
+        }
+    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[id*=cmbSupplier]").select2();
+        $("[id*=cmbBrand]").select2();
+        $("[id*=cmbUnitOfMeasure]").select2();
+        $("[id*=cmbVat]").select2();
+        $("[id*=cmbCategory]").select2();
+        $("[id*=cmbCategories]").select2();
+        $("[id*=cmbPromotions]").select2();
     })
 </script>
 </asp:Content>

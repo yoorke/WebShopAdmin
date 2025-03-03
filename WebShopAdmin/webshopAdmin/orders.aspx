@@ -110,6 +110,11 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
 
+                            <asp:TemplateField HeaderText="Plaćanje">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPaymentStatus" runat="server" Text='<%#Eval("paymentCode") %>' ToolTip='<%#Eval("paymentName") %>'></asp:Label>
+                                </ItemTemplate>
+                            </asp:TemplateField>
 
 
                             <asp:CommandField ShowDeleteButton="true" DeleteImageUrl="images/delete_icon.png" ControlStyle-Width="20px" DeleteText="" ButtonType="Image" ItemStyle-Width="20px" />

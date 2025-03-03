@@ -54,6 +54,39 @@
                 </div>
             </div>
         </div>
+        <div class="row margin-top-2">
+            <div class="col-md-2 b-1">
+                <div class="form-group">
+                    <label>Width:</label>
+                    <asp:TextBox ID="txtImageWidth" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label>Height:</label>
+                    <asp:TextBox ID="txtImageHeight" runat="server" CssClass="form-control"></asp:TextBox>
+                </div>
+                <div class="form-group">
+                    <label>Tip:</label>
+                    <asp:DropDownList ID="cmbImageType" runat="server" CssClass="form-control" OnSelectedIndexChanged="cmbImageType_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                </div>
+                <asp:Button ID="btnResizeImages" runat="server" CssClass="btn btn-primary mb-1" OnClick="btnResizeImages_Click" Text="Podesi dimenzije" Enabled="false" />
+            </div>
+        </div>
+        <div class="row margin-top-2">
+            <div class="col-md-6 b-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <asp:CheckBox ID="chkExcludeNotApproved" runat="server" Text="Isključi neodobrene" Checked="true" CssClass="checkbox" />
+                        <asp:CheckBox ID="chkExcludeNotActive" runat="server" Text="Isključi neaktivne" Checked="false" CssClass="checkbox" />
+                        <asp:CheckBox ID="chkDeleteOldImageFiles" runat="server" Text="Obriši stare slike" Checked="false" CssClass="checkbox" />
+                    </div>
+                </div>
+                <div class="row mb-1">
+                    <div class="col-md-6">
+                        <asp:Button ID="btnConvertImagesToWebP" runat="server" OnClick="btnConvertImagesToWebP_Click" Text="Konvertuj slike u WebP format" CssClass="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">

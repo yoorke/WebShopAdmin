@@ -16,8 +16,18 @@
         </div>
         <!--row-->
         <div class="row margin-top-2">
-            <div class="col-lg-12">
+            <div class="col-lg-8">
                 <asp:Button ID="btnAddCategory" runat="server" Text="Dodaj kategoriju" OnClick="btnAddCategory_Click" CssClass="btn btn-primary" />
+            </div>
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="txtSearchTable" class="pull-right margin-top-05">Pretraga:</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="txtSearchTable" type="text" class="form-control" />
+                    </div>
+                </div>
             </div>
             <!--col-->
         </div>
@@ -128,4 +138,11 @@
 
     <%--<CKEditor:CKEditorControl ID="txtdede" runat="server" BasePath="/ckeditor" Width="600px" Height="300px"></CKEditor:CKEditorControl>--%>
     <%--</div>--%>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolderFooter" runat="server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            searchTable('dgvCategory', 'txtSearchTable');
+        })
+    </script>
 </asp:Content>

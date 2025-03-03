@@ -14,6 +14,7 @@ using eshopBE;
 using eshopBL;
 using eshopUtilities;
 using System.Collections.Generic;
+using System.IO;
 
 namespace webshopAdmin
 {
@@ -358,9 +359,22 @@ namespace webshopAdmin
             if (fluUpload.HasFile && txtName.Text != string.Empty)
             {
                 string extension = fluUpload.FileName.Substring(fluUpload.FileName.LastIndexOf('.'));
-                string filename = bool.Parse(ConfigurationManager.AppSettings["useCategorySprites"]) ? fluUpload.FileName : txtUrl.Text + extension;
+                string filename = bool.Parse(ConfigurationManager.AppSettings["useCategorySprites"]) ? fluUpload.FileName : txtUrl.Text + $"_{DateTime.Now.Second.ToString().PadLeft(2, '0')}" + extension;
                 fluUpload.SaveAs(Server.MapPath("~/images/" + filename));
                 txtImageUrl.Text = filename;
+
+                if(!string.IsNullOrEmpty(imgIcon.ImageUrl))
+                {
+                    try
+                    {
+                        File.Delete(HttpContext.Current.Server.MapPath(imgIcon.ImageUrl));
+                    }
+                    catch(Exception ex)
+                    {
+                        ErrorLog.LogError(ex);
+                    }
+                }
+
                 imgIcon.ImageUrl = ResolveUrl("~/images/" + filename);
             }
             else
@@ -390,6 +404,15 @@ namespace webshopAdmin
         {
             new CategoryBrandBL().Delete(int.Parse(lblCategoryID.Value), int.Parse(dgvCategoryBrand.DataKeys[e.RowIndex].Values[0].ToString()));
             loadCategoryBrandPrice();
+        }
+
+        protected void chkIsVariant_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox checkbox = (CheckBox)sender;
+            GridViewRow row = (GridViewRow)checkbox.NamingContainer;
+
+            AttributeBL attributeBL = new AttributeBL();
+            attributeBL.SetIsVariant(int.Parse(lblCategoryID.Value), int.Parse(((Label)row.FindControl("lblAttributeID")).Text), bool.Parse(((CheckBox)row.FindControl("chkIsVariant")).Checked.ToString()));
         }
     }
 }

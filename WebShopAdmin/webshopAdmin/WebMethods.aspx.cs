@@ -15,6 +15,8 @@ using System.Web.Configuration;
 using Newtonsoft.Json;
 using System.Web.Services;
 using eshopUtilities;
+using eshop.Import.BL.Interfaces;
+using eshop.Import.BL;
 
 namespace webshopAdmin
 {
@@ -139,6 +141,108 @@ namespace webshopAdmin
                 ErrorLog.LogError(ex);
                 throw;
             }
+        }
+
+        [WebMethod()]
+        public static string SaveImportProduct(string supplierCode, string productCode, bool isApproved, bool isActive, int categoryID)
+        {
+            IProductImportBL productImportBL = null;
+
+            switch (supplierCode)
+            {
+                case "uspon":
+                    {
+                        productImportBL = new ProductImportUsponBL();
+                        break;
+                    }
+                case "dsc":
+                    {
+                        productImportBL = new ProductImportDSCBL();
+                        break;
+                    }
+                //case "ewe":
+                //    {
+                //        productImportBL = new ProductImportEweBL();
+                //        break;
+                //    }
+                case "ewe":
+                    {
+                        productImportBL = new ProductImportEweV2BL();
+                        break;
+                    }
+            }
+
+            productImportBL.SaveProduct(productCode, isApproved, isActive, categoryID);
+
+            return "success";
+        }
+
+        [WebMethod()]
+        public static bool SetActive(int productID, bool isActive)
+        {
+            ProductBL productBL = new ProductBL();
+
+            productBL.SetActive(productID, isActive);
+
+            return true;
+        }
+
+        [WebMethod()]
+        public static bool SetApproved(int productID, bool isApproved)
+        {
+            ProductBL productBL = new ProductBL();
+
+            productBL.SetApproved(productID, isApproved);
+
+            return true;
+        }
+
+        [WebMethod()]
+        public static bool SetIsInStock(int productID, bool isInStock)
+        {
+            ProductBL productBL = new ProductBL();
+
+            productBL.SetIsInStock(productID, isInStock);
+
+            return true;
+        }
+
+        [WebMethod()]
+        public static bool SetIsLocked(int productID, bool isLocked)
+        {
+            ProductBL productBL = new ProductBL();
+
+            productBL.SetLocked(productID, isLocked);
+
+            return true;
+        }
+
+        [WebMethod()]
+        public static bool SetIsPriceLocked(int productID, bool isPriceLocked)
+        {
+            ProductBL productBL = new ProductBL();
+
+            productBL.SetPriceLocked(productID, isPriceLocked);
+
+            return true;
+        }
+
+        [WebMethod()]
+        public static bool SetSortIndex(int productID, int sortIndex)
+        {
+            ProductBL productBL = new ProductBL();
+
+            productBL.SetSortIndex(productID, sortIndex);
+
+            return true;
+        }
+
+        [WebMethod()]
+        public static bool DeleteProduct(int productID)
+        {
+            new ProductBL().DeleteProduct(productID);
+
+            return true;
         }
     }
 }
